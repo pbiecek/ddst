@@ -7,7 +7,8 @@
 Performs data driven smooth test for composite hypothesis of exponentiality.
 }
 \usage{
-ddst.exp.test(x, base = ddst.base.legendre, c = 100, B = 1000, compute.p = F, Dmax = 5, ...)
+ddst.exp.test(x, base = ddst.base.legendre, c = 100, B = 1000, compute.p = F, 
+    Dmax = 5, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

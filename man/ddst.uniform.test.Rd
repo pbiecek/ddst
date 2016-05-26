@@ -1,13 +1,13 @@
 \name{ddst.uniform.test}
 \alias{ddst.uniform.test}
 \alias{ddst.uniform.Nk}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ Data Driven Smooth Test for Uniformity }
 \description{
 Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 }
 \usage{
-ddst.uniform.test(x, base = ddst.base.legendre, c = 2.4, B = 1000, compute.p = F, Dmax = 10, ...)
+ddst.uniform.test(x, base = ddst.base.legendre, c = 2.4, B = 1000, compute.p = F,
+    Dmax = 10, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,11 +23,11 @@ ddst.uniform.test(x, base = ddst.base.legendre, c = 2.4, B = 1000, compute.p = F
 Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix \emph{ I} being identity and smooth test statistic with \emph{k} components
 \emph{
 $W_k=[1/sqrt(n) sum_{j=1}^k sum_{i=1}^n phi_j(Z_i)]^2$},
-where \emph{$phi_j$} is \emph{j}th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006). 
+where \emph{$phi_j$} is \emph{j}th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006).
 
 An application of the pertaining selection rule \emph{T} for choosing \emph{k} gives related `ddst.uniform.test()' based on statistic \emph{$W_T$}.
 
-Similar approach applies to testing goodness-of-fit to any fully specified continuous distribution function \emph{F}. For this purpose it is enough to apply the above solution to transformed observations \emph{$F(z_1),...,F(z_n)$}. 
+Similar approach applies to testing goodness-of-fit to any fully specified continuous distribution function \emph{F}. For this purpose it is enough to apply the above solution to transformed observations \emph{$F(z_1),...,F(z_n)$}.
 
 For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 
@@ -40,8 +40,8 @@ For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
   \item{data.name }{a character string giving the name(s) of the data. }
   \item{p.value }{the p-value for the test, computed only if \code{compute.p=T}.}
 }
-\references{ 
-Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590. 
+\references{
+Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.
 
 Ledwina, T. (1994). Data driven version of Neyman's smooth test of fit. \emph{ J. Amer. Statist. Assoc.} \bold{ 89} 1000-1005.
 
@@ -49,6 +49,7 @@ Neyman, J. (1937). `Smooth test' for goodness of fit. \emph{Skand. Aktuarietidsk
 }
 \author{ Przemyslaw Biecek and Teresa Ledwina }
 \examples{
+
 # H0 is true
 z = runif(80)
 ddst.uniform.test(z, compute.p=TRUE)
@@ -62,6 +63,7 @@ ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
 z = rbeta(80,4,2)
 (t = ddst.uniform.test(z, compute.p=TRUE))
 t$p.value
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
