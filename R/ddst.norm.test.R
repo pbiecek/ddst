@@ -35,7 +35,6 @@ result = list(statistic = t, parameter = l, method = "Data Driven Smooth Test fo
 result$data.name = paste(paste(as.character(substitute(x)), collapse=""), ",   base: ", method.name, ",   c: ", c, sep="")
 class(result) = "htest"
 if (compute.p) {
-  data(tabNorm)
   ns <- as.numeric(rownames(tabNorm))
   ts <- as.numeric(colnames(tabNorm))
   n1 <- min(nrow(tabNorm), nrow(tabNorm) + 1 - sum(ns >= n))

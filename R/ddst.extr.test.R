@@ -1,7 +1,5 @@
 `ddst.extr.test` <-
 function(x, base = ddst.base.legendre, c = 100, B=1000, compute.p = F, Dmax = 5, ...) {
- library(evd)
-
 # method.name = as.character(substitute(base)) 
  # only Legendre is implemented yet
  base = ddst.base.legendre
