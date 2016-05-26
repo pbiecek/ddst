@@ -11,7 +11,7 @@
 Data Driven Smooth Tests
 }
 \description{
-Set of Data Driven Smooth Tests for Goodnes of Fit
+Set of Data Driven Smooth Tests for Goodness of Fit
 }
 \details{
 \tabular{ll}{
