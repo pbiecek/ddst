@@ -11,7 +11,7 @@
 Data Driven Smooth Tests
 }
 \description{
-Set of data driven smooth goodnes of fit tests.
+Set of Data Driven Smooth Tests for Goodnes of Fit
 }
 \details{
 \tabular{ll}{
@@ -105,6 +105,7 @@ Neyman, J. (1959). Optimal asymptotic tests of composite statistical hypotheses.
 \keyword{htest}
 \keyword{nonparametric}
 \examples{
+
 # Data Driven Smooth Test for Uniformity
 #
 # H0 is true
@@ -146,4 +147,5 @@ ddst.exp.test (z, compute.p = TRUE)
 # H0 is false
 z = rchisq(80,4)
 ddst.exp.test (z, compute.p = TRUE)
+
 }

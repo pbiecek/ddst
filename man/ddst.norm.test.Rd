@@ -8,7 +8,8 @@
 Performs data driven smooth test for composite hypothesis of normality.
 }
 \usage{
-ddst.norm.test(x, base = ddst.base.legendre, c = 100, B = 1000, compute.p = F, Dmax = 5, ...)
+ddst.norm.test(x, base = ddst.base.legendre, c = 100, B = 1000, compute.p = F, 
+    Dmax = 5, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,7 +59,7 @@ Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hyp
  }
 \author{ Przemyslaw Biecek and Teresa Ledwina }
 \examples{
-
+\dontrun{
 # for given vector of 19 numbers
 z = c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09, 
    4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
@@ -71,7 +72,7 @@ ddst.norm.test(z, compute.p=TRUE)
 # H0 is false
 z = rexp(80,4)
 ddst.norm.test(z, B=5000, compute.p=TRUE)
-
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
