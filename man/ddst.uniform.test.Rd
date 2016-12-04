@@ -22,7 +22,7 @@ ddst.uniform.test(x, base = ddst.base.legendre, c = 2.4, B = 1000, compute.p = F
 \details{
 Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix \emph{ I} being identity and smooth test statistic with \emph{k} components
 \emph{
-$W_k=[1/sqrt(n) sum_{j=1}^k sum_{i=1}^n phi_j(Z_i)]^2$},
+$W_k=1/sqrt(n) sum_{j=1}^k sum_{i=1}^n [phi_j(Z_i)]^2$},
 where \emph{$phi_j$} is \emph{j}th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006).
 
 An application of the pertaining selection rule \emph{T} for choosing \emph{k} gives related `ddst.uniform.test()' based on statistic \emph{$W_T$}.
