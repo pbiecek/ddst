@@ -3,9 +3,10 @@
 #' Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 #'
 #' Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix \emph{ I} being identity and smooth test statistic with \emph{k} components
-#' \emph{
-#'  $W_k=1/sqrt(n) sum_{j=1}^k sum_{i=1}^n [phi_j(Z_i)]^2$},
-#' where \emph{$phi_j$} is \emph{j}th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006).
+#' $$
+#' W_k=1/\\sqrt(n) \\sum_\{j=1\}^k sum_\{i=1\}^n [\\phi_j(Z_i)]^2,
+#' $$
+#' where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `'ddst.base.legendre'`). Alternatively, in our implementation, cosine system can be selected (base = `'ddst.base.cos'`). For details see Ledwina (1994) and Inglot and Ledwina (2006).
 #'
 #' An application of the pertaining selection rule \emph{T} for choosing \emph{k} gives related `ddst.uniform.test()' based on statistic \emph{$W_T$}.
 #'
@@ -13,7 +14,7 @@
 #'
 #' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
-#' @aliases dst.uniform.Nk
+#' @aliases ddst.uniform.Nk
 #' @param x a (non-empty) numeric vector of data values
 #' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or \code{ddst.base.cos} for cosine system, see package description
 #' @param c a parameter for model selection rule, see package description

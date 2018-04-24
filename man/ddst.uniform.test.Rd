@@ -2,7 +2,7 @@
 % Please edit documentation in R/ddst.uniform.test.R
 \name{ddst.uniform.test}
 \alias{ddst.uniform.test}
-\alias{dst.uniform.Nk}
+\alias{ddst.uniform.Nk}
 \title{Data Driven Smooth Test for Uniformity}
 \usage{
 ddst.uniform.test(x, base = ddst.base.legendre, c = 2.4, B = 1000,
@@ -36,9 +36,10 @@ Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 }
 \details{
 Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix \emph{ I} being identity and smooth test statistic with \emph{k} components
-\emph{
- $W_k=1/sqrt(n) sum_{j=1}^k sum_{i=1}^n [phi_j(Z_i)]^2$},
-where \emph{$phi_j$} is \emph{j}th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006).
+$$
+W_k=1/\\sqrt(n) \\sum_\{j=1\}^k sum_\{i=1\}^n [\\phi_j(Z_i)]^2,
+$$
+where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `'ddst.base.legendre'`). Alternatively, in our implementation, cosine system can be selected (base = `'ddst.base.cos'`). For details see Ledwina (1994) and Inglot and Ledwina (2006).
 
 An application of the pertaining selection rule \emph{T} for choosing \emph{k} gives related `ddst.uniform.test()' based on statistic \emph{$W_T$}.
 

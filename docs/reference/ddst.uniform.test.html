@@ -134,9 +134,10 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix <em> I</em> being identity and smooth test statistic with <em>k</em> components
-<em>
- $W_k=1/sqrt(n) sum_j=1^k sum_i=1^n [phi_j(Z_i)]^2$</em>,
-where <em>$phi_j$</em> is <em>j</em>th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `ddst.base.legendre'). Alternatively, in our implementation, cosine system can be selected (base = `ddst.base.cos'). For details see Ledwina (1994) and Inglot and Ledwina (2006).</p>
+$$
+W_k=1/\sqrt(n) \sum_{j=1}^k sum_{i=1}^n [\phi_j(Z_i)]^2,
+$$
+where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `'ddst.base.legendre'`). Alternatively, in our implementation, cosine system can be selected (base = `'ddst.base.cos'`). For details see Ledwina (1994) and Inglot and Ledwina (2006).</p>
 <p>An application of the pertaining selection rule <em>T</em> for choosing <em>k</em> gives related `ddst.uniform.test()' based on statistic <em>$W_T$</em>.</p>
 <p>Similar approach applies to testing goodness-of-fit to any fully specified continuous distribution function <em>F</em>. For this purpose it is enough to apply the above solution to transformed observations <em>$F(z_1),...,F(z_n)$</em>.</p>
 <p>For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http://www.biecek.pl/R/ddst/description.pdf</a>.</p>
