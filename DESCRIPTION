@@ -1,19 +1,17 @@
 Package: ddst
-Type: Package
 Title: Data Driven Smooth Tests
-Version: 1.4
-Date: 2016-05-26
-Author: Przemyslaw Biecek (R code), Teresa Ledwina (support,
-    descriptions)
-Maintainer: Przemyslaw Biecek <przemyslaw.biecek@gmail.com>
+Version: 1.5
+Authors@R: c(person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "cre")),
+             person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")))
 Description: Smooth testing of goodness of fit. These tests are data
     driven (alternative hypothesis is dynamically selected based on data). In this
     package you will find various tests for exponent, Gaussian, Gumbel and uniform
     distribution.
 License: GPL-2
+Encoding: UTF-8
+LazyData: true
 Depends:
-    R (>= 2.7.0),
+    R (>= 2.7),
     orthopolynom,
     evd
-Repository: CRAN
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1.9000

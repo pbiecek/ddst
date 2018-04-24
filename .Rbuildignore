@@ -2,3 +2,5 @@
 ^.DS
 ^.Rapp
 ^README.md
+^.*\.Rproj$
+^\.Rproj\.user$
