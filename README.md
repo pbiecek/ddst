@@ -3,6 +3,7 @@ Beta version of ddst package
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ddst)](http://cran.r-project.org/web/packages/ddst)
 [![Downloads](http://cranlogs.r-pkg.org/badges/ddst)](http://cran.rstudio.com/package=ddst)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ddst?color=orange)](http://cranlogs.r-pkg.org/badges/grand-total/ddst)
 
 The CRAN version is here: http://cran.r-project.org/web/packages/ddst/
 
