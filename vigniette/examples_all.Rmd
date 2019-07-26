@@ -119,7 +119,17 @@ ddst.extr.test(z, compute.p = TRUE)
 
 ## 7. Two-Sample Test Against Stochastic Dominance
 
+```{r}
+# H0 is true
+x = runif(80)
+y = runif(80)
+ddst.twosample.test(x, y, compute.p=TRUE)
 
+# known fixed alternative
+x = runif(80)
+y = rbeta(80,4,2)
+ddst.twosample.test(x, y, compute.p=TRUE)
+```
 
 ## 8. Data Driven Smooth Test for Upward Trend Alternative in k samples
 

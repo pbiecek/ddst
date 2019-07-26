@@ -60,8 +60,8 @@
 #'  Empirical distributions of \emph{T} and \emph{$T^*$} as well as \emph{$W_T$} and \emph{$W_{T^*}(tilde gamma)$} are not essentially influenced by the choice of reasonably large \emph{d}'s, provided that sample size is at least moderate.
 #'  For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
-#' @importFrom stats pexp, pnorm, qnorm, rexp, rnorm, runif
-#' @importFrom utils, data
+#' @importFrom stats pexp pnorm qnorm rexp rnorm runif
+#' @importFrom utils data
 #' @import evd
 #' @import orthopolynom
 #'

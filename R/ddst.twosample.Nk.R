@@ -1,7 +1,7 @@
 # code based on Grzegorz Wylupek R Code
 # Two-Sample Test Against One-Sided Alternatives
 `ddst.twosample.Nk` <-
-function(x, y, t = 2.2, k.N = 4) {
+function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
   ax.f <- function(k, kappa, varsigma, i) {
     2 ^ (-kappa - k - 2) * sqrt((2 * i - 1) * (2 * varsigma - 1) *
                                           (2 ^ (kappa + 1) - (2 * i - 1)) * (2 ^ (k +  1) - (2 * varsigma - 1)))
@@ -90,16 +90,17 @@ function(x, y, t = 2.2, k.N = 4) {
     V.S = sign(min(L.vec[1, ] - z.alpha)) * W.d.vec[1, S]
     V.T = sign(min(L.vec[1, ] - z.alpha)) * W.d.vec[1, T]
 
-    result = c(V.T, V.S, T, S, L.vec[1, ])
+    result = c(V.T = V.T, V.S = V.S, T = T, S = S, L.vec[1, ])
     return(result)
   }
 
-  x <- runif(20)
-  y <- runif(20)
+#  x <- runif(20)
+#  y <- runif(20)
+  #  t <- 2.2
   m <- length(x)
   n <- length(y)
-  t <- 2.2
-  alpha <- 0.05
+
+  # QUESTION: TODO: Is V.T the test statistic?
   test.V(x, y, m, n, t, alpha)
 
 }

@@ -14,17 +14,14 @@
 #'
 #' @examples
 #' # H0 is true
-#' z = runif(80)
-#' ddst.uniform.test(z, compute.p=TRUE)
+#' x = runif(80)
+#' y = runif(80)
+#' ddst.twosample.test(x, y, compute.p=TRUE)
 #'
 #' # known fixed alternative
-#' z = rnorm(80,10,16)
-#' ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
-#'
-#' # H0 is false
-#' z = rbeta(80,4,2)
-#' (t = ddst.uniform.test(z, compute.p=TRUE))
-#' t$p.value
+#' x = runif(80)
+#' y = rbeta(80,4,2)
+#' ddst.twosample.test(x, y, compute.p=TRUE)
 #' @keywords htest
 `ddst.twosample.test` <-
   function(x,
@@ -33,36 +30,27 @@
            k.N = 4,
            B = 1000,
            compute.p = FALSE,
+           alpha = 0.05,
            ...) {
-#    n = length(x)
-#    if (n < 5)
-#      stop("length(x) should be at least 5")
+    coord = ddst.twosample.Nk(x, y, t = t, k.N = k.N, alpha = alpha)    # coord square times n
 
-
-    coord = ddst.twosample.Nk(x, y, t = t, k.N = k.N)    # coord square times n
-
-    l = ddst.IIC(coord, n, c)
-    attr(l, "names") = "n. coord"
-    t = coord[l]
-    attr(t, "names") = "WT"
+    l = coord[3]
+    attr(l, "names") = "T"
+    t = coord[1]
+    attr(t, "names") = "V.T"
     result = list(statistic = t,
                   parameter = l,
-                  method = "Data Driven Smooth Test for Uniformity")
-    result$data.name = paste(paste(as.character(substitute(x)), collapse =
-                                     ""),
-                             ",   base: ",
-                             method.name,
-                             "   c: ",
-                             c,
-                             sep = "")
+                  method = "Data Driven Two-Sample Test")
     class(result) = "htest"
+
     if (compute.p) {
       tmp = numeric(B)
       for (i in 1:B) {
-        y = runif(n)
-        tmpC = ddst.uniform.Nk(y, base, Dmax = Dmax)
-        l = ddst.IIC(tmpC, n, c)
-        tmp[i] = tmpC[l]
+        xy <- sample(c(x,y))
+        new.x <- xy[1:length(x)]
+        new.y <- xy[(length(x)+1):length(xy)]
+
+        tmp[i] = ddst.twosample.Nk(x, y, t = t, k.N = k.N, alpha = alpha)[1]
       }
       result$p.value = mean(tmp > t)
     }
