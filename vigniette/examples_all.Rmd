@@ -113,6 +113,22 @@ ddst.extr.test(z, compute.p = TRUE)
 
 ## 5. Data Driven Smooth Test for k-Sample Problem
 
+```{r}
+# H0 is true
+x = runif(80)
+y = runif(80)
+z = runif(80)
+ddst.ksample.test(x, y, z, compute.p=TRUE)
+ddst.ksample.test(list(x, y, z), compute.p=TRUE)
+
+# known fixed alternative
+x = runif(80)
+y = rbeta(80,4,2)
+w = rnorm(30)
+z = rexp(10, 1)
+ddst.ksample.test(x, y, w, z, compute.p=TRUE)
+ddst.ksample.test(list(x, y, w, z), compute.p=TRUE)
+```
 
 ## 6. Data Driven Smooth Test for Stochastic Dominance in Two Samples
 
@@ -136,6 +152,26 @@ ddst.twosample.test(x, y, compute.p=TRUE)
 
 ## 9. Data Driven Smooth Test for Umbrella Alternatives in k samples
 
+```{r}
+# H0 is true
+x = runif(80)
+y = runif(80)
+z = runif(80)
+ddst.umbrella.test(x, y, z, compute.p=TRUE)
+ddst.umbrella.test(x, y, z, compute.p=TRUE, type = "S")
+ddst.umbrella.test(x, y, z, compute.p=TRUE, type = "M")
+ddst.umbrella.test(list(x, y, z), compute.p=TRUE)
+
+# known fixed alternative
+x = runif(80)
+y = rbeta(80,4,2)
+w = rnorm(30)
+z = rexp(10, 1)
+ddst.umbrella.test(x, y, w, z, compute.p=TRUE)
+ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "S")
+ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "M")
+ddst.umbrella.test(list(x, y, w, z), compute.p=TRUE)
+```
 
 ## 10. Data Driven Smooth Test for Change-Point Problem
 
