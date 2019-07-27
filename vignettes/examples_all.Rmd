@@ -11,9 +11,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R Markdown
+# Data Driven Smooth Tests with ddst package
 
-This document presents showcases for the test avaliable in the ddst package.
+This document presents tests avaliable in the ddst package.
 
 ```{r, warning=FALSE, message=FALSE}
 library("ddst")
@@ -135,10 +135,10 @@ ddst.ksample.test(list(x, y, w, z), compute.p=TRUE)
 
 ## 7. Two-Sample Test Against Stochastic Dominance
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 # H0 is true
-x = runif(80)
-y = runif(80)
+x = runif(50)
+y = runif(50)
 ddst.twosample.test(x, y, compute.p=TRUE)
 
 # known fixed alternative

@@ -81,7 +81,7 @@ function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
     S = which.max(W.d.vec[1, ] - D.vec * log(N))
     M = which.max(W.d.vec[1, ])
 
-    if (max(abs(L.vec[1, ])) <= sqrt(t * log(N))) {
+    if (isTRUE(max(abs(L.vec[1, ])) <= sqrt(t * log(N)))) {
       T = S
     } else{
       T = M

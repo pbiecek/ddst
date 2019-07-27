@@ -39,6 +39,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/examples_all.html">Examples for ddst package</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -51,14 +63,49 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="beta-version-of-ddst-package" class="section level1">
+    
+<div id="data-driven-smooth-tests-with-ddst-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#beta-version-of-ddst-package" class="anchor"></a>Beta version of ddst package</h1></div>
+<a href="#data-driven-smooth-tests-with-ddst-package" class="anchor"></a>Data Driven Smooth Tests with ddst package</h1></div>
 
-<p>The CRAN version is here: <a href="http://cran.r-project.org/web/packages/ddst/" class="uri">http://cran.r-project.org/web/packages/ddst/</a></p>
-<p>The pkgdown website is here: <a href="http://pbiecek.github.io/ddst/" class="uri">http://pbiecek.github.io/ddst/</a></p>
-<p><code>ddst</code> stands for Data Driven Smooth Test Detailed description of this package is available here: <a href="http://www.biecek.pl/R/ddst/description.pdf" class="uri">http://www.biecek.pl/R/ddst/description.pdf</a></p>
+<p><code>ddst</code> stands for Data Driven Smooth Tests, these are tests in which alternative hypothesis is dynamically selected based on data.</p>
+<p>In this package you will find two groups of smooth of test: goodness-of-fit tests and nonparametric tests for comparing distributions.</p>
+<p>Among goodness-of-fit tests there are tests for</p>
+<ul>
+<li>
+<code>ddst.exp.test</code> DDSTest for Exponentiality, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.exp.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.exp.test.html</a>,</li>
+<li>
+<code>ddst.extr.test</code> DDSTest for Extreme Value Distribution, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.extr.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.extr.test.html</a>,</li>
+<li>
+<code>ddst.norm.test</code> DDSTest for Normality, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.norm.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.norm.test.html</a>,</li>
+<li>
+<code>ddst.uniform.test</code> DDSTest for Uniformity, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.uniform.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.uniform.test.html</a>,</li>
+</ul>
+<p>Among nonparametric tests there are tests for</p>
+<ul>
+<li>
+<code>ddst.ksample.test</code> DDSTest for k-Sample Test, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html</a>,</li>
+<li>
+<code>ddst.umbrella.test</code> DDSTest for k-Sample Umbrella Alternatives, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.umbrella.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.umbrella.test.html</a>,</li>
+<li>
+<code>ddst.twosample.test</code> DDSTest for Two-Sample Test Against One-Sided Alternatives, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.twosample.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.twosample.test.html</a>,</li>
+<li>
+<code>ddst.changepoint.test</code> DDSTest for Change-point problems,<br>
+</li>
+<li>
+<code>ddst.dominance.test</code> DDSTest for Stochastic dominance</li>
+</ul>
+<p>Find a detailed description for methofdology behond smooth tests at <a href="http://www.biecek.pl/R/ddst/description.pdf" class="uri">http://www.biecek.pl/R/ddst/description.pdf</a> (TODO: update).</p>
 </div>
+<div id="how-to-install-the-ddst-package" class="section level1">
+<h1 class="hasAnchor">
+<a href="#how-to-install-the-ddst-package" class="anchor"></a>How to install the ddst package</h1>
+<p>Install latest stable version of the <code>ddst</code> package from CRAN with</p>
+<pre class="{r}"><code>install.packages("ddst")</code></pre>
+<p>or install development version version from GitHub</p>
+<pre class="{r}"><code><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github("pbiecek/ddst")</a></code></pre>
+</div>
+
   </div>
 
   <div class="col-md-3" id="sidebar">
@@ -72,7 +119,7 @@
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=ddst">https://​cloud.r-project.org/​package=ddst</a>
 </li>
-<li>Report a bug at <br><a href="NA">NA</a>
+<li>Report a bug at <br><a href="https://github.com/pbiecek/ddst/issues">https://​github.com/​pbiecek/​ddst/​issues</a>
 </li>
 </ul>
 </div>
