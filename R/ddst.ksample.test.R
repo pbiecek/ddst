@@ -24,8 +24,8 @@
 #' y = rbeta(80,4,2)
 #' w = rnorm(30)
 #' z = rexp(10, 1)
-#' ddst.twosample.test(x, y, w, z, compute.p=TRUE)
-#' ddst.twosample.test(list(x, y, w, z), compute.p=TRUE)
+#' ddst.ksample.test(x, y, w, z, compute.p=TRUE)
+#' ddst.ksample.test(list(x, y, w, z), compute.p=TRUE)
 #' @keywords htest
 `ddst.ksample.test` <-
   function(x,
@@ -39,16 +39,16 @@
       n <- sapply(x, length)
     } else {
       # x is a vector, other vectors are in ...
-      x.vector <- unlist(c(x, as.list(...)))
+      x.vector <- unlist(c(x, list(...)))
       n <- c(length(x),
-             sapply(as.list(...), length))
+             sapply(list(...), length))
     }
     coord = ddst.ksample.Nk(x.vector, n, d_N = d_N, c = c)
 
     l = coord[1]
     attr(l, "names") = "W.T"
-    t = 1
-    attr(t, "names") = ""
+    t = NA
+    attr(t, "names") = "l"
     result = list(statistic = l,
                   parameter = t,
                   method = "Data Driven k-Sample Test")

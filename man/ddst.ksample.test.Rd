@@ -36,7 +36,7 @@ x = runif(80)
 y = rbeta(80,4,2)
 w = rnorm(30)
 z = rexp(10, 1)
-ddst.twosample.test(x, y, w, z, compute.p=TRUE)
-ddst.twosample.test(list(x, y, w, z), compute.p=TRUE)
+ddst.ksample.test(x, y, w, z, compute.p=TRUE)
+ddst.ksample.test(list(x, y, w, z), compute.p=TRUE)
 }
 \keyword{htest}
