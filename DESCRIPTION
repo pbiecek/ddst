@@ -2,11 +2,17 @@ Package: ddst
 Title: Data Driven Smooth Tests
 Version: 1.5
 Authors@R: c(person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "cre")),
-             person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")))
-Description: Smooth testing of goodness of fit. These tests are data
-    driven (alternative hypothesis is dynamically selected based on data). In this
-    package you will find various tests for exponent, Gaussian, Gumbel and uniform
-    distribution.
+             person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")),
+             person("Grzegorz", "Wylupek", role = c("aut"))
+             )
+Description: Smooth tests are data driven (alternative hypothesis is dynamically selected based on data). 
+    In this package you will find two groups of smooth of test: goodness-of-fit tests and
+    nonparametric tests for comparing distributions.
+    Among goodness-of-fit tests there are tests for exponent, Gaussian, Gumbel 
+    and uniform distribution.
+    Among nonparametric tests there are tests for stochastic dominance,
+    k-sample test, test with umbrella alternatives and test for change-point problems.
+    Find a detailed description for these tests at TODO.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -16,3 +22,5 @@ Depends:
     orthopolynom,
     evd
 RoxygenNote: 6.1.1
+URL: https://pbiecek.github.io/ddst/
+BugReports: https://github.com/pbiecek/ddst/issues

@@ -23,8 +23,6 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -50,7 +48,7 @@
 	  <a class = "navbar-mi2logo" href="http://mi2.mini.pw.edu.pl/">
         <img src = "https://github.com/mi2-warsaw/MI2template/blob/master/inst/pkgdown/assets/MI2logo.jpg?raw=true" alt = "MI2" height = 46 title = "MI2">
 	  </a>
-      <a class="navbar-brand navbar-mi2" href="../index.html">ddst</a>
+      <a class="navbar-brand navbar-mi2" href="../index.html">Data Driven Smooth Tests</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="navbar-mi2 nav navbar-nav">
@@ -93,23 +91,23 @@ Smooth test was introduced by Neyman (1937) to verify simple null hypothesis ass
 <p>Pertaining auxilary null hypothesis asserts <em>$theta=theta_0=0$</em>. Therefore, in this case, the smooth test statistic based on <em>n</em> i.i.d. observations <em>$Z_1,...,Z_n$</em> has the form
 <em>$W_k=[1/sqrt(n) sum_i=1^n l(Z_i)]I^-1[1/sqrt(n) sum_i=1^n l(Z_i)]'$</em>,</p>
 <p>where <em>$l(Z_i)$</em>, i=1,...,n, is <em>k</em>-dimensional (row) score vector, the symbol <em>'</em> denotes transposition while <em>$I=Cov_theta_0[l(Z_1)]'[l(Z_1)]$</em>. Following Neyman's idea of modelling underlying distributions one gets <em>$l(Z_i)=(phi_1(F(Z_i)),...,phi_k(F(Z_i)))$</em> and <em>I</em> being the identity matrix, where <em>$phi_j$</em>'s, j &gt;= 1,  are zero mean orthonormal functions on [0,1], while <em>F</em> is the completely specified null distribution function.</p>
-<p>In case of composite null hypothesis there is also unspecified vector of nuisance parameters <em>$gamma$</em> defining the distribution of observations. Smooth statistic (with <em>k</em> components) in such applications is understood as efficient score statistic for some class of models indexed by an auxiliary parmeter <em>$theta in R^k$</em>, k &gt;= 1. Pertaining efficient score vector <em>$l^*(Z_i;gamma)$</em> is defined as the residual from projection the score vector for <em>$theta$</em> onto the space spanned by score vector for <em>$gamma$</em>. As such, smooth test is alternative name for <em>$C(alpha)$</em> Neyman's test. See Neyman (1959), Buhler and Puri (1966) as well as Javitz (1975) for details. Hence, smooth test, based on <em>n</em> i.i.d. variables <em>$Z_1,...,Z_n$</em> rejects hypothesis <em>$theta=theta_0=0$</em> for large values of
-    <em>$W_k^*(tilde gamma)=[1/sqrt(n) sum_i=1^n l^*(Z_i;tilde gamma)][I^*(tilde gamma)]^-1[1/sqrt(n) sum_i=1^n l^*(Z_i;tilde gamma)]'$</em>,
+<p>In case of composite null hypothesis there is also unspecified vector of nuisance parameters <em>$gamma$</em> defining the distribution of observations. Smooth statistic (with <em>k</em> components) in such applications is understood as efficient score statistic for some class of models indexed by an auxiliary parmeter <em>$theta in R^k$</em>, k &gt;= 1. Pertaining efficient score vector <em>$l^*(Z_i;gamma)$</em> is defined as the residual from projection the score vector for <em>$theta$</em> onto the space spanned by score vector for <em>$gamma$</em>. As such, smooth test is alternative name for <em>$C(alpha)$</em> Neyman's test. See Neyman (1959), Buhler and Puri (1966) as well as Javitz (1975) for details. Hence, smooth test, based on <em>n</em> i.i.d. variables <em>$Z_1,...,Z_n$</em> rejects hypothesis <em>$theta=theta_0=0$</em> for large values of</p>
+<p><em>$W_k^*(tilde gamma)=[1/sqrt(n) sum_i=1^n l^*(Z_i;tilde gamma)][I^*(tilde gamma)]^-1[1/sqrt(n) sum_i=1^n l^*(Z_i;tilde gamma)]'$</em>,
 where <em>$tilde gamma$</em> is an appropriate estimator of <em>$gamma$</em> while <em>$I^*(gamma)=Cov_theta_0[l^*(Z_1;gamma)]'[l^*(Z_1;gamma)]$</em>. More details can be found in Janic and Ledwina (2008), Kallenberg and Ledwina (1997 a,b) as well as Inglot and Ledwina (2006 a,b).</p>
-<p>Auxiliary models, mentioned above, aim to mimic the unknown underlying model for the data at hand. To choose the dimension <em>k</em> of the auxilary model we apply some model selection criteria. Among several solutions already considered, we decided to implement two following ones, pertaining to the two above described problems and resulting <em>$W_k$</em> and <em>$W_k^*(tilde gamma)$</em>. The selection rules in the two cases are briefly denoted by <em>T</em> and <em>$T^*$</em>, respectively, and given by
-    <em>$T = min1 &lt;= k &lt;= d: W_k-pi(k,n,c) &gt;= W_j-pi(j,n,c), j=1,...,d$</em></p>
-<p>and
-    <em>
+<p>Auxiliary models, mentioned above, aim to mimic the unknown underlying model for the data at hand. To choose the dimension <em>k</em> of the auxilary model we apply some model selection criteria. Among several solutions already considered, we decided to implement two following ones, pertaining to the two above described problems and resulting <em>$W_k$</em> and <em>$W_k^*(tilde gamma)$</em>. The selection rules in the two cases are briefly denoted by <em>T</em> and <em>$T^*$</em>, respectively, and given by</p>
+<p><em>$T = min1 &lt;= k &lt;= d: W_k-pi(k,n,c) &gt;= W_j-pi(j,n,c), j=1,...,d$</em></p>
+<p>and</p>
+<p><em>
 $T^* = min1 &lt;= k &lt;= d: W_k^*(tilde gamma)-pi^*(k,n,c) &gt;= W_j^*(tilde gamma)-pi^*(j,n,c), j=1,...,d$</em>.</p>
-<p>Both criteria are based on approximations of penalized loglikelihoods, where loglikelihoods are replaced by <em>$W_k$</em> and <em>$W_k^*(tilde gamma)$</em>, respectively.  The penalties for the dimension <em>j</em> in case of simple and composite null hypothesis are defined as follows
-    <em>$pi(j,n,c)=jlog n,  if  max1 &lt;= k &lt;= d|Y_k| &lt;= sqrt(c log(n)), 2j,  if max1 &lt;= k &lt;= d|Y_k|&gt;sqrt(c log(n)). $</em></p>
-<p>and
-    <em>
+<p>Both criteria are based on approximations of penalized loglikelihoods, where loglikelihoods are replaced by <em>$W_k$</em> and <em>$W_k^*(tilde gamma)$</em>, respectively.  The penalties for the dimension <em>j</em> in case of simple and composite null hypothesis are defined as follows</p>
+<p><em>$pi(j,n,c)=jlog n,  if  max1 &lt;= k &lt;= d|Y_k| &lt;= sqrt(c log(n)), 2j,  if max1 &lt;= k &lt;= d|Y_k|&gt;sqrt(c log(n)). $</em></p>
+<p>and</p>
+<p><em>
     $pi^*(j,n,c)=jlog n,  if max1 &lt;= k &lt;= d|Y_k^*| &lt;= sqrt(c log(n)),2j  if max(1 &lt;= k &lt;= d)|Y_k^*| &gt; sqrt(c log(n))$</em>.</p>
-<p>respectively, where <em>c</em> is some calibrating constant, <em>d</em> is maximal dimension taken into account,
-    <em>$(Y_1,...,Y_k)=[1/sqrt(n) sum_i=1^n l(Z_i)]I^-1/2$</em></p>
-<p>while
-    <em>$(Y_1^*,...,Y_k^*)=[1/sqrt(n) sum_i=1^n l^*(Z_i; tilde gamma)][I^*(tilde gamma)]^-1/2$</em>.</p>
+<p>respectively, where <em>c</em> is some calibrating constant, <em>d</em> is maximal dimension taken into account,</p>
+<p><em>$(Y_1,...,Y_k)=[1/sqrt(n) sum_i=1^n l(Z_i)]I^-1/2$</em></p>
+<p>while</p>
+<p><em>$(Y_1^*,...,Y_k^*)=[1/sqrt(n) sum_i=1^n l^*(Z_i; tilde gamma)][I^*(tilde gamma)]^-1/2$</em>.</p>
 <p>In consequence, data driven smooth tests for the simple and composite null hypothesis reject for large values of <em>$W_T$</em>
 and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot and Ledwina (2006 a,b,c).</p>
 <p>The choice of <em>c</em> in <em>T</em> and <em>$T^*$</em> is decisive to finite sample behaviour of the selection rules and pertaining statistics <em>$W_T$</em> and <em>$W_T^*(tilde gamma)$</em>. In particular, under large <em>c</em>'s the rules behave similarly as Schwarz's (1978) BIC while for <em>c=0</em> they mimic Akaike's (1973) AIC. For moderate sample sizes, values <em>c in (2,2.5)</em> guarantee, under `smooth' departures, only slightly smaller power as in case BIC were used and simultaneously give much higher power than BIC under multimodal alternatives. In genral, large <em>c's</em> are recommended if changes in location, scale, skewness and kurtosis are in principle aimed to be detected. For evidence and discussion see Inglot and Ledwina (2006 c).</p>
@@ -136,7 +134,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
     <pre class="examples"><div class='input'><span class='co'># Data Driven Smooth Test for Uniformity</span>
 <span class='co'># H0 is true</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>80</span>)
-<span class='fu'>ddst.uniform.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.uniform.test.html'>ddst.uniform.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
@@ -144,7 +142,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rbeta</span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
-(<span class='no'>t</span> <span class='kw'>=</span> <span class='fu'>ddst.uniform.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; 
+(<span class='no'>t</span> <span class='kw'>=</span> <span class='fu'><a href='ddst.uniform.test.html'>ddst.uniform.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
@@ -153,7 +151,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 <span class='co'># Data Driven Smooth Test for Normality</span>
 <span class='co'># H0 is true</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>80</span>)
-<span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.norm.test.html'>ddst.norm.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
@@ -161,7 +159,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>B</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.norm.test.html'>ddst.norm.test</a></span>(<span class='no'>z</span>, <span class='kw'>B</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
@@ -171,7 +169,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='fu'>ddst.extr.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.extr.test.html'>ddst.extr.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Extreme Values
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
@@ -182,7 +180,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 <span class='co'>#</span>
 <span class='co'># H0 is true</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.exp.test.html'>ddst.exp.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
@@ -190,7 +188,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rchisq</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='ddst.exp.test.html'>ddst.exp.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
@@ -213,7 +211,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 
       <footer>
       <div class="copyright">
-  <p>Developed by Przemyslaw Biecek, Teresa Ledwina.</p>
+  <p>Developed by Przemyslaw Biecek, Teresa Ledwina, Grzegorz Wylupek.</p>
 </div>
 
 <div class="pkgdown">
@@ -225,3 +223,4 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 
   </body>
 </html>
+

@@ -23,8 +23,6 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -50,7 +48,7 @@
 	  <a class = "navbar-mi2logo" href="http://mi2.mini.pw.edu.pl/">
         <img src = "https://github.com/mi2-warsaw/MI2template/blob/master/inst/pkgdown/assets/MI2logo.jpg?raw=true" alt = "MI2" height = 46 title = "MI2">
 	  </a>
-      <a class="navbar-brand navbar-mi2" href="../index.html">ddst</a>
+      <a class="navbar-brand navbar-mi2" href="../index.html">Data Driven Smooth Test for Uniformity</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="navbar-mi2 nav navbar-nav">
@@ -156,7 +154,7 @@ where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default v
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 1.3891, n. coord = 1, p-value = 0.283
+#&gt; WT = 2.0777, n. coord = 1, p-value = 0.204
 #&gt; </div><div class='input'>
 <span class='co'># known fixed alternative</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>80</span>,<span class='fl'>10</span>,<span class='fl'>16</span>)
@@ -164,7 +162,7 @@ where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default v
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  pnormz1016,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 2.9174, n. coord = 1, p-value = 0.133
+#&gt; WT = 0.9198, n. coord = 1, p-value = 0.356
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rbeta</span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
@@ -172,7 +170,7 @@ where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default v
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 51.788, n. coord = 3, p-value &lt; 2.2e-16
+#&gt; WT = 50.482, n. coord = 3, p-value &lt; 2.2e-16
 #&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -194,7 +192,7 @@ where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default v
 
       <footer>
       <div class="copyright">
-  <p>Developed by Przemyslaw Biecek, Teresa Ledwina.</p>
+  <p>Developed by Przemyslaw Biecek, Teresa Ledwina, Grzegorz Wylupek.</p>
 </div>
 
 <div class="pkgdown">
@@ -206,3 +204,4 @@ where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default v
 
   </body>
 </html>
+
