@@ -54,7 +54,7 @@
       <ul class="navbar-mi2 nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -72,6 +72,9 @@
       <a href="../articles/examples_all.html">Examples for ddst package</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -95,7 +98,7 @@
     <p>Performs data driven smooth test for composite hypothesis of normality</p>
     
 
-    <pre class="usage"><span class='fu'>ddst.norm.test</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+    <pre class="usage"><span class='fu'>ddst.norm.test</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>100</span>,
   <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -107,7 +110,8 @@
     </tr>
     <tr>
       <th>base</th>
-      <td><p>a function which returns orthogonal system, might be <code>ddst.base.legendre</code> for Legendre polynomials or <code>ddst.base.cos</code> for cosine system, see package description</p></td>
+      <td><p>a function which returns orthogonal system, might be <code>ddst.base.legendre</code> for Legendre polynomials
+or <code>ddst.base.cos</code> for cosine system, see package description</p></td>
     </tr>
     <tr>
       <th>c</th>
@@ -138,34 +142,40 @@
 <dt>parameter </dt><dd><p>the number of choosen coordinates (k).</p></dd>
 <dt>method </dt><dd><p>a character string indicating the parameters of performed test.</p></dd>
 <dt>data.name </dt><dd><p>a character string giving the name(s) of the data.</p></dd>
-<dt>p.value </dt><dd><p>the p-value for the test, computed only if <code>compute.p=T</code>.</p></dd>
+<dt>p.value </dt><dd><p>the p-value for the test, computed only if <code>compute.p = TRUE</code>.</p></dd>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Null density is given by
-<em>
-  $f(z;gamma)=1/(sqrt(2 pi)gamma_2) exp(-(z-gamma_1)^2/(2 gamma_2^2))$</em> for z in R.</p>
-<p>We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis. The parameter
-<em>$gamma=(gamma_1,gamma_2)$</em> is estimated by <em>$tilde gamma=(tilde gamma_1,tilde gamma_2)$</em>, where <em>$tilde gamma_1=1/n sum_i=1^n Z_i$</em> and
-<em>$tilde gamma_2 = 1/(n-1) sum_i=1^n-1(Z_n:i+1-Z_n:i)(H_i+1-H_i)$</em>,
-while <em>$Z_n:1&lt;= ... &lt;= Z_n:n$</em> are ordered values of <em>$Z_1, ..., Z_n$</em> and <em>$H_i= phi^-1((i-3/8)(n+1/4))$</em>, cf. Chen and Shapiro (1995).</p>
-<p>The above yields auxiliary test statistic <em>$W_k^*(tilde gamma)$</em> described in details in Janic and Ledwina (2008), in case when Legendre's basis is applied.
-The pertaining matrix <em>$[I^*(tilde gamma)]^-1$</em> does not  depend on <em>$tilde gamma$</em> and is calculated for succeding dimensions <em>k</em> using some recurrent relations for Legendre's polynomials and is computed in a numerical way in case of cosine basis. In the implementation of <em>$T^*$</em> the default value of <em>c</em> is set  to be 100. Therefore, in practice, <em>$T^*$</em> is Schwarz-type criterion. See Inglot and Ledwina (2006) as well as Janic and Ledwina (2008) for comments. The resulting data driven test statistic for normality is <em>$W_T^*=W_T^*(tilde gamma)$</em>.</p>
+\(
+  f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))\) for \(z \in R\).</p>
+<p>We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
+The parameter \(\gamma=(\gamma_1,\gamma_2)\) is estimated by \(\tilde \gamma=(\tilde \gamma_1,tilde gamma_2)\),
+where \(\tilde \gamma_1=1/n \sum_{i=1}^n Z_i\) and
+\(\tilde \gamma_2 = 1/(n-1) \sum_{i=1}^{n-1}(Z_{n:i+1}-Z_{n:i})(H_{i+1}-H_i)\),
+while \(Z_{n:1}&lt;= ... &lt;= Z_{n:n}\) are ordered values of \(Z_1, ..., Z_n\) and \(H_i= \phi^{-1}((i-3/8)(n+1/4))\), cf. Chen and Shapiro (1995).</p>
+<p>The above yields auxiliary test statistic \(W_k^*(\tilde \gamma)\) described in details in Janic and Ledwina (2008),
+in case when Legendre's basis is applied.
+The pertaining matrix \([I^*(\tilde \gamma)]^{-1}\) does not  depend on \(\tilde \gamma\) and is calculated for
+succeding dimensions \(k\) using some recurrent relations for Legendre's polynomials and is computed in a numerical
+way in case of cosine basis. In the implementation of \(T^*\) the default value of \(c\) is set  to be 100.
+Therefore, in practice, \(T^*\) is Schwarz-type criterion. See Inglot and Ledwina (2006) as well as Janic and
+Ledwina (2008) for comments. The resulting data driven test statistic for normality is \(W_{T^*}=W_{T^*}(\tilde \gamma)\).</p>
 <p>For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http://www.biecek.pl/R/ddst/description.pdf</a>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chen, L., Shapiro, S.S. (1995). An alternative test for normality based on normalized spacings. <em> J. Statist. Comput. Simulation</em> 53, 269--288.</p>
 <p>Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. <em> Linear Algebra and its Appl.</em> <b> 417</b>, 579--590.</p>
-<p>Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. <em> J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods. accepted.</em>.</p>
+<p>Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. <em> J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods.</em>.</p>
 <p>Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. <em> J. Statist. Comput. Simul.</em> <b> 59</b>, 101--121.</p>
 <p>Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. <em> J. Amer. Statist. Assoc.</em> <b> 92</b>, 1094--1104.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># for given vector of 19 numbers</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>13.41</span>, <span class='fl'>6.04</span>, <span class='fl'>1.26</span>, <span class='fl'>3.67</span>, -<span class='fl'>4.54</span>, <span class='fl'>2.92</span>, <span class='fl'>0.44</span>, <span class='fl'>12.93</span>, <span class='fl'>6.77</span>, <span class='fl'>10.09</span>,
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.41</span>, <span class='fl'>6.04</span>, <span class='fl'>1.26</span>, <span class='fl'>3.67</span>, -<span class='fl'>4.54</span>, <span class='fl'>2.92</span>, <span class='fl'>0.44</span>, <span class='fl'>12.93</span>, <span class='fl'>6.77</span>, <span class='fl'>10.09</span>,
     <span class='fl'>4.10</span>, <span class='fl'>4.04</span>, -<span class='fl'>1.97</span>, <span class='fl'>2.17</span>, -<span class='fl'>5.38</span>, -<span class='fl'>7.30</span>, <span class='fl'>4.75</span>, <span class='fl'>5.63</span>, <span class='fl'>8.84</span>)
 <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
@@ -174,20 +184,20 @@ The pertaining matrix <em>$[I^*(tilde gamma)]^-1$</em> does not  depend on <em>$
 #&gt; WT* = 0.13095, n. coord = 1, p-value = 0.7201
 #&gt; </div><div class='input'>
 <span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>80</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
 <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 0.59714, n. coord = 1, p-value = 0.4554
+#&gt; WT* = 1.0096, n. coord = 1, p-value = 0.333
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>B</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 54.518, n. coord = 4, p-value = 8.938e-06
+#&gt; WT* = 19.922, n. coord = 1, p-value = 0.002036
 #&gt; </div><div class='input'>
 </div></pre>
   </div>

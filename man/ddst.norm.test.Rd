@@ -72,14 +72,14 @@ ddst.norm.test(z, B=5000, compute.p=TRUE)
 
 }
 \references{
-Chen, L., Shapiro, S.S. (1995). An alternative test for normality based on normalized spacings. \eqn{ J. Statist. Comput. Simulation} 53, 269--288.
+Chen, L., Shapiro, S.S. (1995). An alternative test for normality based on normalized spacings. \emph{ J. Statist. Comput. Simulation} 53, 269--288.
 
-Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \eqn{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.
+Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.
 
-Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. \eqn{ J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods. accepted.}.
+Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. \emph{ J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods.}.
 
-Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \eqn{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
+Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \emph{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
 
-Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \eqn{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
+Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \emph{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
 }
 \keyword{htest}

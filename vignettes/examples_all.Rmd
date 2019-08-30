@@ -1,6 +1,6 @@
 ---
 title: "Examples for ddst package"
-author: "PB"
+author: "Przemyslaw Biecek"
 date: "July 26, 2019"
 output: 
   html_document:
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Data Driven Smooth Tests with ddst package
 
-This document presents tests avaliable in the ddst package.
+This document presents tests avaliable in the `ddst` package.
 
 ```{r, warning=FALSE, message=FALSE}
 library("ddst")
