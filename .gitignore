@@ -194,6 +194,9 @@ $RECYCLE.BIN/
 *.egg-info
 dist/
 build/
+papers/
+list_30_09_2019/
+docs_old/
 eggs/
 parts/
 var/

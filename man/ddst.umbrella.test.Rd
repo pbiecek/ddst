@@ -5,7 +5,7 @@
 \title{Data Driven Test for k-Sample Umbrella Alternatives}
 \usage{
 ddst.umbrella.test(x, ..., tlh.p = 2.2, tl.n = 2.2, p = 3,
-  type = "T", B = 1000, compute.p = FALSE)
+  type = "T", B = 100, compute.p = FALSE)
 }
 \arguments{
 \item{x}{a list with vectors or vectors (in thos case other vectors will be in ...)}
@@ -21,7 +21,8 @@ ddst.umbrella.test(x, ..., tlh.p = 2.2, tl.n = 2.2, p = 3,
 \item{c}{a positive number, penalty for model selection rule, see package description}
 }
 \description{
-Performs data driven smooth test for so-called umbrella alternatives in k-sample problem; see Wylupek (2016).
+Performs data driven smooth test for so-called umbrella alternatives in k-sample problem;
+see Wylupek (2016).
 }
 \examples{
 # H0 is true
@@ -38,9 +39,9 @@ x = runif(80)
 y = rbeta(80,4,2)
 w = rnorm(30)
 z = rexp(10, 1)
-ddst.umbrella.test(x, y, w, z, compute.p=TRUE)
-ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "S")
-ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "M")
-ddst.umbrella.test(list(x, y, w, z), compute.p=TRUE)
+ddst.umbrella.test(x, y, w, z)
+ddst.umbrella.test(x, y, w, z, type = "S")
+ddst.umbrella.test(x, y, w, z, type = "M")
+ddst.umbrella.test(list(x, y, w, z))
 }
 \keyword{htest}

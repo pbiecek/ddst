@@ -1,6 +1,7 @@
 #' Data Driven Two-Sample Test Against One-Sided Alternatives
 #'
-#' Performs data driven smooth non-parametric two-sample test against one-sided alternatives (stochastic dominance)
+#' Performs data driven smooth non-parametric two-sample test against one-sided alternatives
+#' (stochastic dominance)
 #'
 #' @param x a (non-empty) numeric vector of data values
 #' @param y a (non-empty) numeric vector of data values

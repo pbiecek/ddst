@@ -4,7 +4,7 @@
 \alias{ddst.ksample.test}
 \title{Data Driven k-Sample Test}
 \usage{
-ddst.ksample.test(x, ..., d_N = 12, c = 2.3, B = 1000,
+ddst.ksample.test(x, ..., d_N = 12, c = 2.3, B = 100,
   compute.p = FALSE)
 }
 \arguments{

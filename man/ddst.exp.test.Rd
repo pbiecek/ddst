@@ -35,14 +35,14 @@ An object of class \code{htest}
 Performs data driven smooth test for composite hypothesis of exponentiality.
 }
 \details{
-Null density is given by \emph{$f(z;gamma) = exp(-z/gamma)$}  for z >= 0 and 0 otherwise.
+Null density is given by \eqn{f(z;gamma) = exp(-z/gamma)}  for z >= 0 and 0 otherwise.
 
-Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b), e.g., and estimating \emph{$gamma$} by \emph{$tilde gamma= 1/n sum_{i=1}^n Z_i$} yields the efficient score
-vector \emph{$l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde gamma)))$}, where \emph{$phi_j$}'s are	\emph{j}th degree orthonormal Legendre polynomials on [0,1] or cosine functions \emph{$sqrt(2) cos(pi j x), j>=1$,} while \emph{$F(z;gamma)$} is the distribution function pertaining to \emph{$f(z;gamma)$}.
+Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b), e.g., and estimating \eqn{gamma} by \eqn{tilde gamma= 1/n sum_{i=1}^n Z_i} yields the efficient score
+vector \eqn{l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde gamma)))}, where \eqn{phi_j}'s are	\eqn{j}th degree orthonormal Legendre polynomials on [0,1] or cosine functions \eqn{sqrt(2) cos(pi j x), j>=1,} while \eqn{F(z;gamma)} is the distribution function pertaining to \eqn{f(z;gamma)}.
 
-The matrix \emph{$[I^*(tilde gamma)]^{-1}$} does not  depend on \emph{$tilde gamma$} and is calculated for succeding dimensions \emph{k} using some recurrent relations for Legendre's polynomials and computed in a numerical way in case of cosine basis. In the implementation the default value of \emph{c} in \emph{$T^*$} is set to be 100.
+The matrix \eqn{[I^*(tilde gamma)]^{-1}} does not  depend on \eqn{tilde gamma} and is calculated for succeding dimensions \eqn{k} using some recurrent relations for Legendre's polynomials and computed in a numerical way in case of cosine basis. In the implementation the default value of \eqn{c} in \eqn{T^*} is set to be 100.
 
-Therefore, \emph{$T^*$} practically coincides with S1 considered in Kallenberg and Ledwina (1997 a).
+Therefore, \eqn{T^*} practically coincides with S1 considered in Kallenberg and Ledwina (1997 a).
 
 For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 }
@@ -58,8 +58,8 @@ t$p.value
 
 }
 \references{
-Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \emph{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
+Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \eqn{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
 
-Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \emph{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
+Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \eqn{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
 }
 \keyword{htest}

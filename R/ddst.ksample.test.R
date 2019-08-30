@@ -31,7 +31,7 @@
   function(x,
            ...,
            d_N = 12, c = 2.3,
-           B = 1000,
+           B = 100,
            compute.p = FALSE) {
     if (is.list(x)) {
       # x is list with coordinates

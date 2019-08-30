@@ -23,7 +23,8 @@ ddst.twosample.test(x, y, t = 2.2, k.N = 4, B = 1000,
 \item{...}{further arguments}
 }
 \description{
-Performs data driven smooth non-parametric two-sample test against one-sided alternatives (stochastic dominance)
+Performs data driven smooth non-parametric two-sample test against one-sided alternatives
+(stochastic dominance)
 }
 \examples{
 # H0 is true

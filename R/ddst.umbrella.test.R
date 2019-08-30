@@ -1,6 +1,7 @@
 #' Data Driven Test for k-Sample Umbrella Alternatives
 #'
-#' Performs data driven smooth test for so-called umbrella alternatives in k-sample problem; see Wylupek (2016).
+#' Performs data driven smooth test for so-called umbrella alternatives in k-sample problem;
+#' see Wylupek (2016).
 #'
 #' @param x a list with vectors or vectors (in thos case other vectors will be in ...)
 #' @param d_N an integer, number of coordinates, see package description
@@ -26,17 +27,17 @@
 #' y = rbeta(80,4,2)
 #' w = rnorm(30)
 #' z = rexp(10, 1)
-#' ddst.umbrella.test(x, y, w, z, compute.p=TRUE)
-#' ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "S")
-#' ddst.umbrella.test(x, y, w, z, compute.p=TRUE, type = "M")
-#' ddst.umbrella.test(list(x, y, w, z), compute.p=TRUE)
+#' ddst.umbrella.test(x, y, w, z)
+#' ddst.umbrella.test(x, y, w, z, type = "S")
+#' ddst.umbrella.test(x, y, w, z, type = "M")
+#' ddst.umbrella.test(list(x, y, w, z))
 #' @keywords htest
 `ddst.umbrella.test` <-
   function(x,
            ...,
            tlh.p = 2.2, tl.n = 2.2, p = 3,
            type = "T",
-           B = 1000,
+           B = 100,
            compute.p = FALSE) {
     if (is.list(x)) {
       # x is list with coordinates

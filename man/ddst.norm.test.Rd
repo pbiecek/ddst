@@ -5,13 +5,14 @@
 \alias{ddst.norm.Nk}
 \title{Data Driven Smooth Test for Normality}
 \usage{
-ddst.norm.test(x, base = ddst.base.legendre, c = 100, B = 1000,
+ddst.norm.test(x, base = ddst.base.legendre, c = 100, B = 100,
   compute.p = FALSE, Dmax = 5, ...)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
 
-\item{base}{a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or \code{ddst.base.cos} for cosine system, see package description}
+\item{base}{a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials
+or \code{ddst.base.cos} for cosine system, see package description}
 
 \item{c}{a parameter for model selection rule, see package description}
 
@@ -29,23 +30,29 @@ An object of class \code{htest}
 \item{parameter }{the number of choosen coordinates (k).}
 \item{method }{a character string indicating the parameters of performed test. }
 \item{data.name }{a character string giving the name(s) of the data. }
-\item{p.value }{the p-value for the test, computed only if \code{compute.p=T}.}
+\item{p.value }{the p-value for the test, computed only if \code{compute.p = TRUE}.}
 }
 \description{
 Performs data driven smooth test for composite hypothesis of normality
 }
 \details{
 Null density is given by
-\emph{
-  $f(z;gamma)=1/(sqrt(2 pi)gamma_2) exp(-(z-gamma_1)^2/(2 gamma_2^2))$} for z in R.
+\eqn{
+  f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
 
-We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis. The parameter
-\emph{$gamma=(gamma_1,gamma_2)$} is estimated by \emph{$tilde gamma=(tilde gamma_1,tilde gamma_2)$}, where \emph{$tilde gamma_1=1/n sum_{i=1}^n Z_i$} and
-\emph{$tilde gamma_2 = 1/(n-1) sum_{i=1}^{n-1}(Z_{n:i+1}-Z_{n:i})(H_{i+1}-H_i)$},
-while \emph{$Z_{n:1}<= ... <= Z_{n:n}$} are ordered values of \emph{$Z_1, ..., Z_n$} and \emph{$H_i= phi^{-1}((i-3/8)(n+1/4))$}, cf. Chen and Shapiro (1995).
+We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
+The parameter \eqn{\gamma=(\gamma_1,\gamma_2)} is estimated by \eqn{\tilde \gamma=(\tilde \gamma_1,tilde gamma_2)},
+where \eqn{\tilde \gamma_1=1/n \sum_{i=1}^n Z_i} and
+\eqn{\tilde \gamma_2 = 1/(n-1) \sum_{i=1}^{n-1}(Z_{n:i+1}-Z_{n:i})(H_{i+1}-H_i)},
+while \eqn{Z_{n:1}<= ... <= Z_{n:n}} are ordered values of \eqn{Z_1, ..., Z_n} and \eqn{H_i= \phi^{-1}((i-3/8)(n+1/4))}, cf. Chen and Shapiro (1995).
 
-The above yields auxiliary test statistic \emph{$W_k^*(tilde gamma)$} described in details in Janic and Ledwina (2008), in case when Legendre's basis is applied.
-The pertaining matrix \emph{$[I^*(tilde gamma)]^{-1}$} does not  depend on \emph{$tilde gamma$} and is calculated for succeding dimensions \emph{k} using some recurrent relations for Legendre's polynomials and is computed in a numerical way in case of cosine basis. In the implementation of \emph{$T^*$} the default value of \emph{c} is set  to be 100. Therefore, in practice, \emph{$T^*$} is Schwarz-type criterion. See Inglot and Ledwina (2006) as well as Janic and Ledwina (2008) for comments. The resulting data driven test statistic for normality is \emph{$W_{T^*}=W_{T^*}(tilde gamma)$}.
+The above yields auxiliary test statistic \eqn{W_k^*(\tilde \gamma)} described in details in Janic and Ledwina (2008),
+in case when Legendre's basis is applied.
+The pertaining matrix \eqn{[I^*(\tilde \gamma)]^{-1}} does not  depend on \eqn{\tilde \gamma} and is calculated for
+succeding dimensions \eqn{k} using some recurrent relations for Legendre's polynomials and is computed in a numerical
+way in case of cosine basis. In the implementation of \eqn{T^*} the default value of \eqn{c} is set  to be 100.
+Therefore, in practice, \eqn{T^*} is Schwarz-type criterion. See Inglot and Ledwina (2006) as well as Janic and
+Ledwina (2008) for comments. The resulting data driven test statistic for normality is \eqn{W_{T^*}=W_{T^*}(\tilde \gamma)}.
 
 For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 }
@@ -65,14 +72,14 @@ ddst.norm.test(z, B=5000, compute.p=TRUE)
 
 }
 \references{
-Chen, L., Shapiro, S.S. (1995). An alternative test for normality based on normalized spacings. \emph{ J. Statist. Comput. Simulation} 53, 269--288.
+Chen, L., Shapiro, S.S. (1995). An alternative test for normality based on normalized spacings. \eqn{ J. Statist. Comput. Simulation} 53, 269--288.
 
-Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.
+Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \eqn{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.
 
-Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. \emph{ J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods. accepted.}.
+Janic, A. and Ledwina, T. (2008). Data-driven tests for a location-scale family revisited. \eqn{ J. Statist. Theory. Pract. Special issue on Modern Goodness of Fit Methods. accepted.}.
 
-Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \emph{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
+Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \eqn{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.
 
-Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \emph{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
+Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \eqn{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
 }
 \keyword{htest}
