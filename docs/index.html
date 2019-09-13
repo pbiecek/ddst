@@ -32,7 +32,7 @@
       <ul class="navbar-mi2 nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,8 +71,8 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#data-driven-smooth-tests-with-ddst-package" class="anchor"></a>Data Driven Smooth Tests with ddst package</h1></div>
 
-<p><code>ddst</code> stands for Data Driven Smooth Tests, these are tests in which alternative hypothesis is dynamically selected based on data.</p>
-<p>In this package you will find two groups of smooth of test: goodness-of-fit tests and nonparametric tests for comparing distributions.</p>
+<p><code>ddst</code> stands for Data Driven Smooth Tests. These tests characterize data-dependent choice of the number of component in test statistics.</p>
+<p>In this package you will find two groups of data driven smooth tests: goodness-of-fit tests and nonparametric tests for comparing distributions.</p>
 <p>Among goodness-of-fit tests there are tests for</p>
 <ul>
 <li>
@@ -87,26 +87,27 @@
 <p>Among nonparametric tests there are tests for</p>
 <ul>
 <li>
-<code>ddst.ksample.test</code> DDSTest for k-Sample Test, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html</a>,</li>
+<code>ddst.ksample.test</code> DDSTest for k-Sample Problem, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.ksample.test.html</a>,</li>
 <li>
 <code>ddst.umbrella.test</code> DDSTest for k-Sample Umbrella Alternatives, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.umbrella.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.umbrella.test.html</a>,</li>
 <li>
-<code>ddst.twosample.test</code> DDSTest for Two-Sample Test Against One-Sided Alternatives, find more: <a href="http://pbiecek.github.io/ddst/reference/ddst.twosample.test.html" class="uri">http://pbiecek.github.io/ddst/reference/ddst.twosample.test.html</a>,</li>
+<code>ddst.stochasticorder.test</code> DDSTest for Stochastic Order,</li>
 <li>
-<code>ddst.changepoint.test</code> DDSTest for Change-point problems,<br>
-</li>
+<code>ddst.dominance.test</code> DDSTest for Stochastic Dominance,</li>
 <li>
-<code>ddst.dominance.test</code> DDSTest for Stochastic dominance</li>
+<code>ddst.twosample.test</code> DDSTest for Two-Sample Test Against One-Sided Alternatives,</li>
+<li>
+<code>ddst.changepoint.test</code> DDSTest for Change-Point Problems,</li>
 </ul>
-<p>Find a detailed description for methofdology behond smooth tests at <a href="http://www.biecek.pl/R/ddst/description.pdf" class="uri">http://www.biecek.pl/R/ddst/description.pdf</a> (TODO: update).</p>
+<p>Find a detailed description for methodology beyond smooth tests at <a href="http://www.biecek.pl/R/ddst/description.pdf" class="uri">http://www.biecek.pl/R/ddst/description.pdf</a> (TODO: update).</p>
 </div>
 <div id="how-to-install-the-ddst-package" class="section level1">
 <h1 class="hasAnchor">
 <a href="#how-to-install-the-ddst-package" class="anchor"></a>How to install the ddst package</h1>
 <p>Install latest stable version of the <code>ddst</code> package from CRAN with</p>
-<pre class="{r}"><code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("ddst")</a></code></pre>
-<p>or install development version version from GitHub</p>
-<pre class="{r}"><code><a href="https://rdrr.io/pkg/devtools/man/reexports.html">devtools::install_github("pbiecek/ddst")</a></code></pre>
+<pre class="{r}"><code>install.packages("ddst")</code></pre>
+<p>or install development version from GitHub</p>
+<pre class="{r}"><code><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::install_github("pbiecek/ddst")</a></code></pre>
 </div>
 
   </div>

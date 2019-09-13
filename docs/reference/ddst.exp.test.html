@@ -54,7 +54,7 @@
       <ul class="navbar-mi2 nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -161,7 +161,7 @@ vector \(l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde g
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 
@@ -169,7 +169,7 @@ vector \(l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde g
 #&gt; WT* = 2.6972, n. coord = 1, p-value = 0.145
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Chisquare.html'>rchisq</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rchisq</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 (<span class='no'>t</span> <span class='kw'>=</span> <span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 

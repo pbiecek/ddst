@@ -54,7 +54,7 @@
       <ul class="navbar-mi2 nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -148,7 +148,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Data Driven Smooth Test for Uniformity</span>
 <span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>80</span>)
 <span class='fu'><a href='ddst.uniform.test.html'>ddst.uniform.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
@@ -156,7 +156,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; WT = 0.8777, n. coord = 1, p-value = 0.395
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rbeta</span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
 (<span class='no'>t</span> <span class='kw'>=</span> <span class='fu'><a href='ddst.uniform.test.html'>ddst.uniform.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
@@ -165,7 +165,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># Data Driven Smooth Test for Normality</span>
 <span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>80</span>)
 <span class='fu'><a href='ddst.norm.test.html'>ddst.norm.test</a></span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
@@ -173,7 +173,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; WT* = 3.0271, n. coord = 1, p-value = 0.111
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'><a href='ddst.norm.test.html'>ddst.norm.test</a></span>(<span class='no'>z</span>, <span class='kw'>B</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality
 #&gt; 
@@ -183,18 +183,18 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 <span class='co'># Data Driven Smooth Test for Extreme Value Distribution</span>
 
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'><a href='ddst.extr.test.html'>ddst.extr.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Extreme Values
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 831953, n. coord = 5, p-value &lt; 2.2e-16
+#&gt; WT* = 831950, n. coord = 5, p-value &lt; 2.2e-16
 #&gt; </div><div class='input'>
 <span class='co'># Data Driven Smooth Test for Exponentiality</span>
 
 <span class='co'>#</span>
 <span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'><a href='ddst.exp.test.html'>ddst.exp.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 
@@ -202,7 +202,7 @@ and <em>$W_T^* = W_T^*(tilde gamma)$</em>, respectively. For details see Inglot 
 #&gt; WT* = 0.25085, n. coord = 1, p-value = 0.628
 #&gt; </div><div class='input'>
 <span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Chisquare.html'>rchisq</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rchisq</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='fu'><a href='ddst.exp.test.html'>ddst.exp.test</a></span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Expotentiality
 #&gt; 
