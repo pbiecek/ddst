@@ -6,9 +6,9 @@
 \alias{ddst.base.cos}
 \alias{ddst.base.legendre}
 \alias{\alias{ddst-package}}
-\title{Data Driven Smooth Tests}
+\title{TODO: Data Driven Smooth Tests}
 \description{
-Set of Data Driven Smooth Tests for Goodness of Fit
+TODO: Set of Data Driven Smooth Tests for Goodness of Fit
 }
 \details{
 \section{General Description}
