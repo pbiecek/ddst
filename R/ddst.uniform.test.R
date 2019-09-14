@@ -38,6 +38,7 @@
 #'
 #' Neyman, J. (1937). `Smooth test' for goodness of fit. \emph{Skand. Aktuarietidskr.} \bold{ 20}, 149-199.
 #'
+#' @importFrom stats ecdf
 #' @export
 #'
 #' @examples

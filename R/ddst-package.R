@@ -1,9 +1,9 @@
 ##    ddst package for R
 ##
-#' @title Data Driven Smooth Tests
+#' @title TODO: Data Driven Smooth Tests
 #'
 #' @description
-#' Set of Data Driven Smooth Tests for Goodness of Fit
+#' TODO: Set of Data Driven Smooth Tests for Goodness of Fit
 #'
 #' @aliases ddst-package ddst.base.cos ddst.base.legendre
 #' \alias{ddst-package}
