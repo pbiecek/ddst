@@ -16,19 +16,50 @@ ddst.stochasticorder.test(x, y, t = 2.2, k.N = 4)
 \item{k.N}{The choice of k(N) belongs to the user and should reflect the individual aims and needs. Some authors’ recommendation is given in Section 5.2.}
 }
 \description{
-Performs data driven smooth non-parametric two-sample test for stochastic ordering
-}
-\details{
-This test is described in
+Performs the data driven smooth test for detection of
+the stochastic dominance of the first order, as described
+in detail in
 Nonparametric tests for stochastic ordering
 Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
-https://doi.org/10.1007/s11749-011-0278-7
+\url{https://doi.org/10.1007/s11749-011-0278-7}
+}
+\details{
+It has been proved that the error of the first kind of the test
+based on QT attains the maximal value under F = G.
+Moreover, under F = G the statistic QT is distribution-free.
+Hence, it is enough to calculate the critical values and p-values under an arbitrary continuous distribution functions F = G.
 }
 \examples{
-# H0 is true
-x = runif(80)
-y = runif(80)
+set.seed(13)
+library("rmutil")
+# 1. Pareto(1)/Pareto(1.5)
+#uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,
+x = rpareto(50, 1, 1.5)
+y = rpareto(50, 1, 1.5)
 ddst.stochasticorder.test(x, y)
+
+# 2. Laplace(0,1)/Laplace(1,25)
+x = rlaplace(50, 0, 1)
+y = rlaplace(50, 1, 25)
+ddst.stochasticorder.test(x, y)
+
+# 3. LN(0.85,0.6)/LN(1.2,0.2)
+x = rlnorm(50, 0.85, 0.6)
+y = rlnorm(50, 1.2, 0.2)
+ddst.stochasticorder.test(x, y)
+
+\dontrun{
+# Generate distribution of test statistic
+N <- 1000
+samp <- replicate(N, {
+   x = runif(30)
+   y = runif(30)
+   # statistics with Schwartz penalty
+   ddst.stochasticorder.test(x, y)$statistic[2]
+})
+quantile(samp, 0.95)
+plot(ecdf(samp))
+}
 
 }
 \keyword{htest}

@@ -1,6 +1,6 @@
 Package: ddst
 Title: Data Driven Smooth Tests
-Version: 1.5.1
+Version: 1.6.1
 Authors@R: c(person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "cre")),
              person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")),
              person("Grzegorz", "Wylupek", role = c("aut"))
@@ -21,6 +21,8 @@ Depends:
     polynom,
     orthopolynom,
     evd
+Suggests:
+    rmutil
 RoxygenNote: 6.1.1
 URL: https://pbiecek.github.io/ddst/
 BugReports: https://github.com/pbiecek/ddst/issues
