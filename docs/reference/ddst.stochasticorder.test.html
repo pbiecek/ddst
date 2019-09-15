@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Smooth Test for Exponentiality — ddst.exp.test • ddst</title>
+<title>Data Driven Nonparametric Test for Stochastic Ordering — ddst.stochasticorder.test • ddst</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,9 +35,14 @@
 
 
 
-<meta property="og:title" content="Data Driven Smooth Test for Exponentiality — ddst.exp.test" />
+<meta property="og:title" content="Data Driven Nonparametric Test for Stochastic Ordering — ddst.stochasticorder.test" />
 
-<meta property="og:description" content="Performs data driven smooth test for composite hypothesis of exponentiality." />
+<meta property="og:description" content="Performs the data driven smooth test for detection of
+the stochastic dominance of the first order, as described
+in detail in
+Nonparametric tests for stochastic ordering
+Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
+https://doi.org/10.1007/s11749-011-0278-7" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,19 +127,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Smooth Test for Exponentiality</h1>
+    <h1>Data Driven Nonparametric Test for Stochastic Ordering</h1>
     
-    <div class="hidden name"><code>ddst.exp.test.Rd</code></div>
+    <div class="hidden name"><code>ddst.stochasticorder.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Performs data driven smooth test for composite hypothesis of exponentiality.</p>
+    <p>Performs the data driven smooth test for detection of
+the stochastic dominance of the first order, as described
+in detail in
+Nonparametric tests for stochastic ordering
+Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
+<a href='https://doi.org/10.1007/s11749-011-0278-7'>https://doi.org/10.1007/s11749-011-0278-7</a></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.exp.test</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>k.N</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,73 +153,70 @@
       <td><p>a (non-empty) numeric vector of data values</p></td>
     </tr>
     <tr>
-      <th>base</th>
-      <td><p>a function which returns orthogonal system, might be <code>ddst.base.legendre</code> for Legendre polynomials or <code>ddst.base.cos</code> for cosine system, see package description</p></td>
+      <th>y</th>
+      <td><p>a (non-empty) numeric vector of data values</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>a parameter for model selection rule, see package description</p></td>
+      <th>t</th>
+      <td><p>tuning parameter, see test description</p></td>
     </tr>
     <tr>
-      <th>B</th>
-      <td><p>an integer specifying the number of replicates used in p-value computation</p></td>
-    </tr>
-    <tr>
-      <th>compute.p</th>
-      <td><p>a logical value indicating whether to compute a p-value</p></td>
-    </tr>
-    <tr>
-      <th>Dmax</th>
-      <td><p>an integer specifying the maximum number of coordinates, only for advanced users</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>further arguments</p></td>
+      <th>k.N</th>
+      <td><p>The choice of k(N) belongs to the user and should reflect the individual aims and needs. Some authors’ recommendation is given in Section 5.2.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An object of class <code>htest</code></p>
-<dt>statistic </dt><dd><p>the value of the test statistic.</p></dd>
-<dt>parameter </dt><dd><p>the number of choosen coordinates (k).</p></dd>
-<dt>method </dt><dd><p>a character string indicating the parameters of performed test.</p></dd>
-<dt>data.name </dt><dd><p>a character string giving the name(s) of the data.</p></dd>
-<dt>p.value </dt><dd><p>the p-value for the test, computed only if <code>compute.p=T</code>.</p></dd>
-
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Null density is given by \(f(z;gamma) = exp(-z/gamma)\)  for z &gt;= 0 and 0 otherwise.</p>
-<p>Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b), e.g., and estimating \(gamma\) by \(tilde gamma= 1/n sum_{i=1}^n Z_i\) yields the efficient score
-vector \(l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde gamma)))\), where \(phi_j\)'s are	\(j\)th degree orthonormal Legendre polynomials on [0,1] or cosine functions \(sqrt(2) cos(pi j x), j&gt;=1,\) while \(F(z;gamma)\) is the distribution function pertaining to \(f(z;gamma)\).</p>
-<p>The matrix \([I^*(tilde gamma)]^{-1}\) does not  depend on \(tilde gamma\) and is calculated for succeding dimensions \(k\) using some recurrent relations for Legendre's polynomials and computed in a numerical way in case of cosine basis. In the implementation the default value of \(c\) in \(T^*\) is set to be 100.</p>
-<p>Therefore, \(T^*\) practically coincides with S1 considered in Kallenberg and Ledwina (1997 a).</p>
-<p>For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http://www.biecek.pl/R/ddst/description.pdf</a>.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \( J. Statist. Comput. Simul.\) <b> 59</b>, 101--121.</p>
-<p>Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \( J. Amer. Statist. Assoc.\) <b> 92</b>, 1094--1104.</p>
+    <p>It has been proved that the error of the first kind of the test
+based on QT attains the maximal value under F = G.
+Moreover, under F = G the statistic QT is distribution-free.
+Hence, it is enough to calculate the critical values and p-values under an arbitrary continuous distribution functions F = G.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rexp</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Expotentiality
+    <pre class="examples"><div class='input'><span class='fu'>set.seed</span>(<span class='fl'>13</span>)
+<span class='fu'>library</span>(<span class='st'>"rmutil"</span>)
+<span class='co'># 1. Pareto(1)/Pareto(1.5)</span>
+<span class='co'>#uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,</span>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/rmutil/topics/Pareto'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>1.5</span>)
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/rmutil/topics/Pareto'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>1.5</span>)
+<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Nonparametric Test for Stochastic Ordering
 #&gt; 
-#&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 2.6972, n. coord = 1, p-value = 0.145
+#&gt; data:  
+#&gt; stat.T = 2.56, stat.S = 2.56, ncoord.T = 1, ncoord.S = 1
 #&gt; </div><div class='input'>
-<span class='co'># H0 is false</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'>rchisq</span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-(<span class='no'>t</span> <span class='kw'>=</span> <span class='fu'>ddst.exp.test</span> (<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Expotentiality
+<span class='co'># 2. Laplace(0,1)/Laplace(1,25)</span>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/rmutil/topics/Laplace'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>)
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/rmutil/topics/Laplace'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>25</span>)
+<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Nonparametric Test for Stochastic Ordering
 #&gt; 
-#&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 16.459, n. coord = 1, p-value = 0.002
-#&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0.002</div><div class='input'>
+#&gt; data:  
+#&gt; stat.T = 111.11, stat.S = 12.00, ncoord.T = 5, ncoord.S = 2
+#&gt; </div><div class='input'>
+<span class='co'># 3. LN(0.85,0.6)/LN(1.2,0.2)</span>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>rlnorm</span>(<span class='fl'>50</span>, <span class='fl'>0.85</span>, <span class='fl'>0.6</span>)
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>rlnorm</span>(<span class='fl'>50</span>, <span class='fl'>1.2</span>, <span class='fl'>0.2</span>)
+<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Nonparametric Test for Stochastic Ordering
+#&gt; 
+#&gt; data:  
+#&gt; stat.T = 0, stat.S = 0, ncoord.T = 1, ncoord.S = 1
+#&gt; </div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Generate distribution of test statistic</span>
+<span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
+<span class='no'>samp</span> <span class='kw'>&lt;-</span> <span class='fu'>replicate</span>(<span class='no'>N</span>, {
+   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>30</span>)
+   <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'>runif</span>(<span class='fl'>30</span>)
+   <span class='co'># statistics with Schwartz penalty</span>
+   <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)$<span class='no'>statistic</span>[<span class='fl'>2</span>]
+})
+<span class='fu'>quantile</span>(<span class='no'>samp</span>, <span class='fl'>0.95</span>)
+<span class='fu'>plot</span>(<span class='fu'>ecdf</span>(<span class='no'>samp</span>))
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -218,11 +224,7 @@ vector \(l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde g
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
