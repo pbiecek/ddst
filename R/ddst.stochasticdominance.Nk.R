@@ -1,6 +1,6 @@
 # code based on Grzegorz Wylupek R Code
 # Two-Sample Test Against One-Sided Alternatives
-`ddst.twosample.Nk` <-
+`ddst.stochasticdominance.Nk` <-
 function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
   ax.f <- function(k, kappa, varsigma, i) {
     2 ^ (-kappa - k - 2) * sqrt((2 * i - 1) * (2 * varsigma - 1) *

@@ -1,6 +1,6 @@
 #' Data Driven k-Sample Test
 #'
-#' Performs data driven smooth test for the classical k-sample problems.
+#' Performs data driven smooth test for the classical k-sample problem.
 #' Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
 #' The null hypothesis is that F_1 = ... = F_k while the alternative is that at
 #' least two distributions are different.

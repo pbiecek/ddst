@@ -1,59 +1,38 @@
-#' Data Driven Two-Sample Test Against One-Sided Alternatives
+#' Data Driven Two-Sample Test
 #'
-#' Performs data driven smooth non-parametric two-sample test against one-sided alternatives
-#' (stochastic dominance)
+#' Performs data driven smooth test for the classical two-sample problem.
+#' It is  aspecial case of data driven test for k-samples.
+#' Detailed description of the test statistic is provided in Wylupek (2010).
 #'
-#' @param x a (non-empty) numeric vector of data values
-#' @param y a (non-empty) numeric vector of data values
-#' @param t a positive number, penalty for model selection rule, see package description
-#' @param k.N (TODO: is it D ?)
-#' @param B an integer specifying the number of replicates used in p-value computation
-#' @param compute.p a logical value indicating whether to compute a p-value
-#' @param ... further arguments
+#' @param x a list with two vectors or a single vector.
+#' @param ... if x is a single vector, then the second vector is provided in the ...
+#' @param d_N an integer, number of coordinates that measure potential deviation from null hypothesis
+#' @param c a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.
 #'
+#' @references Data-driven k-sample tests. Wylupek (2010) \url{https://www.jstor.org/stable/40586684?seq=1}
 #' @export
-#'
 #' @examples
 #' # H0 is true
-#' x = runif(80)
-#' y = runif(80)
-#' ddst.twosample.test(x, y, compute.p=TRUE)
+#' x <- runif(80)
+#' y <- runif(80)
+#' t <- ddst.twosample.test(x, y)
+#' t <- ddst.twosample.test(list(x, y))
+#' t
+#' plot(t)
 #'
-#' # known fixed alternative
-#' x = runif(80)
-#' y = rbeta(80,4,2)
-#' ddst.twosample.test(x, y, compute.p=TRUE)
+#' # H0 is false
+#' x <- runif(80)
+#' y <- rexp(80, 1)
+#' t <- ddst.twosample.test(x, y)
+#' t
+#' plot(t)
+#'
 #' @keywords htest
 `ddst.twosample.test` <-
   function(x,
-           y,
-           t = 2.2,
-           k.N = 4,
-           B = 1000,
-           compute.p = FALSE,
-           alpha = 0.05,
-           ...) {
-    coord = ddst.twosample.Nk(x, y, t = t, k.N = k.N, alpha = alpha)    # coord square times n
-
-    l = coord[3]
-    attr(l, "names") = "T"
-    t = coord[1]
-    attr(t, "names") = "V.T"
-    result = list(statistic = t,
-                  parameter = l,
-                  method = "Data Driven Two-Sample Test")
-    class(result) = "htest"
-
-    if (compute.p) {
-      tmp = numeric(B)
-      for (i in 1:B) {
-        xy <- sample(c(x,y))
-        new.x <- xy[1:length(x)]
-        new.y <- xy[(length(x)+1):length(xy)]
-
-        tmp[i] = ddst.twosample.Nk(x, y, t = t, k.N = k.N, alpha = alpha)[1]
-      }
-      result$p.value = mean(tmp > t)
-    }
-    result
+           ...,
+           d_N = 12, c = 2) {
+    res <- ddst.ksample.test(x, ..., d_N = d_N, c = c)
+    res$coordinates <- res$coordinates[1,]
+    res
   }

@@ -2,39 +2,42 @@
 % Please edit documentation in R/ddst.twosample.test.R
 \name{ddst.twosample.test}
 \alias{ddst.twosample.test}
-\title{Data Driven Two-Sample Test Against One-Sided Alternatives}
+\title{Data Driven Two-Sample Test}
 \usage{
-ddst.twosample.test(x, y, t = 2.2, k.N = 4, B = 1000,
-  compute.p = FALSE, alpha = 0.05, ...)
+ddst.twosample.test(x, ..., d_N = 12, c = 2)
 }
 \arguments{
-\item{x}{a (non-empty) numeric vector of data values}
+\item{x}{a list with two vectors or a single vector.}
 
-\item{y}{a (non-empty) numeric vector of data values}
+\item{...}{if x is a single vector, then the second vector is provided in the ...}
 
-\item{t}{a positive number, penalty for model selection rule, see package description}
+\item{d_N}{an integer, number of coordinates that measure potential deviation from null hypothesis}
 
-\item{k.N}{(TODO: is it D ?)}
-
-\item{B}{an integer specifying the number of replicates used in p-value computation}
-
-\item{compute.p}{a logical value indicating whether to compute a p-value}
-
-\item{...}{further arguments}
+\item{c}{a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.}
 }
 \description{
-Performs data driven smooth non-parametric two-sample test against one-sided alternatives
-(stochastic dominance)
+Performs data driven smooth test for the classical two-sample problem.
+It is  aspecial case of data driven test for k-samples.
+Detailed description of the test statistic is provided in Wylupek (2010).
 }
 \examples{
 # H0 is true
-x = runif(80)
-y = runif(80)
-ddst.twosample.test(x, y, compute.p=TRUE)
+x <- runif(80)
+y <- runif(80)
+t <- ddst.twosample.test(x, y)
+t <- ddst.twosample.test(list(x, y))
+t
+plot(t)
 
-# known fixed alternative
-x = runif(80)
-y = rbeta(80,4,2)
-ddst.twosample.test(x, y, compute.p=TRUE)
+# H0 is false
+x <- runif(80)
+y <- rexp(80, 1)
+t <- ddst.twosample.test(x, y)
+t
+plot(t)
+
+}
+\references{
+Data-driven k-sample tests. Wylupek (2010) \url{https://www.jstor.org/stable/40586684?seq=1}
 }
 \keyword{htest}

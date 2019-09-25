@@ -16,7 +16,7 @@ ddst.ksample.test(x, ..., d_N = 12, c = 2.3)
 \item{c}{a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.}
 }
 \description{
-Performs data driven smooth test for the classical k-sample problems.
+Performs data driven smooth test for the classical k-sample problem.
 Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
 The null hypothesis is that F_1 = ... = F_k while the alternative is that at
 least two distributions are different.
@@ -27,14 +27,17 @@ Detailed description of the test statistic is provided in Wylupek (2010).
 x = runif(80)
 y = runif(80)
 z = runif(80)
-ddst.ksample.test(x, y, z)
-ddst.ksample.test(list(x, y, z))
+t <- ddst.ksample.test(x, y, z)
+t <- ddst.ksample.test(list(x, y, z))
+t
+plot(t)
 
 # H0 is false
 x = runif(80)
 y = rexp(80, 1)
 z = runif(80)
 t <- ddst.ksample.test(x, y, z)
+t
 plot(t)
 
 }

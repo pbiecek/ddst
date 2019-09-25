@@ -17,7 +17,13 @@
     coordinates <- x$coordinates
     if (is.null(dim(coordinates))) {
       # coordinates is a vector
-
+      # coordinates is a matrix
+      val <- c(coordinates)
+      pos <- 1:length(coordinates)
+      df <- data.frame(val, pos)
+      pl <- ggplot(df, aes(factor(pos), val)) +
+        geom_col() +
+        xlab("coordinate") + ylab("")
     } else {
       # coordinates is a matrix
       val <- c(coordinates)
