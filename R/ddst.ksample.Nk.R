@@ -1,5 +1,8 @@
-# code based on Grzegorz Wylupek R Code
 # k-Sample Test
+# Based on R code by Grzegorz Wylupek
+# Data-driven k-sample tests.
+# Wylupek (2010)
+# https://www.jstor.org/stable/40586684?seq=1
 `ddst.ksample.Nk` <-
   function(x, n, d_N = 12, c = 2.3) {
     pols <- slegendre.polynomials(d_N, normalized = TRUE)
@@ -44,7 +47,7 @@
         }
       }
       score = sum((1 - p) * W_T)
-      return(score)
+      return(list(score = score, W_T = W_T, B = B))
     }
 
     test_W_T(x = x,

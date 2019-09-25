@@ -20,7 +20,8 @@ Depends:
     R (>= 2.7),
     polynom,
     orthopolynom,
-    evd
+    evd,
+    ggplot2
 Suggests:
     rmutil
 RoxygenNote: 6.1.1

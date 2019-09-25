@@ -6,7 +6,7 @@
 
 ## Overview
 
-`ddst` stands for Data Driven Smooth Tests. These tests characterize data-dependent choice of the number of component in test statistics.
+`ddst` stands for Data Driven Smooth Tests. These tests characterize data-dependent choice of the number of components in test statistics.
 
 In this package you will find two groups of data driven smooth tests: goodness-of-fit tests and nonparametric tests for comparing distributions.
     

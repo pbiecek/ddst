@@ -1,38 +1,41 @@
 #' Data Driven k-Sample Test
 #'
-#' Performs data driven smooth test for the classical two- and k-sample problems as described in details in Wylupek (2010).
+#' Performs data driven smooth test for the classical k-sample problems.
+#' Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
+#' The null hypothesis is that F_1 = ... = F_k while the alternative is that at
+#' least two distributions are different.
+#' Detailed description of the test statistic is provided in Wylupek (2010).
 #'
-#' @param x a list with vectors or vectors (in thos case other vectors will be in ...)
-#' @param d_N an integer, number of coordinates, see package description
-#' @param c a positive number, penalty for model selection rule, see package description
-#' @param B an integer specifying the number of replicates used in p-value computation
-#' @param compute.p a logical value indicating whether to compute a p-value
-#' @param ... other vectors
+#' @param x a list with k-vectors or a single vector.
+#' @param ... if x is a single vector, then remaing k-1 vectors are provided in the ... argument
+#' @param d_N an integer, number of coordinates that measure potential deviation from null hypothesis
+#' @param c a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.
 #'
+#' @references Data-driven k-sample tests. Wylupek (2010) \url{https://www.jstor.org/stable/40586684?seq=1}
 #' @export
-#'
 #' @examples
 #' # H0 is true
 #' x = runif(80)
 #' y = runif(80)
 #' z = runif(80)
-#' ddst.ksample.test(x, y, z, compute.p=TRUE)
-#' ddst.ksample.test(list(x, y, z), compute.p=TRUE)
+#' t <- ddst.ksample.test(x, y, z)
+#' t <- ddst.ksample.test(list(x, y, z))
+#' t
+#' plot(t)
 #'
-#' # known fixed alternative
+#' # H0 is false
 #' x = runif(80)
-#' y = rbeta(80,4,2)
-#' w = rnorm(30)
-#' z = rexp(10, 1)
-#' ddst.ksample.test(x, y, w, z, compute.p=TRUE)
-#' ddst.ksample.test(list(x, y, w, z), compute.p=TRUE)
+#' y = rexp(80, 1)
+#' z = runif(80)
+#' t <- ddst.ksample.test(x, y, z)
+#' t
+#' plot(t)
+#'
 #' @keywords htest
 `ddst.ksample.test` <-
   function(x,
            ...,
-           d_N = 12, c = 2.3,
-           B = 100,
-           compute.p = FALSE) {
+           d_N = 12, c = 2.3) {
     if (is.list(x)) {
       # x is list with coordinates
       x.vector <- unlist(x)
@@ -45,23 +48,16 @@
     }
     coord = ddst.ksample.Nk(x.vector, n, d_N = d_N, c = c)
 
-    l = coord[1]
+    l = coord$score
     attr(l, "names") = "W.T"
     t = NA
     attr(t, "names") = "l"
     result = list(statistic = l,
                   parameter = t,
+                  W.T.l = coord$W_T,
+                  coordinates = coord$B,
                   method = "Data Driven k-Sample Test")
-    class(result) = "htest"
+    class(result) = c("htest", "ddst.test", "ddst.ksample.test")
 
-    if (compute.p) {
-      tmp = numeric(B)
-      for (i in 1:B) {
-        xy <- sample(x.vector)
-
-        tmp[i] = ddst.ksample.Nk(xy, n, d_N = d_N, c = c)
-      }
-      result$p.value = mean(tmp > l)
-    }
     result
   }

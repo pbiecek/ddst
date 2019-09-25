@@ -24,8 +24,8 @@
 #' library("rmutil")
 #' # 1. Pareto(1)/Pareto(1.5)
 #' #uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,
-#' x = rpareto(50, 1, 1.5)
-#' y = rpareto(50, 1, 1.5)
+#' x = rpareto(50, 1, 1)
+#' y = rpareto(50, 1.5, 1.5)
 #' ddst.stochasticorder.test(x, y)
 #'
 #' # 2. Laplace(0,1)/Laplace(1,25)

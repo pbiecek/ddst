@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • ddst</title>
+<title>Plot Function fo Data Driven Tests — plot.ddst.test • ddst</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Plot Function fo Data Driven Tests — plot.ddst.test" />
+<meta property="og:description" content="Plots coordinates for selected test statistic" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +63,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,108 +122,45 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Plot Function fo Data Driven Tests</h1>
+    
+    <div class="hidden name"><code>plot.ddst.test.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Plots coordinates for selected test statistic</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='co'># S3 method for ddst.test</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-goodness-of-fit-tests" class="hasAnchor"><a href="#section-goodness-of-fit-tests" class="anchor"></a>Goodness-of-fit tests</h2>
-          <p class="section-desc"><p>Data driven smooth tests for selected goodness-of-fit problems</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="ddst.exp.test.html">ddst.exp.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Smooth Test for Exponentiality</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.extr.test.html">ddst.extr.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Smooth Test for Extreme Value Distribution</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.norm.test.html">ddst.norm.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Smooth Test for Normality</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.uniform.test.html">ddst.uniform.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Smooth Test for Uniformity</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-nonparametric-tests" class="hasAnchor"><a href="#section-nonparametric-tests" class="anchor"></a>Nonparametric tests</h2>
-          <p class="section-desc"><p>Nonparametric data driven smooth tests for comparing distributions</p></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="ddst.ksample.test.html">ddst.ksample.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven k-Sample Test</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.twosample.test.html">ddst.twosample.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Two-Sample Test Against One-Sided Alternatives</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.stochasticorder.test.html">ddst.stochasticorder.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Nonparametric Test for Stochastic Ordering</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ddst.umbrella.test.html">ddst.umbrella.test()</a></code> </p>
-        </td>
-        <td><p>Data Driven Test for k-Sample Umbrella Alternatives</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-other" class="hasAnchor"><a href="#section-other" class="anchor"></a>Other</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="plot.ddst.test.html">plot(<i>&lt;ddst.test&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot Function fo Data Driven Tests</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>result from ddst test function</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='ddst.ksample.test.html'>ddst.ksample.test</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='plot.ddst.test-1.png' alt='' width='700' height='433' /></div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-goodness-of-fit-tests">Goodness-of-fit tests</a></li>
-      <li><a href="#section-nonparametric-tests">Nonparametric tests</a></li>
-      <li><a href="#section-other">Other</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

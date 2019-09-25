@@ -1,3 +1,24 @@
 template:
   package: DrWhyTemplate
   default_assets: false
+
+
+reference:
+  - title: Goodness-of-fit tests
+    desc: Data driven smooth tests for selected goodness-of-fit problems
+    contents:
+    - ddst.exp.test
+    - ddst.extr.test
+    - ddst.norm.test
+    - ddst.uniform.test
+  - title: Nonparametric tests
+    desc: Nonparametric data driven smooth tests for comparing distributions
+    contents:
+    - ddst.ksample.test
+    - ddst.twosample.test
+    - ddst.stochasticorder.test
+    - ddst.umbrella.test
+  - title: Other
+    contents:
+    - plot.ddst.test
+
