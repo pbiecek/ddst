@@ -19,7 +19,11 @@
       # coordinates is a vector
       # coordinates is a matrix
       val <- c(coordinates)
-      pos <- 1:length(coordinates)
+      if (is.null(names(coordinates))) {
+        pos <- 1:length(coordinates)
+      } else {
+        pos <- names(coordinates)
+      }
       df <- data.frame(val, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() +
@@ -28,7 +32,11 @@
       # coordinates is a matrix
       val <- c(coordinates)
       vec <- rep(1:nrow(coordinates), each = ncol(coordinates))
-      pos <- rep(1:ncol(coordinates), times = nrow(coordinates))
+      if (is.null(colnames(coordinates))) {
+        pos <- rep(1:ncol(coordinates), times = nrow(coordinates))
+      } else {
+        pos <- rep(colnames(coordinates), times = nrow(coordinates))
+      }
       df <- data.frame(val, vec, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() + facet_grid(vec~.) +

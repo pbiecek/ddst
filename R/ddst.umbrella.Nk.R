@@ -1,10 +1,12 @@
-# code based on Grzegorz Wylupek R Code
+# Umbrella Test
+# Based on R code by Grzegorz Wylupek
+# An automatic test for the umbrella alternatives.
+# Wylupek (2016)
+# https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231
 # sjos12231-sup-0002-supplementary.r
 `ddst.umbrella.Nk` <-
   function(x, n, tlh.p = 2.2, tl.n = 2.2, p = 3) {
-  # TODO: S, T, M - which test to use?
   # what about default for tlh.p
-  # now all three are being calculated
 
     l.j = function(r, i, v) {
       a.j = (2 * i - 1) / 2 ^ (r + 1)
@@ -94,6 +96,7 @@
       N = sum(n)
       nc = c(0, cumsum(n))
       p.mat = matrix(0, k, k)
+      score.mat = matrix(NA, k, k)
       for (l in 1:k) {
         for (h in 1:k) {
           p.mat[l, h] = (n[l] + n[h]) / N
@@ -126,6 +129,7 @@
         for (l in 1:(k - 1)) {
           for (h in (l + 1):k) {
             score = Q.lh(x[(nc[h] + 1):nc[h + 1]], x[(nc[l] + 1):nc[l + 1]], n[h], n[l], tlh.p)
+            score.mat[l,h] <- score[2]
             Q.S.o = Q.S.o + p.mat[h, l] * score[1]
             Q.T.o = Q.T.o + p.mat[h, l] * score[2]
             Q.M.o = Q.M.o + p.mat[h, l] * score[3]
@@ -138,6 +142,7 @@
         for (l in 1:(k - 1)) {
           score = Z.l(x[(nc[l + 1] + 1):nc[l + 2]], x[(nc[l] + 1):nc[l + 1]], n[l +
                                                                                   1], n[l], tl.n, alpha.vec[l])
+          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -162,6 +167,7 @@
         for (l in 1:(k - 1)) {
           for (h in (l + 1):k) {
             score = Q.lh(x[(nc[l] + 1):nc[l + 1]], x[(nc[h] + 1):nc[h + 1]], n[l], n[h], tlh.p)
+            score.mat[l,h] <- score[2]
             Q.S.o = Q.S.o + p.mat[l, h] * score[1]
             Q.T.o = Q.T.o + p.mat[l, h] * score[2]
             Q.M.o = Q.M.o + p.mat[l, h] * score[3]
@@ -174,6 +180,7 @@
         for (l in 1:(k - 1)) {
           score = Z.l(x[(nc[l] + 1):nc[l + 1]], x[(nc[l + 1] + 1):nc[l + 2]], n[l], n[l +
                                                                                         1], tl.n, alpha.vec[l])
+          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -198,6 +205,7 @@
         for (l in 1:(p - 1)) {
           for (h in (l + 1):p) {
             score = Q.lh(x[(nc[l] + 1):nc[l + 1]], x[(nc[h] + 1):nc[h + 1]], n[l], n[h], tlh.p)
+            score.mat[l,h] <- score[2]
             Q.S.o = Q.S.o + p.mat[l, h] * score[1]
             Q.T.o = Q.T.o + p.mat[l, h] * score[2]
             Q.M.o = Q.M.o + p.mat[l, h] * score[3]
@@ -210,6 +218,7 @@
         for (l in p:(k - 1)) {
           for (h in (l + 1):k) {
             score = Q.lh(x[(nc[h] + 1):nc[h + 1]], x[(nc[l] + 1):nc[l + 1]], n[h], n[l], tlh.p)
+            score.mat[l,h] <- score[2]
             Q.S.o = Q.S.o + p.mat[h, l] * score[1]
             Q.T.o = Q.T.o + p.mat[h, l] * score[2]
             Q.M.o = Q.M.o + p.mat[h, l] * score[3]
@@ -222,6 +231,7 @@
         for (l in 1:(p - 1)) {
           score = Z.l(x[(nc[l] + 1):nc[l + 1]], x[(nc[l + 1] + 1):nc[l + 2]], n[l], n[l +
                                                                                         1], tl.n, alpha.vec[l])
+          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -232,6 +242,7 @@
         for (l in p:(k - 1)) {
           score = Z.l(x[(nc[l + 1] + 1):nc[l + 2]], x[(nc[l] + 1):nc[l + 1]], n[l +
                                                                                   1], n[l], tl.n, alpha.vec[l])
+          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -252,9 +263,9 @@
                    T.n.vec,
                    M.n.vec)
       }
-      return(result)
+      return(list(U.T = U.T, T.p.vec = T.p.vec, T.n.vec = T.n.vec, score.mat = score.mat))
     }
 
     # select UT - US - UM
-    test.U(x, n, tlh.p = tlh.p, tl.n = tl.n, p = p)[1:3]
+    test.U(x, n, tlh.p = tlh.p, tl.n = tl.n, p = p)
   }
