@@ -4,56 +4,59 @@
 \alias{ddst.stochasticorder.test}
 \title{Data Driven Nonparametric Test for Stochastic Ordering}
 \usage{
-ddst.stochasticorder.test(x, y, t = 2.2, k.N = 4)
+ddst.stochasticorder.test(x, y, t = 2.2, d = 4)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
 
 \item{y}{a (non-empty) numeric vector of data values}
 
-\item{t}{tuning parameter, see test description}
+\item{t}{a positive number, penalty for model selection rule, see package description}
 
-\item{k.N}{The choice of k(N) belongs to the user and should reflect the individual aims and needs. Some authors’ recommendation is given in Section 5.2.}
+\item{d}{an integer, number of coordinates that measure potential deviation from null hypothesis}
+
+\item{...}{further arguments}
 }
 \description{
 Performs the data driven smooth test for detection of
-the stochastic dominance of the first order, as described
-in detail in
-Nonparametric tests for stochastic ordering
-Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
-\url{https://doi.org/10.1007/s11749-011-0278-7}
-}
-\details{
-It has been proved that the error of the first kind of the test
-based on QT attains the maximal value under F = G.
-Moreover, under F = G the statistic QT is distribution-free.
-Hence, it is enough to calculate the critical values and p-values under an arbitrary continuous distribution functions F = G.
+the stochastic ordering, as described
+in detail in Ledwina and Wyłupek (2012).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) >= G(x) for all x while the alternative is that at
+F(x) < G(x) for some x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).
 }
 \examples{
 set.seed(13)
-library("rmutil")
+library("rmutil", warn.conflicts = FALSE)
 # 1. Pareto(1)/Pareto(1.5)
 #uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,
-x = rpareto(50, 1, 1)
-y = rpareto(50, 1.5, 1.5)
-ddst.stochasticorder.test(x, y)
+x <- rpareto(50, 2, 2)
+y <- rpareto(50, 1.5, 1.5)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
 
 # 2. Laplace(0,1)/Laplace(1,25)
-x = rlaplace(50, 0, 1)
-y = rlaplace(50, 1, 25)
-ddst.stochasticorder.test(x, y)
+x <- rlaplace(50, 0, 1)
+y <- rlaplace(50, 1, 25)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
 
 # 3. LN(0.85,0.6)/LN(1.2,0.2)
-x = rlnorm(50, 0.85, 0.6)
-y = rlnorm(50, 1.2, 0.2)
-ddst.stochasticorder.test(x, y)
+x <- rlnorm(50, 0.85, 0.6)
+y <- rlnorm(50, 1.2, 0.2)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
 
 \dontrun{
 # Generate distribution of test statistic
 N <- 1000
 samp <- replicate(N, {
-   x = runif(30)
-   y = runif(30)
+   x <- runif(30)
+   y <- runif(30)
    # statistics with Schwartz penalty
    ddst.stochasticorder.test(x, y)$statistic[2]
 })
@@ -61,5 +64,8 @@ quantile(samp, 0.95)
 plot(ecdf(samp))
 }
 
+}
+\references{
+Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) \url{https://doi.org/10.1007/s11749-011-0278-7}
 }
 \keyword{htest}

@@ -23,7 +23,7 @@
       df <- data.frame(val, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() +
-        xlab("coordinate") + ylab("")
+        xlab("components") + ylab("")
     } else {
       # coordinates is a matrix
       val <- c(coordinates)
@@ -32,7 +32,7 @@
       df <- data.frame(val, vec, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() + facet_grid(vec~.) +
-        xlab("coordinate") + ylab("")
+        xlab("components") + ylab("")
     }
     pl +
       theme_bw() +

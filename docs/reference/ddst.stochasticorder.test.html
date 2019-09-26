@@ -37,11 +37,12 @@
 
 <meta property="og:title" content="Data Driven Nonparametric Test for Stochastic Ordering — ddst.stochasticorder.test" />
 <meta property="og:description" content="Performs the data driven smooth test for detection of
-the stochastic dominance of the first order, as described
-in detail in
-Nonparametric tests for stochastic ordering
-Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
-https://doi.org/10.1007/s11749-011-0278-7" />
+the stochastic ordering, as described
+in detail in Ledwina and Wyłupek (2012).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) &amp;gt;= G(x) for all x while the alternative is that at
+F(x) &amp;lt; G(x) for some x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -85,7 +86,7 @@ https://doi.org/10.1007/s11749-011-0278-7" />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.6.1</span>
+          <span class="version version-default">1.6.2</span>
         </div>
       </div>
     </div>
@@ -136,14 +137,15 @@ https://doi.org/10.1007/s11749-011-0278-7" />
 
     <div class="ref-description">
     <p>Performs the data driven smooth test for detection of
-the stochastic dominance of the first order, as described
-in detail in
-Nonparametric tests for stochastic ordering
-Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
-<a href='https://doi.org/10.1007/s11749-011-0278-7'>https://doi.org/10.1007/s11749-011-0278-7</a></p>
+the stochastic ordering, as described
+in detail in Ledwina and Wyłupek (2012).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) &gt;= G(x) for all x while the alternative is that at
+F(x) &lt; G(x) for some x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>k.N</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>4</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,56 +160,61 @@ Ledwina, T. and Wyłupek, G. TEST (2012) 21: 730.
     </tr>
     <tr>
       <th>t</th>
-      <td><p>tuning parameter, see test description</p></td>
+      <td><p>a positive number, penalty for model selection rule, see package description</p></td>
     </tr>
     <tr>
-      <th>k.N</th>
-      <td><p>The choice of k(N) belongs to the user and should reflect the individual aims and needs. Some authors’ recommendation is given in Section 5.2.</p></td>
+      <th>d</th>
+      <td><p>an integer, number of coordinates that measure potential deviation from null hypothesis</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>It has been proved that the error of the first kind of the test
-based on QT attains the maximal value under F = G.
-Moreover, under F = G the statistic QT is distribution-free.
-Hence, it is enough to calculate the critical values and p-values under an arbitrary continuous distribution functions F = G.</p>
+    <p>Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) <a href='https://doi.org/10.1007/s11749-011-0278-7'>https://doi.org/10.1007/s11749-011-0278-7</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>13</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"rmutil"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘rmutil’ was built under R version 3.5.2</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘rmutil’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    nobs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    as.data.frame, units</span></div><div class='input'><span class='co'># 1. Pareto(1)/Pareto(1.5)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"rmutil"</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: package ‘rmutil’ was built under R version 3.5.2</span></div><div class='input'><span class='co'># 1. Pareto(1)/Pareto(1.5)</span>
 <span class='co'>#uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,</span>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rpareto(50, 1, 1): s must be &gt;1</span></div><div class='input'><span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1.5</span>, <span class='fl'>1.5</span>)
-<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ddst.stochasticorder.test(x, y): object 'x' not found</span></div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>2</span>, <span class='fl'>2</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1.5</span>, <span class='fl'>1.5</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>t</span></div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Stochastic Ordering Test
+#&gt; 
+#&gt; data:  
+#&gt; Q.T = 130.93, T = 5
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.stochasticorder.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># 2. Laplace(0,1)/Laplace(1,25)</span>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>)
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>25</span>)
-<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Nonparametric Test for Stochastic Ordering
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>25</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>t</span></div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Stochastic Ordering Test
 #&gt; 
 #&gt; data:  
-#&gt; stat.T = 176.09, stat.S = 176.09, ncoord.T = 5, ncoord.S = 5
-#&gt; </div><div class='input'>
+#&gt; Q.T = 111.11, T = 5
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.stochasticorder.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># 3. LN(0.85,0.6)/LN(1.2,0.2)</span>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>0.85</span>, <span class='fl'>0.6</span>)
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>1.2</span>, <span class='fl'>0.2</span>)
-<span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Nonparametric Test for Stochastic Ordering
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>0.85</span>, <span class='fl'>0.6</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>1.2</span>, <span class='fl'>0.2</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>t</span></div><div class='output co'>#&gt; 
+#&gt; 	Data Driven Stochastic Ordering Test
 #&gt; 
 #&gt; data:  
-#&gt; stat.T = 0, stat.S = 0, ncoord.T = 1, ncoord.S = 1
-#&gt; </div><div class='input'>
+#&gt; Q.T = 0, T = 1
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.stochasticorder.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Generate distribution of test statistic</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='no'>samp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='no'>N</span>, {
-   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
-   <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
+   <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
+   <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
    <span class='co'># statistics with Schwartz penalty</span>
    <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)$<span class='no'>statistic</span>[<span class='fl'>2</span>]
 })
@@ -219,7 +226,7 @@ Hence, it is enough to calculate the critical values and p-values under an arbit
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
