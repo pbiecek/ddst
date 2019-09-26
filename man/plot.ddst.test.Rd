@@ -10,7 +10,7 @@
 \item{x}{result from ddst test function}
 }
 \description{
-Plots coordinates for selected test statistic
+Plots coordinates for selected test statistics
 }
 \examples{
 # H0 is true

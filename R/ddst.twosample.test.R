@@ -34,5 +34,7 @@
            d_N = 12, c = 2) {
     res <- ddst.ksample.test(x, ..., d_N = d_N, c = c)
     res$coordinates <- res$coordinates[1,]
+    res$method <- "Data Driven Two-Sample Test"
+    class(res) = c("htest", "ddst.test", "ddst.twosample.test")
     res
   }

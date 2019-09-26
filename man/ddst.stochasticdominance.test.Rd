@@ -2,10 +2,10 @@
 % Please edit documentation in R/ddst.stochasticdominance.test.R
 \name{ddst.stochasticdominance.test}
 \alias{ddst.stochasticdominance.test}
-\title{Data Driven Two-Sample Test Against One-Sided Alternatives}
+\title{Data Driven Two-Sample Test for Stochastic Dominance}
 \usage{
-ddst.stochasticdominance.test(x, y, t = 2.2, k.N = 4, B = 1000,
-  compute.p = FALSE, alpha = 0.05, ...)
+ddst.stochasticdominance.test(x, y, t = 2.2, d = 4, alpha = 0.05,
+  ...)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
@@ -14,27 +14,36 @@ ddst.stochasticdominance.test(x, y, t = 2.2, k.N = 4, B = 1000,
 
 \item{t}{a positive number, penalty for model selection rule, see package description}
 
-\item{k.N}{(TODO: is it D ?)}
+\item{d}{an integer, number of coordinates that measure potential deviation from null hypothesis}
 
-\item{B}{an integer specifying the number of replicates used in p-value computation}
-
-\item{compute.p}{a logical value indicating whether to compute a p-value}
+\item{alpha}{a positive number, significance level for test statistic. Note that tuning parameter t depends on alpha. See package description}
 
 \item{...}{further arguments}
 }
 \description{
 Performs data driven smooth non-parametric two-sample test against one-sided alternatives
-(stochastic dominance)
+(stochastic dominance).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) < G(x) for some x while the alternative is that at
+F(x) >= G(x) for all x with strict inequality for at least one x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).
 }
 \examples{
 # H0 is true
-x = runif(80)
-y = runif(80)
-ddst.twosample.test(x, y, compute.p=TRUE)
+x <- runif(80)
+y <- runif(80)
+t <- ddst.stochasticdominance.test(x, y)
+t
+plot(t)
 
 # known fixed alternative
-x = runif(80)
-y = rbeta(80,4,2)
-ddst.twosample.test(x, y, compute.p=TRUE)
+x <- runif(80)
+y <- rbeta(80,4,2)
+t <- ddst.stochasticdominance.test(x, y)
+t
+plot(t)
+}
+\references{
+Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012). \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x}
 }
 \keyword{htest}

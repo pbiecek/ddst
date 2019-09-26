@@ -1,5 +1,8 @@
-# code based on Grzegorz Wylupek R Code
-# Two-Sample Test Against One-Sided Alternatives
+# k-Sample Test
+# Based on R code by Grzegorz Wylupek
+# Two-sample test against one-sided alternatives.
+# Ledwina and Wylupek (2012).
+# https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x
 `ddst.stochasticdominance.Nk` <-
 function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
   ax.f <- function(k, kappa, varsigma, i) {
@@ -90,8 +93,7 @@ function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
     V.S = sign(min(L.vec[1, ] - z.alpha)) * W.d.vec[1, S]
     V.T = sign(min(L.vec[1, ] - z.alpha)) * W.d.vec[1, T]
 
-    result = c(V.T = V.T, V.S = V.S, T = T, S = S, L.vec[1, ])
-    return(result)
+    return(list(V.T = V.T, V.S = V.S, T = T, S = S, L = L.vec[1, ]))
   }
 
 #  x <- runif(20)
@@ -100,7 +102,6 @@ function(x, y, t = 2.2, k.N = 4, alpha = 0.05) {
   m <- length(x)
   n <- length(y)
 
-  # QUESTION: TODO: Is V.T the test statistic?
   test.V(x, y, m, n, t, alpha)
 
 }

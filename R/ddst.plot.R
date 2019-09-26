@@ -1,6 +1,6 @@
 #' Plot Function fo Data Driven Tests
 #'
-#' Plots coordinates for selected test statistic
+#' Plots coordinates for selected test statistics
 #'
 #' @param x result from ddst test function
 #'
@@ -35,5 +35,8 @@
         xlab("coordinate") + ylab("")
     }
     pl +
-      theme_bw()
+      theme_bw() +
+      ggtitle(paste0("Method: ", x$method),
+              paste0( "Test statistics ", attr(x$statistic, "names"), ": ",
+                      signif(x$statistic, 3)))
   }
