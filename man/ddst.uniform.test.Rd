@@ -33,33 +33,27 @@ An object of class \code{htest}
 }
 \description{
 Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
-}
-\details{
-Embeding null model into the original exponential family introduced by Neyman (1937) leads to the information matrix \emph{ I} being identity and smooth test statistic with \emph{k} components
-$$
-W_k=1/\\sqrt(n) \\sum_\{j=1\}^k sum_\{i=1\}^n [\\phi_j(Z_i)]^2,
-$$
-where $phi_j$ is $j$th degree normalized Legendre polynomial on [0,1] (default value of parameter base = `'ddst.base.legendre'`). Alternatively, in our implementation, cosine system can be selected (base = `'ddst.base.cos'`). For details see Ledwina (1994) and Inglot and Ledwina (2006).
-
-An application of the pertaining selection rule \emph{T} for choosing \emph{k} gives related `ddst.uniform.test()' based on statistic \emph{$W_T$}.
-
-Similar approach applies to testing goodness-of-fit to any fully specified continuous distribution function \emph{F}. For this purpose it is enough to apply the above solution to transformed observations \emph{$F(z_1),...,F(z_n)$}.
-
+Embeding null model into the original exponential family introduced by Neyman (1937).
 For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 }
 \examples{
 # H0 is true
-z = runif(80)
-ddst.uniform.test(z, compute.p=TRUE)
+z <- runif(80)
+t <- ddst.uniform.test(z, compute.p=TRUE)
+t
+plot(t)
 
 # known fixed alternative
-z = rnorm(80,10,16)
-ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
+z <- rnorm(80,10,16)
+t <- ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
+t
+plot(t)
 
 # H0 is false
-z = rbeta(80,4,2)
-(t = ddst.uniform.test(z, compute.p=TRUE))
+z <- rbeta(80,4,2)
+(t <- ddst.uniform.test(z, compute.p=TRUE))
 t$p.value
+plot(t)
 }
 \references{
 Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.

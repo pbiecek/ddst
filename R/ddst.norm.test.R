@@ -1,25 +1,10 @@
 #' Data Driven Smooth Test for Normality
 #'
 #' Performs data driven smooth test for composite hypothesis of normality
-#'
 #' Null density is given by
 #' \eqn{
 #'   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
-#'
 #' We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
-#' The parameter \eqn{\gamma=(\gamma_1,\gamma_2)} is estimated by \eqn{\tilde \gamma=(\tilde \gamma_1,tilde gamma_2)},
-#' where \eqn{\tilde \gamma_1=1/n \sum_{i=1}^n Z_i} and
-#' \eqn{\tilde \gamma_2 = 1/(n-1) \sum_{i=1}^{n-1}(Z_{n:i+1}-Z_{n:i})(H_{i+1}-H_i)},
-#' while \eqn{Z_{n:1}<= ... <= Z_{n:n}} are ordered values of \eqn{Z_1, ..., Z_n} and \eqn{H_i= \phi^{-1}((i-3/8)(n+1/4))}, cf. Chen and Shapiro (1995).
-#'
-#' The above yields auxiliary test statistic \eqn{W_k^*(\tilde \gamma)} described in details in Janic and Ledwina (2008),
-#' in case when Legendre's basis is applied.
-#' The pertaining matrix \eqn{[I^*(\tilde \gamma)]^{-1}} does not  depend on \eqn{\tilde \gamma} and is calculated for
-#' succeding dimensions \eqn{k} using some recurrent relations for Legendre's polynomials and is computed in a numerical
-#' way in case of cosine basis. In the implementation of \eqn{T^*} the default value of \eqn{c} is set  to be 100.
-#' Therefore, in practice, \eqn{T^*} is Schwarz-type criterion. See Inglot and Ledwina (2006) as well as Janic and
-#' Ledwina (2008) for comments. The resulting data driven test statistic for normality is \eqn{W_{T^*}=W_{T^*}(\tilde \gamma)}.
-#'
 #' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @param x a (non-empty) numeric vector of data values
@@ -56,20 +41,24 @@
 #' @keywords htest
 #' @examples
 #' # for given vector of 19 numbers
-#' z = c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
+#' z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
 #'     4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
 #' ddst.norm.test(z, compute.p=TRUE)
 #'
 #' # H0 is true
-#' z = rnorm(80)
-#' ddst.norm.test(z, compute.p=TRUE)
+#' z <- rnorm(80)
+#' t <- ddst.norm.test(z, compute.p=TRUE)
+#' t
+#' plot(t)
 #'
 #' # H0 is false
-#' z = rexp(80,4)
-#' ddst.norm.test(z, B=5000, compute.p=TRUE)
+#' z <- rexp(80,4)
+#' t <- ddst.norm.test(z, B=5000, compute.p=TRUE)
+#' t
+#' plot(t)
 #'
 #' # for Tephra data
-#' z = c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
+#' z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
 #'       -1.761521, -1.72522, -1.80371, -1.745624, -1.872957, -1.729121,
 #'       -1.81529, -1.888637, -1.887761, -1.881645, -1.91518, -1.849769,
 #'       -1.755141, -1.665687, -1.764721, -1.736171, -1.736956, -1.737742,
@@ -79,8 +68,9 @@
 #'       -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
 #'       -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
 #'       -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
-#' ddst.norm.test(z, compute.p=TRUE)
-#'
+#' t <- ddst.norm.test(z, compute.p=TRUE)
+#' t
+#' plot(t)
 `ddst.norm.test` <-
   function(x,
            base = ddst.base.legendre,
@@ -121,6 +111,7 @@
     attr(t, "names") = "WT*"
     result = list(statistic = t,
                   parameter = l,
+                  coordinates = coord - c(0, coord[-Dmax]),
                   method = "Data Driven Smooth Test for Normality")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ",   base: ",
@@ -128,7 +119,7 @@
                              ",   c: ",
                              c,
                              sep = "")
-    class(result) = "htest"
+    class(result) = c("htest", "ddst.test")
     if (compute.p) {
       ns <- as.numeric(rownames(tabNorm))
       ts <- as.numeric(colnames(tabNorm))

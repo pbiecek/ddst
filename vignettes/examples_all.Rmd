@@ -118,16 +118,18 @@ ddst.extr.test(z, compute.p = TRUE)
 x = runif(80)
 y = runif(80)
 z = runif(80)
-ddst.ksample.test(x, y, z)
-ddst.ksample.test(list(x, y, z))
+t <- ddst.ksample.test(x, y, z)
+t
+plot(t)
 
 # known fixed alternative
 x = runif(80)
 y = rbeta(80,4,2)
 w = rnorm(30)
 z = rexp(10, 1)
-ddst.ksample.test(x, y, w, z)
-ddst.ksample.test(list(x, y, w, z))
+t <- ddst.ksample.test(x, y, w, z)
+t
+plot(t)
 ```
 
 ## 6. Data Driven Smooth Test for Stochastic Dominance in Two Samples
@@ -139,12 +141,16 @@ ddst.ksample.test(list(x, y, w, z))
 # H0 is true
 x = runif(50)
 y = runif(50)
-ddst.twosample.test(x, y)
+t <- ddst.twosample.test(x, y)
+t
+plot(t)
 
 # known fixed alternative
 x = runif(80)
 y = rbeta(80,4,2)
-ddst.twosample.test(x, y)
+t <- ddst.twosample.test(x, y)
+t
+plot(t)
 ```
 
 ## 8. Data Driven Smooth Test for Upward Trend Alternative in k samples
@@ -157,16 +163,18 @@ ddst.twosample.test(x, y)
 x = runif(80)
 y = runif(80)
 z = runif(80)
-ddst.umbrella.test(x, y, z)
-ddst.umbrella.test(list(x, y, z))
+t <- ddst.umbrella.test(x, y, z)
+t
+plot(t)
 
 # known fixed alternative
 x = runif(80)
 y = rbeta(80,4,2)
 w = rnorm(30)
 z = rexp(10, 1)
-ddst.umbrella.test(x, y, w, z)
-ddst.umbrella.test(list(x, y, w, z))
+t <- ddst.umbrella.test(x, y, w, z)
+t
+plot(t)
 ```
 
 ## 10. Data Driven Smooth Test for Change-Point Problem

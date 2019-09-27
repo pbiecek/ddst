@@ -1,27 +1,11 @@
 #' Data Driven Smooth Test for Extreme Value Distribution
 #'
 #' Performs data driven smooth test for composite hypothesis of extreme value distribution.
-#'
 #' Null density is given by
 #' \eqn{
 #'   f(z;\gamma)=1/\gamma_2 \exp((z-\gamma_1)/\gamma_2- \exp((z-\gamma_1)/\gamma_2))}, \eqn{z \in R}.
 #'
 #'   We model alternatives similarly as in Kallenberg and Ledwina (1997) and Janic-Wroblewska (2004) using Legendre's polynomials or cosines.
-#'   The parameter
-#'   \eqn{gamma=(gamma_1,gamma_2)} is estimated by \eqn{tilde gamma=(tilde gamma_1,tilde gamma_2)}, where
-#'   \eqn{tilde gamma_1=-1/n sum_{i=1}^n Z_i + varepsilon  G}, where \eqn{varepsilon approx 0.577216 }
-#'   is the Euler constant and \eqn{ G = tilde gamma_2 = [n(n-1) ln2]^{-1}sum_{1<= j < i <= n}(Z_{n:i}^o - Z_{n:j}^o) }
-#'   while \eqn{Z_{n:1}^o <= ... <= Z_{n:n}^o}
-#'   are ordered variables \eqn{-Z_1,...,-Z_n}, cf Hosking et al. (1985).
-#'
-#'   The above yields auxiliary test statistic \eqn{W_k^*(tilde gamma)} described in details in Janic and Ledwina (2008),
-#'   in case when Legendre's basis is applied.
-#'
-#'   The related matrix \eqn{[I^*(tilde gamma)]^{-1}} does not  depend on \eqn{tilde gamma} and is calculated for succeding
-#'   dimensions \eqn{k} using some recurrent relations for Legendre's polynomials and numerical methods for cosine functions.
-#'   In the implementation the default value of \eqn{c} in \eqn{T^*} was fixed to be 100. Hence, \eqn{T^*} is Schwarz-type
-#'   model selection rule. The resulting data driven test statistic for extreme value distribution is \eqn{W_{T^*}=W_{T^*}(tilde gamma)}.
-#'
 #'   For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @aliases ddst.extr.Nk
@@ -57,17 +41,23 @@
 #' library(evd)
 #'
 #' # for given vector of 19 numbers
-#' z = c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
+#' z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
 #'       4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-#'       ddst.extr.test(z, compute.p=TRUE)
+#' t <- ddst.extr.test(z, compute.p=TRUE)
+#' t
+#' plot(t)
 #'
 #' # H0 is true
-#' x = -qgumbel(runif(100),-1,1)
-#' ddst.extr.test (x, compute.p = TRUE)
+#' x <- -qgumbel(runif(100),-1,1)
+#' t <- ddst.extr.test (x, compute.p = TRUE)
+#' t
+#' plot(t)
 #'
 #' # H0 is false
-#' x = rexp(80,4)
-#' ddst.extr.test (x, compute.p = TRUE)
+#' x <- rexp(80,4)
+#' t <- ddst.extr.test (x, compute.p = TRUE)
+#' t
+#' plot(t)
 #' @keywords htest
 `ddst.extr.test` <-
   function(x,
@@ -107,6 +97,7 @@
     attr(t, "names") = "WT*"
     result = list(statistic = t,
                   parameter = l,
+                  coordinates = coord - c(0, coord[-Dmax]),
                   method = "Data Driven Smooth Test for Extreme Values")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ",   base: ",
@@ -114,7 +105,7 @@
                              ",   c: ",
                              c,
                              sep = "")
-    class(result) = "htest"
+    class(result) = c("htest", "ddst.test")
     if (compute.p) {
       tmp = numeric(B)
       for (i in 1:B) {

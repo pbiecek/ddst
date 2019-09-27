@@ -142,7 +142,6 @@
         for (l in 1:(k - 1)) {
           score = Z.l(x[(nc[l + 1] + 1):nc[l + 2]], x[(nc[l] + 1):nc[l + 1]], n[l +
                                                                                   1], n[l], tl.n, alpha.vec[l])
-          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -180,7 +179,6 @@
         for (l in 1:(k - 1)) {
           score = Z.l(x[(nc[l] + 1):nc[l + 1]], x[(nc[l + 1] + 1):nc[l + 2]], n[l], n[l +
                                                                                         1], tl.n, alpha.vec[l])
-          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -231,7 +229,6 @@
         for (l in 1:(p - 1)) {
           score = Z.l(x[(nc[l] + 1):nc[l + 1]], x[(nc[l + 1] + 1):nc[l + 2]], n[l], n[l +
                                                                                         1], tl.n, alpha.vec[l])
-          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]
@@ -242,7 +239,6 @@
         for (l in p:(k - 1)) {
           score = Z.l(x[(nc[l + 1] + 1):nc[l + 2]], x[(nc[l] + 1):nc[l + 1]], n[l +
                                                                                   1], n[l], tl.n, alpha.vec[l])
-          score.mat[l,h] <- score[2]
           Z.S.t.vec[l] = score[1]
           Z.T.t.vec[l] = score[2]
           Z.M.t.vec[l] = score[3]

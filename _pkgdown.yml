@@ -19,6 +19,7 @@ reference:
     - ddst.stochasticdominance.test
     - ddst.stochasticorder.test
     - ddst.umbrella.test
+    - ddst.upward.test
   - title: Other
     contents:
     - plot.ddst.test

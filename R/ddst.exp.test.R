@@ -1,16 +1,8 @@
 #' Data Driven Smooth Test for Exponentiality
 #'
 #' Performs data driven smooth test for composite hypothesis of exponentiality.
-#'
 #' Null density is given by \eqn{f(z;gamma) = exp(-z/gamma)}  for z >= 0 and 0 otherwise.
-#'
-#' Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b), e.g., and estimating \eqn{gamma} by \eqn{tilde gamma= 1/n sum_{i=1}^n Z_i} yields the efficient score
-#' vector \eqn{l^*(Z_i;tilde gamma)=(phi_1(F(Z_i;tilde gamma)),...,phi_k(F(Z_i;tilde gamma)))}, where \eqn{phi_j}'s are	\eqn{j}th degree orthonormal Legendre polynomials on [0,1] or cosine functions \eqn{sqrt(2) cos(pi j x), j>=1,} while \eqn{F(z;gamma)} is the distribution function pertaining to \eqn{f(z;gamma)}.
-#'
-#' The matrix \eqn{[I^*(tilde gamma)]^{-1}} does not  depend on \eqn{tilde gamma} and is calculated for succeding dimensions \eqn{k} using some recurrent relations for Legendre's polynomials and computed in a numerical way in case of cosine basis. In the implementation the default value of \eqn{c} in \eqn{T^*} is set to be 100.
-#'
-#' Therefore, \eqn{T^*} practically coincides with S1 considered in Kallenberg and Ledwina (1997 a).
-#'
+#' Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
 #' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @param x a (non-empty) numeric vector of data values
@@ -37,13 +29,16 @@
 #'
 #' @examples
 #' # H0 is true
-#' z = rexp(80,4)
-#' ddst.exp.test (z, compute.p = TRUE)
+#' z <- rexp(80,4)
+#' t <- ddst.exp.test (z, compute.p = TRUE)
+#' t
+#' plot(t)
 #'
 #' # H0 is false
 #' z = rchisq(80,4)
 #' (t = ddst.exp.test (z, compute.p = TRUE))
 #' t$p.value
+#' plot(t)
 #'
 #' @keywords htest
 #' @aliases ddst.exp.Nk
@@ -81,6 +76,7 @@
     attr(t, "names") = "WT*"
     result = list(statistic = t,
                   parameter = l,
+                  coordinates = coord - c(0, coord[-Dmax]),
                   method = "Data Driven Smooth Test for Expotentiality")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ",   base: ",
@@ -88,7 +84,7 @@
                              ",   c: ",
                              c,
                              sep = "")
-    class(result) = "htest"
+    class(result) = c("htest", "ddst.test")
     if (compute.p) {
       tmp = numeric(B)
       for (i in 1:B) {
