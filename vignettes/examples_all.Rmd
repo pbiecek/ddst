@@ -134,27 +134,69 @@ plot(t)
 
 ## 6. Data Driven Smooth Test for Stochastic Dominance in Two Samples
 
+```{r}
+set.seed(13)
+library("rmutil", warn.conflicts = FALSE)
+# 1. Pareto(1)/Pareto(1.5)
+x <- rpareto(50, 2, 2)
+y <- rpareto(50, 1.5, 1.5)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
+
+# 2. Laplace(0,1)/Laplace(1,25)
+x <- rlaplace(50, 0, 1)
+y <- rlaplace(50, 1, 25)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
+
+# 3. LN(0.85,0.6)/LN(1.2,0.2)
+x <- rlnorm(50, 0.85, 0.6)
+y <- rlnorm(50, 1.2, 0.2)
+t <- ddst.stochasticorder.test(x, y)
+t
+plot(t)
+```
 
 ## 7. Two-Sample Test Against Stochastic Dominance
 
 ```{r, warning=FALSE, message=FALSE}
 # H0 is true
-x = runif(50)
-y = runif(50)
-t <- ddst.twosample.test(x, y)
+x <- runif(80)
+y <- runif(80)
+t <- ddst.stochasticdominance.test(x, y)
 t
 plot(t)
 
 # known fixed alternative
-x = runif(80)
-y = rbeta(80,4,2)
-t <- ddst.twosample.test(x, y)
+x <- runif(80)
+y <- rbeta(80,4,2)
+t <- ddst.stochasticdominance.test(x, y)
 t
 plot(t)
 ```
 
 ## 8. Data Driven Smooth Test for Upward Trend Alternative in k samples
 
+```{r}
+# H0 is true
+x = runif(80)
+y = runif(80) + 0.2
+z = runif(80) + 0.4
+t <- ddst.upward.test(list(x, y, z))
+t
+plot(t)
+
+# known fixed alternative
+x1 = rnorm(80)
+x2 = rnorm(80) + 2
+x3 = rnorm(80) + 4
+x4 = rnorm(80) + 3
+t <- ddst.upward.test(list(x1, x2, x3, x4))
+t
+plot(t)
+```
 
 ## 9. Data Driven Smooth Test for Umbrella Alternatives in k samples
 
@@ -179,6 +221,4 @@ plot(t)
 
 ## 10. Data Driven Smooth Test for Change-Point Problem
 
-
-## Two-Sample Test Against One-Sided Alternatives
 

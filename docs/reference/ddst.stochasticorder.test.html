@@ -209,18 +209,19 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 #&gt; data:  
 #&gt; Q.T = 0, T = 1
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.stochasticorder.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># \dontrun{</span>
 <span class='co'># Generate distribution of test statistic</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='no'>samp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='no'>N</span>, {
    <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
    <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>30</span>)
    <span class='co'># statistics with Schwartz penalty</span>
-   <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)$<span class='no'>statistic</span>[<span class='fl'>2</span>]
+   <span class='fu'>ddst.stochasticorder.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)$<span class='no'>statistic</span>
 })
-<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>samp</span>, <span class='fl'>0.95</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/ecdf.html'>ecdf</a></span>(<span class='no'>samp</span>))
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span>(<span class='no'>samp</span>, <span class='fl'>0.95</span>)</div><div class='output co'>#&gt;      95% 
+#&gt; 4.266667 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/ecdf.html'>ecdf</a></span>(<span class='no'>samp</span>))</div><div class='img'><img src='ddst.stochasticorder.test-4.png' alt='' width='700' height='433' /></div><div class='input'># }
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -58,7 +58,7 @@ samp <- replicate(N, {
    x <- runif(30)
    y <- runif(30)
    # statistics with Schwartz penalty
-   ddst.stochasticorder.test(x, y)$statistic[2]
+   ddst.stochasticorder.test(x, y)$statistic
 })
 quantile(samp, 0.95)
 plot(ecdf(samp))
