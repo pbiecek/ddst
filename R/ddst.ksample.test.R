@@ -61,3 +61,10 @@
 
     result
   }
+
+# remove some wired error
+polynomial <- function (coef = c(0, 1)) {
+  a <- as.numeric(coef)
+  while ((la <- length(a)) > 1 && a[la] == 0) a <- a[-la]
+  structure(a, class = "polynomial")
+}

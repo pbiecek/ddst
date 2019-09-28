@@ -2,9 +2,11 @@
 title: "Examples for ddst package"
 author: "Przemyslaw Biecek"
 date: "July 26, 2019"
-output: 
-  html_document:
-    toc: true
+output: rmarkdown::html_document
+vignette: >
+  %\VignetteIndexEntry{Examples for ddst package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
@@ -17,6 +19,7 @@ This document presents tests avaliable in the `ddst` package.
 
 ```{r, warning=FALSE, message=FALSE}
 library("ddst")
+library("polynom")
 ```
 
 # II. Data driven smooth tests for selected goodness-of-fit problems

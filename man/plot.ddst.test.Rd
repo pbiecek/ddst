@@ -4,10 +4,12 @@
 \alias{plot.ddst.test}
 \title{Plot Function fo Data Driven Tests}
 \usage{
-\method{plot}{ddst.test}(x)
+\method{plot}{ddst.test}(x, ...)
 }
 \arguments{
 \item{x}{result from ddst test function}
+
+\item{...}{currently not used}
 }
 \description{
 Plots coordinates for selected test statistics

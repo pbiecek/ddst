@@ -3,7 +3,10 @@
 #' Plots coordinates for selected test statistics
 #'
 #' @param x result from ddst test function
+#' @param ... currently not used
 #'
+#' @importFrom stats pexp pnorm qnorm rexp rnorm runif
+#' @importFrom ggplot2 aes facet_grid geom_col ggplot ggtitle theme_bw xlab ylab
 #' @export
 #' @examples
 #' # H0 is true
@@ -13,8 +16,10 @@
 #' t <- ddst.ksample.test(x, y, z)
 #' plot(t)
 `plot.ddst.test` <-
-  function(x) {
+  function(x, ...) {
     coordinates <- x$coordinates
+    pos <- val <- vec <- NULL # keep ggplot2 clean
+
     if (is.null(dim(coordinates))) {
       # coordinates is a vector
       # coordinates is a matrix

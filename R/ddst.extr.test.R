@@ -26,6 +26,9 @@
 #'   \item{data.name }{a character string giving the name(s) of the data. }
 #'   \item{p.value }{the p-value for the test, computed only if \code{compute.p=TRUE}.}
 #'
+#' @importFrom evd pgumbel
+#' @importFrom orthopolynom slegendre.polynomials
+#' @importFrom polynom polynomial
 #' @references
 #' Hosking, J.R.M., Wallis, J.R., Wood, E.F. (1985). Estimation of the generalized extreme-value distribution by the method of probability-weighted moments. \eqn{ Technometrics} 27, 251--261.
 #'
