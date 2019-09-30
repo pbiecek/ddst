@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Smooth Test for Normality — ddst.normbounded.test • ddst</title>
+<title>Data Driven Smooth Test for Normality - Bounded Basis Functions — ddst.normbounded.test • ddst</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Data Driven Smooth Test for Normality — ddst.normbounded.test" />
+<meta property="og:title" content="Data Driven Smooth Test for Normality - Bounded Basis Functions — ddst.normbounded.test" />
 <meta property="og:description" content="Performs data driven smooth test for composite hypothesis of normality
 Null density is given by
 \(
@@ -129,7 +129,7 @@ For more details see: http://www.biecek.pl/R/ddst/description.pdf." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Smooth Test for Normality</h1>
+    <h1>Data Driven Smooth Test for Normality - Bounded Basis Functions</h1>
     
     <div class="hidden name"><code>ddst.normbounded.test.Rd</code></div>
     </div>
@@ -206,13 +206,13 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ddst.norm.test(z, compute.p = TRUE): could not find function "ddst.norm.test"</span></div><div class='input'><span class='no'>t</span></div><div class='output co'>#&gt; function (x) 
 #&gt; UseMethod("t")
-#&gt; &lt;bytecode: 0x7fc727c762a0&gt;
+#&gt; &lt;bytecode: 0x7fe8acc17ce8&gt;
 #&gt; &lt;environment: namespace:base&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>B</span><span class='kw'>=</span><span class='fl'>5000</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ddst.norm.test(z, B = 5000, compute.p = TRUE): could not find function "ddst.norm.test"</span></div><div class='input'><span class='no'>t</span></div><div class='output co'>#&gt; function (x) 
 #&gt; UseMethod("t")
-#&gt; &lt;bytecode: 0x7fc727c762a0&gt;
+#&gt; &lt;bytecode: 0x7fe8acc17ce8&gt;
 #&gt; &lt;environment: namespace:base&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1.748789</span>, -<span class='fl'>1.75753</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.731467</span>, -<span class='fl'>1.765523</span>,
@@ -227,7 +227,7 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
       -<span class='fl'>1.82613</span>, -<span class='fl'>1.826967</span>, -<span class='fl'>1.780025</span>, -<span class='fl'>1.684504</span>, -<span class='fl'>1.751168</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.norm.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ddst.norm.test(z, compute.p = TRUE): could not find function "ddst.norm.test"</span></div><div class='input'><span class='no'>t</span></div><div class='output co'>#&gt; function (x) 
 #&gt; UseMethod("t")
-#&gt; &lt;bytecode: 0x7fc727c762a0&gt;
+#&gt; &lt;bytecode: 0x7fe8acc17ce8&gt;
 #&gt; &lt;environment: namespace:base&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

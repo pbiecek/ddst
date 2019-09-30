@@ -1,4 +1,4 @@
-#' Data Driven Smooth Test for Normality
+#' Data Driven Smooth Test for Normality - Bounded Basis Functions
 #'
 #' Performs data driven smooth test for composite hypothesis of normality
 #' Null density is given by
