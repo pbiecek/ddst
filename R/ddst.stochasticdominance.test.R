@@ -1,4 +1,4 @@
-#' Data Driven Two-Sample Test for Stochastic Dominance
+#' Data Driven Two-Sample Test Against Stochastic Dominance
 #'
 #' Performs data driven smooth non-parametric two-sample test against one-sided alternatives
 #' (stochastic dominance).
@@ -20,18 +20,18 @@
 #' # H0 is true
 #' x <- runif(80)
 #' y <- runif(80)
-#' t <- ddst.stochasticdominance.test(x, y)
+#' t <- ddst.againststochdom.test(x, y)
 #' t
 #' plot(t)
 #'
 #' # known fixed alternative
 #' x <- runif(80)
 #' y <- rbeta(80,4,2)
-#' t <- ddst.stochasticdominance.test(x, y)
+#' t <- ddst.againststochdom.test(x, y)
 #' t
 #' plot(t)
 #' @keywords htest
-`ddst.stochasticdominance.test` <-
+`ddst.againststochdom.test` <-
   function(x,
            y,
            t = 2.2,

@@ -23,21 +23,21 @@
 #' #uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,
 #' x <- rpareto(50, 2, 2)
 #' y <- rpareto(50, 1.5, 1.5)
-#' t <- ddst.stochasticorder.test(x, y)
+#' t <- ddst.forstochdom.test(x, y)
 #' t
 #' plot(t)
 #'
 #' # 2. Laplace(0,1)/Laplace(1,25)
 #' x <- rlaplace(50, 0, 1)
 #' y <- rlaplace(50, 1, 25)
-#' t <- ddst.stochasticorder.test(x, y)
+#' t <- ddst.forstochdom.test(x, y)
 #' t
 #' plot(t)
 #'
 #' # 3. LN(0.85,0.6)/LN(1.2,0.2)
 #' x <- rlnorm(50, 0.85, 0.6)
 #' y <- rlnorm(50, 1.2, 0.2)
-#' t <- ddst.stochasticorder.test(x, y)
+#' t <- ddst.forstochdom.test(x, y)
 #' t
 #' plot(t)
 #'
@@ -48,14 +48,14 @@
 #'    x <- runif(30)
 #'    y <- runif(30)
 #'    # statistics with Schwartz penalty
-#'    ddst.stochasticorder.test(x, y)$statistic
+#'    ddst.forstochdom.test(x, y)$statistic
 #' })
 #' quantile(samp, 0.95)
 #' plot(ecdf(samp))
 #' }
 #'
 #' @keywords htest
-`ddst.stochasticorder.test` <-
+`ddst.forstochdom.test` <-
   function(x,
            y,
            t = 2.2,

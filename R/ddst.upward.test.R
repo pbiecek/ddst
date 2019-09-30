@@ -20,7 +20,7 @@
 #' x = runif(80)
 #' y = runif(80) + 0.2
 #' z = runif(80) + 0.4
-#' t <- ddst.upward.test(list(x, y, z))
+#' t <- ddst.upwardtrend.test(list(x, y, z))
 #' t
 #' plot(t)
 #'
@@ -29,12 +29,12 @@
 #' x2 = rnorm(80) + 2
 #' x3 = rnorm(80) + 4
 #' x4 = rnorm(80) + 3
-#' t <- ddst.upward.test(list(x1, x2, x3, x4))
+#' t <- ddst.upwardtrend.test(list(x1, x2, x3, x4))
 #' t
 #' plot(t)
 #'
 #' @keywords htest
-`ddst.upward.test` <-
+`ddst.upwardtrend.test` <-
   function(x,
            ...,
            tlh.p = 2.2, tl.n = 2.2) {

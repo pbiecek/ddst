@@ -1,3 +1,8 @@
+ddst 1.6.4
+----------------
+
+* updated names of functions and updated README
+
 ddst 1.6.1
 ----------------
 

@@ -71,7 +71,7 @@
 #' t <- ddst.norm.test(z, compute.p=TRUE)
 #' t
 #' plot(t)
-`ddst.norm.test` <-
+`ddst.normbounded.test` <-
   function(x,
            base = ddst.base.legendre,
            c = 100,
