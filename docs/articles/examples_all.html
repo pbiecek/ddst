@@ -41,7 +41,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.6.2</span>
+          <span class="version version-default">1.6.3</span>
         </div>
       </div>
     </div>
@@ -101,7 +101,8 @@
 <h1 class="hasAnchor">
 <a href="#data-driven-smooth-tests-with-ddst-package" class="anchor"></a>Data Driven Smooth Tests with ddst package</h1>
 <p>This document presents tests avaliable in the <code>ddst</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"ddst"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"ddst"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"polynom"</span>)</a></code></pre></div>
 </div>
 <div id="ii--data-driven-smooth-tests-for-selected-goodness-of-fit-problems" class="section level1">
 <h1 class="hasAnchor">
@@ -124,7 +125,7 @@
 ##  Data Driven Smooth Test for Uniformity
 ## 
 ## data:  z,   base: ddst.base.legendre   c: 2.4
-## WT = 2.958, n. coord = 1, p-value = 0.136</code></pre>
+## WT = 0.003658, n. coord = 1, p-value = 0.957</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># for known fixed alternative, here N(10,16)</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span>(z, <span class="dv">10</span>, <span class="dv">16</span>)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.uniform.test.html">ddst.uniform.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -132,7 +133,7 @@
 ##  Data Driven Smooth Test for Uniformity
 ## 
 ## data:  z,   base: ddst.base.legendre   c: 2.4
-## WT = 523.04, n. coord = 10, p-value &lt; 2.2e-16</code></pre>
+## WT = 521.27, n. coord = 10, p-value &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># when H0 is false</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span>(<span class="dv">80</span>,<span class="dv">4</span>,<span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.uniform.test.html">ddst.uniform.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -140,7 +141,7 @@
 ##  Data Driven Smooth Test for Uniformity
 ## 
 ## data:  z,   base: ddst.base.legendre   c: 2.4
-## WT = 50.019, n. coord = 3, p-value &lt; 2.2e-16</code></pre>
+## WT = 47.486, n. coord = 3, p-value &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># just p-value</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="../reference/ddst.uniform.test.html">ddst.uniform.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)<span class="op">$</span>p.value</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
@@ -164,7 +165,7 @@
 ##  Data Driven Smooth Test for Expotentiality
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 0.0027994, n. coord = 1, p-value = 0.951</code></pre>
+## WT* = 0.27994, n. coord = 1, p-value = 0.602</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># when H0 is false</span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Chisquare.html">rchisq</a></span>(<span class="dv">80</span>, <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.exp.test.html">ddst.exp.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -172,7 +173,7 @@
 ##  Data Driven Smooth Test for Expotentiality
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 13.351, n. coord = 1, p-value = 0.008</code></pre>
+## WT* = 8.2533, n. coord = 1, p-value = 0.022</code></pre>
 </div>
 <div id="data-driven-smooth-tests-for-normality" class="section level2">
 <h2 class="hasAnchor">
@@ -183,7 +184,7 @@
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># for given vector of 19 numbers</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">13.41</span>, <span class="fl">6.04</span>, <span class="fl">1.26</span>, <span class="fl">3.67</span>, <span class="fl">-4.54</span>, <span class="fl">2.92</span>, <span class="fl">0.44</span>, <span class="fl">12.93</span>, <span class="fl">6.77</span>, <span class="fl">10.09</span>,</a>
 <a class="sourceLine" id="cb18-3" data-line-number="3">      <span class="fl">4.10</span>, <span class="fl">4.04</span>, <span class="fl">-1.97</span>, <span class="fl">2.17</span>, <span class="fl">-5.38</span>, <span class="fl">-7.30</span>, <span class="fl">4.75</span>, <span class="fl">5.63</span>, <span class="fl">8.84</span>)</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw"><a href="../reference/ddst.norm.test.html">ddst.norm.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw"><a href="../reference/ddst.normbounded.test.html">ddst.normbounded.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Smooth Test for Normality
 ## 
@@ -191,20 +192,20 @@
 ## WT* = 0.13095, n. coord = 1, p-value = 0.7201</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># when H0 is true</span></a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.norm.test.html">ddst.norm.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.normbounded.test.html">ddst.normbounded.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Smooth Test for Normality
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 0.078169, n. coord = 1, p-value = 0.7899</code></pre>
+## WT* = 0.11946, n. coord = 1, p-value = 0.7418</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># when H0 is false</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">z =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="dv">80</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.norm.test.html">ddst.norm.test</a></span>(z, <span class="dt">B =</span> <span class="dv">5000</span>, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.normbounded.test.html">ddst.normbounded.test</a></span>(z, <span class="dt">B =</span> <span class="dv">5000</span>, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Smooth Test for Normality
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 45.478, n. coord = 5, p-value = 3.692e-05</code></pre>
+## WT* = 129.39, n. coord = 5, p-value = 3.256e-10</code></pre>
 </div>
 <div id="the-case-of-unbounded-basis-functions" class="section level3">
 <h3 class="hasAnchor">
@@ -222,7 +223,7 @@
 ##  Data Driven Smooth Test for Extreme Values
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 1.9073, n. coord = 1, p-value = 0.592</code></pre>
+## WT* = 1.9073, n. coord = 1, p-value = 0.591</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(evd)</a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="op">-</span><span class="kw"><a href="https://rdrr.io/pkg/evd/man/gumbel.html">qgumbel</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">100</span>), <span class="dv">-1</span>, <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.extr.test.html">ddst.extr.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -230,7 +231,7 @@
 ##  Data Driven Smooth Test for Extreme Values
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 0.40257, n. coord = 1, p-value = 1</code></pre>
+## WT* = 0.0028683, n. coord = 1, p-value = 1</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># when H0 is false</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="dv">80</span>, <span class="dv">4</span>)</a>
 <a class="sourceLine" id="cb28-3" data-line-number="3"><span class="kw"><a href="../reference/ddst.extr.test.html">ddst.extr.test</a></span>(z, <span class="dt">compute.p =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
@@ -238,7 +239,7 @@
 ##  Data Driven Smooth Test for Extreme Values
 ## 
 ## data:  z,   base: ddst.base.legendre,   c: 100
-## WT* = 14761, n. coord = 5, p-value = 0.001</code></pre>
+## WT* = 1204300, n. coord = 5, p-value &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div id="iii--nonparametric-data-driven-smooth-tests-for-comparing-distributions" class="section level1">
@@ -257,7 +258,7 @@
 ##  Data Driven k-Sample Test
 ## 
 ## data:  
-## W.T = 1.0692, l = NA</code></pre>
+## W.T = 2.4178, l = NA</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(t)</a></code></pre></div>
 <p><img src="examples_all_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># known fixed alternative</span></a>
@@ -271,7 +272,7 @@
 ##  Data Driven k-Sample Test
 ## 
 ## data:  
-## W.T = 98.063, l = NA</code></pre>
+## W.T = 170.27, l = NA</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(t)</a></code></pre></div>
 <p><img src="examples_all_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
 </div>
@@ -284,7 +285,7 @@
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># 1. Pareto(1)/Pareto(1.5)</span></a>
 <a class="sourceLine" id="cb38-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/rmutil/man/Pareto.html">rpareto</a></span>(<span class="dv">50</span>, <span class="dv">2</span>, <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb38-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/rmutil/man/Pareto.html">rpareto</a></span>(<span class="dv">50</span>, <span class="fl">1.5</span>, <span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.stochasticorder.test.html">ddst.stochasticorder.test</a></span>(x, y)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.forstochdom.test.html">ddst.forstochdom.test</a></span>(x, y)</a>
 <a class="sourceLine" id="cb38-5" data-line-number="5">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Stochastic Ordering Test
@@ -296,7 +297,7 @@
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># 2. Laplace(0,1)/Laplace(1,25)</span></a>
 <a class="sourceLine" id="cb41-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/rmutil/man/Laplace.html">rlaplace</a></span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb41-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/rmutil/man/Laplace.html">rlaplace</a></span>(<span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">25</span>)</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.stochasticorder.test.html">ddst.stochasticorder.test</a></span>(x, y)</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.forstochdom.test.html">ddst.forstochdom.test</a></span>(x, y)</a>
 <a class="sourceLine" id="cb41-5" data-line-number="5">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Stochastic Ordering Test
@@ -308,7 +309,7 @@
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co"># 3. LN(0.85,0.6)/LN(1.2,0.2)</span></a>
 <a class="sourceLine" id="cb44-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(<span class="dv">50</span>, <span class="fl">0.85</span>, <span class="fl">0.6</span>)</a>
 <a class="sourceLine" id="cb44-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Lognormal.html">rlnorm</a></span>(<span class="dv">50</span>, <span class="fl">1.2</span>, <span class="fl">0.2</span>)</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.stochasticorder.test.html">ddst.stochasticorder.test</a></span>(x, y)</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.forstochdom.test.html">ddst.forstochdom.test</a></span>(x, y)</a>
 <a class="sourceLine" id="cb44-5" data-line-number="5">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Stochastic Ordering Test
@@ -324,7 +325,7 @@
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># H0 is true</span></a>
 <a class="sourceLine" id="cb47-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb47-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb47-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.stochasticdominance.test.html">ddst.stochasticdominance.test</a></span>(x, y)</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.againststochdom.test.html">ddst.againststochdom.test</a></span>(x, y)</a>
 <a class="sourceLine" id="cb47-5" data-line-number="5">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Stochastic Dominance Test
@@ -336,7 +337,7 @@
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co"># known fixed alternative</span></a>
 <a class="sourceLine" id="cb50-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb50-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Beta.html">rbeta</a></span>(<span class="dv">80</span>,<span class="dv">4</span>,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb50-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.stochasticdominance.test.html">ddst.stochasticdominance.test</a></span>(x, y)</a>
+<a class="sourceLine" id="cb50-4" data-line-number="4">t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ddst.againststochdom.test.html">ddst.againststochdom.test</a></span>(x, y)</a>
 <a class="sourceLine" id="cb50-5" data-line-number="5">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven Stochastic Dominance Test
@@ -353,7 +354,7 @@
 <a class="sourceLine" id="cb53-2" data-line-number="2">x =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb53-3" data-line-number="3">y =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.2</span></a>
 <a class="sourceLine" id="cb53-4" data-line-number="4">z =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dv">80</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.4</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.upward.test.html">ddst.upward.test</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x, y, z))</a>
+<a class="sourceLine" id="cb53-5" data-line-number="5">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.upwardtrend.test.html">ddst.upwardtrend.test</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x, y, z))</a>
 <a class="sourceLine" id="cb53-6" data-line-number="6">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven k-Sample Upward Trend Test
@@ -367,7 +368,7 @@
 <a class="sourceLine" id="cb56-3" data-line-number="3">x2 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">80</span>) <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb56-4" data-line-number="4">x3 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">80</span>) <span class="op">+</span><span class="st"> </span><span class="dv">4</span></a>
 <a class="sourceLine" id="cb56-5" data-line-number="5">x4 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">80</span>) <span class="op">+</span><span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb56-6" data-line-number="6">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.upward.test.html">ddst.upward.test</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x1, x2, x3, x4))</a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">t &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ddst/man/ddst.upwardtrend.test.html">ddst.upwardtrend.test</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(x1, x2, x3, x4))</a>
 <a class="sourceLine" id="cb56-7" data-line-number="7">t</a></code></pre></div>
 <pre><code>## 
 ##  Data Driven k-Sample Upward Trend Test

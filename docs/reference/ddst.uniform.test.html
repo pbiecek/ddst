@@ -82,7 +82,7 @@ For more details see: http://www.biecek.pl/R/ddst/description.pdf." />
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.6.2</span>
+          <span class="version version-default">1.6.3</span>
         </div>
       </div>
     </div>
@@ -196,7 +196,7 @@ For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 0.0021411, n. coord = 1, p-value = 0.96
+#&gt; WT = 0.29147, n. coord = 1, p-value = 0.62
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># known fixed alternative</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>,<span class='fl'>10</span>,<span class='fl'>16</span>)
@@ -205,7 +205,7 @@ For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  pnormz1016,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 0.032771, n. coord = 1, p-value = 0.855
+#&gt; WT = 0.55681, n. coord = 1, p-value = 0.465
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
@@ -213,7 +213,7 @@ For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
 #&gt; data:  z,   base: ddst.base.legendre   c: 2.4
-#&gt; WT = 43.672, n. coord = 3, p-value &lt; 2.2e-16
+#&gt; WT = 36.479, n. coord = 3, p-value &lt; 2.2e-16
 #&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

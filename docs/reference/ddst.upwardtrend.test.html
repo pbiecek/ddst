@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Test for k-Sample Umbrella Alternatives — ddst.umbrella.test • ddst</title>
+<title>Data Driven Test for Upward Trend — ddst.upwardtrend.test • ddst</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,14 +35,14 @@
 
 
 
-<meta property="og:title" content="Data Driven Test for k-Sample Umbrella Alternatives — ddst.umbrella.test" />
-<meta property="og:description" content="Performs data driven smooth test for so-called umbrella alternatives in k-sample problem.
+<meta property="og:title" content="Data Driven Test for Upward Trend — ddst.upwardtrend.test" />
+<meta property="og:description" content="Performs data driven smooth test for upward trend in k-sample problem.
 Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
-The null hypothesis is that there is no umbrella pattern,
-i.e. F_1 &amp;gt;= ... &amp;gt;= F_p &amp;lt;= ... &amp;lt;= F_k and F_i != F_j for some i and j.
-The alternative is that there is an umbrella pattern
-i.e. F_1 &amp;gt;= ... &amp;gt;= F_p &amp;lt;= ... &amp;lt;= F_k and F_i != F_j for some i and j.
-Detailed description of the test statistic is provided in Wylupek (2016)." />
+The null hypothesis is that there is lack of trend,
+i.e. F_1 &amp;gt;= ... &amp;gt;= F_k and F_i != F_j for some i and j.
+The alternative is that there is a trend
+i.e. F_1 &amp;gt;= ... &amp;gt;= F_k and F_i != F_j for some i and j.
+This test is implemented as a special case of an umbrella test." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,22 +130,22 @@ Detailed description of the test statistic is provided in Wylupek (2016)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Test for k-Sample Umbrella Alternatives</h1>
+    <h1>Data Driven Test for Upward Trend</h1>
     
-    <div class="hidden name"><code>ddst.umbrella.test.Rd</code></div>
+    <div class="hidden name"><code>ddst.upwardtrend.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Performs data driven smooth test for so-called umbrella alternatives in k-sample problem.
+    <p>Performs data driven smooth test for upward trend in k-sample problem.
 Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
-The null hypothesis is that there is no umbrella pattern,
-i.e. F_1 &gt;= ... &gt;= F_p &lt;= ... &lt;= F_k and F_i != F_j for some i and j.
-The alternative is that there is an umbrella pattern
-i.e. F_1 &gt;= ... &gt;= F_p &lt;= ... &lt;= F_k and F_i != F_j for some i and j.
-Detailed description of the test statistic is provided in Wylupek (2016).</p>
+The null hypothesis is that there is lack of trend,
+i.e. F_1 &gt;= ... &gt;= F_k and F_i != F_j for some i and j.
+The alternative is that there is a trend
+i.e. F_1 &gt;= ... &gt;= F_k and F_i != F_j for some i and j.
+This test is implemented as a special case of an umbrella test.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.umbrella.test</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.upwardtrend.test</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,10 +166,6 @@ Detailed description of the test statistic is provided in Wylupek (2016).</p>
       <th>tl.n</th>
       <td><p>a positive number, penalty for model selection rule</p></td>
     </tr>
-    <tr>
-      <th>p</th>
-      <td><p>peak of the umbrella</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -180,41 +176,26 @@ Detailed description of the test statistic is provided in Wylupek (2016).</p>
     <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>) + <span class='fl'>0.2</span>
-<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
-<span class='fu'>ddst.umbrella.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven k-Sample Umbrella Test
-#&gt; 
-#&gt; data:  
-#&gt; U.T = 328.04, p = 2
-#&gt; </div><div class='input'><span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>) + <span class='fl'>0.4</span>
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>))
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven k-Sample Umbrella Test
+#&gt; 	Data Driven k-Sample Upward Trend Test
 #&gt; 
 #&gt; data:  
-#&gt; U.T = 328.04, p = 2
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; U.T = 837.32, p = 3
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.upwardtrend.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># known fixed alternative</span>
 <span class='no'>x1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
 <span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>2</span>
 <span class='no'>x3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>4</span>
 <span class='no'>x4</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>3</span>
-<span class='no'>x5</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>2</span>
-<span class='no'>x6</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>1</span>
-<span class='no'>x7</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>))
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven k-Sample Umbrella Test
+#&gt; 	Data Driven k-Sample Upward Trend Test
 #&gt; 
 #&gt; data:  
-#&gt; U.T = 4753.4, p = 3
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven k-Sample Umbrella Test
-#&gt; 
-#&gt; data:  
-#&gt; U.T = -2951.2, p = 5
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; U.T = -3475.9, p = 4
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.upwardtrend.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

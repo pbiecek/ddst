@@ -48,7 +48,7 @@
         <div class="info">
           <span class="partof">part of the <a href="https://github.com/ModelOriented/DrWhy">DrWhy.AI</a>
            developed by the <a href="https://mi2.mini.pw.edu.pl/">MI^2 DataLab</a> </span>
-          <span class="version version-default">1.6.2</span>
+          <span class="version version-default">1.6.3</span>
         </div>
       </div>
     </div>
@@ -98,32 +98,33 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p><code>ddst</code> stands for Data Driven Smooth Tests. These tests characterize data-dependent choice of the number of components in test statistics.</p>
-<p>In this package you will find two groups of data driven smooth tests: goodness-of-fit tests and nonparametric tests for comparing distributions.</p>
-<div id="data-driven-smooth-tests-for-goodness-of-fit-problems" class="section level3">
+<p><code>ddst</code> stands for <code>data driven smooth test</code>. The test characterizes data-dependent choice of the number of components in a smooth test statistic.</p>
+<p>In this package you will find two groups of selected data driven smooth tests: goodness-of-fit tests and nonparametric tests for comparing distributions.</p>
+<div id="data-driven-smooth-tests-for-selected-goodness-of-fit-problems" class="section level3">
 <h3 class="hasAnchor">
-<a href="#data-driven-smooth-tests-for-goodness-of-fit-problems" class="anchor"></a>Data Driven Smooth Tests for Goodness-of-fit Problems</h3>
-<p>These tests are based mostly on <a href="https://www.jstor.org/stable/2290926?seq=1">Data-driven version of Neyman’s smooth test of fit. Ledwina (1994)</a>.</p>
+<a href="#data-driven-smooth-tests-for-selected-goodness-of-fit-problems" class="anchor"></a>Data Driven Smooth Tests for Selected Goodness-of-Fit Problems</h3>
+<p>These tests were inspired by the results from: <a href="https://projecteuclid.org/euclid.aos/1069362746"><em>Data driven smooth tests for composite hypotheses</em> by Inglot, Kallenberg, and Ledwina (1997)</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0024379505005082"><em>Towards data driven selection of a penalty function for data driven Neyman tests</em> by Inglot and Ledwina (2006)</a>.</p>
 <ul>
-<li>DDSTest for Uniformity - <code><a href="reference/ddst.uniform.test.html">ddst.uniform.test()</a></code>.</li>
-<li>DDSTest for Exponentiality - <code><a href="reference/ddst.exp.test.html">ddst.exp.test()</a></code>.</li>
-<li>DDSTest for Extreme Value Distribution - <code><a href="reference/ddst.extr.test.html">ddst.extr.test()</a></code>.</li>
-<li>DDSTest for Normality for Bounded basis functions - <code><a href="reference/ddst.norm.test.html">ddst.norm.test()</a></code>.</li>
-<li>DDSTest for Normality, Unbounded basis functions - <code>ddst.normunbounded.test()</code>. This test is described in details in <a href="https://www.tandfonline.com/doi/abs/10.1080/00949655.2014.983110?journalCode=gscs20">Detection of non-Gaussianity. Ledwina and Wylupek (2015)</a>.</li>
+<li>DDSTest for Uniformity - <code><a href="reference/ddst.uniform.test.html">ddst.uniform.test()</a></code>; see <a href="https://www.sciencedirect.com/science/article/pii/S0024379505005082"><em>Towards data driven selection of a penalty function for data driven Neyman tests</em> by Inglot and Ledwina (2006)</a>.</li>
+<li>DDSTest for Exponentiality - <code><a href="reference/ddst.exp.test.html">ddst.exp.test()</a></code>; see <a href="https://www.tandfonline.com/doi/abs/10.1080/00949659708811850"><em>Data driven smooth tests for composite hypotheses: Comparison of powers</em> by Kallenberg and Ledwina (1997)</a>.</li>
+<li>DDSTest for Normality; bounded basis functions - <code><a href="reference/ddst.normbounded.test.html">ddst.normbounded.test()</a></code>; see <a href="https://link.springer.com/article/10.1080/15598608.2009.10411952"><em>Data-driven tests for a location-scale family revisited</em> by Janic and Ledwina (2009)</a>.</li>
+<li>DDSTest for Normality; unbounded basis functions - <code>ddst.normunbounded.test()</code>; see <a href="https://www.tandfonline.com/doi/abs/10.1080/00949655.2014.983110?journalCode=gscs20"><em>Detection of non-Gaussianity</em> by Ledwina and Wylupek (2015)</a>.</li>
+<li>DDSTest for Extreme Value Distribution - <code><a href="reference/ddst.extr.test.html">ddst.extr.test()</a></code>; see <a href="https://link.springer.com/article/10.1080/15598608.2009.10411952"><em>Data-driven tests for a location-scale family revisited</em> by Janic and Ledwina (2009)</a>.</li>
 </ul>
 </div>
 <div id="nonparametric-data-driven-smooth-tests-for-comparing-distributions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#nonparametric-data-driven-smooth-tests-for-comparing-distributions" class="anchor"></a>Nonparametric Data Driven Smooth Tests for Comparing Distributions</h3>
+<p>A starting point of the constructions were the papers: <a href="https://www.jstor.org/stable/4616603?seq=1#page_scan_tab_contents"><em>Data driven rank test for two-sample problem</em> by Janic-Wroblewska and Ledwina (2000)</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0024379505005082"><em>Towards data driven selection of a penalty function for data driven Neyman tests</em> by Inglot and Ledwina (2006)</a>.</p>
 <ul>
-<li>DDSTest for k-sample problem - <code><a href="reference/ddst.ksample.test.html">ddst.ksample.test()</a></code>. This test is described in details in <a href="https://www.jstor.org/stable/40586684?seq=1">Data-driven k-sample tests. Wylupek (2010)</a>.</li>
-<li>DDSTest for two-sample problem - <code><a href="reference/ddst.twosample.test.html">ddst.twosample.test()</a></code>. This test is a specific version of the k-sample test.</li>
-<li>DDSTest for detection of stochastic dominance of the first order - <code><a href="reference/ddst.stochasticorder.test.html">ddst.stochasticorder.test()</a></code>. This test is described in details in <a href="https://link.springer.com/article/10.1007/s11749-011-0278-7">Nonparametric tests for stochastic ordering. Ledwina and Wylupek (2012)</a>.</li>
-<li>DDSTest for stochastic dominance - <code>ddst.stochasticdominance.test()</code>. This test is described in details in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x">Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012)</a>.</li>
-<li>DDSTest for the two- and k-sample problems with stochastically ordered alternatives - <code>ddst.upward.test()</code>. This test is described in details in <a href="https://www.tandfonline.com/doi/abs/10.1080/03610926.2012.697967">Data-driven tests for trend. Wylupek (2013)</a>.</li>
-<li>DDSTest for k-sample umbrella alternatives - <code><a href="reference/ddst.umbrella.test.html">ddst.umbrella.test()</a></code>. This test is described in details in <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231">An automatic test for the umbrella alternatives. Wylupek (2016)</a>.</li>
-<li>DDSTest for nonparametric change point problem - <code>ddst.changepoint.test()</code>. This test is described in details in <a href="https://link.springer.com/article/10.1007/s00184-007-0139-2">Data driven rank test for the change point problem. Antoch, Huskova, Janic and Ledwina (2008)</a>.</li>
+<li>DDSTest for k-Sample Problem - <code><a href="reference/ddst.ksample.test.html">ddst.ksample.test()</a></code>; see <a href="https://www.jstor.org/stable/40586684?seq=1"><em>Data-driven k-sample tests</em> by Wylupek (2010)</a>.</li>
+<li>DDSTest for Change-Point Problem - <code>ddst.changepoint.test()</code>; see <a href="https://link.springer.com/article/10.1007/s00184-007-0139-2"><em>Data driven rank test for the change point problem</em> by Antoch, Huskova, Janic and Ledwina (2008)</a>.</li>
+<li>DDSTest for Stochastic Dominance in Two Samples - <code><a href="reference/ddst.forstochdom.test.html">ddst.forstochdom.test()</a></code>; see <a href="https://link.springer.com/article/10.1007/s11749-011-0278-7"><em>Nonparametric tests for stochastic ordering</em> by Ledwina and Wylupek (2012)</a>.</li>
+<li>DDSTest Against Stochastic Dominance - <code><a href="reference/ddst.againststochdom.test.html">ddst.againststochdom.test()</a></code>; see <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x"><em>Two-sample test against one-sided alternatives</em> by Ledwina and Wylupek (2012)</a>.</li>
+<li>DDSTest for Upward Trend - <code>ddst.upwardtrend.test()</code>; see <a href="https://www.tandfonline.com/doi/abs/10.1080/03610926.2012.697967"><em>Data-driven tests for trend</em> by Wylupek (2013)</a>.</li>
+<li>DDSTest for Umbrella Alternatives - <code><a href="reference/ddst.umbrella.test.html">ddst.umbrella.test()</a></code>; see <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231"><em>An automatic test for the umbrella alternatives</em> by Wylupek (2016)</a>.</li>
 </ul>
+<p>A more detailed overview is contained in <a href="http://www.biecek.pl/R/ddst/description.pdf">Overview of Data Driven Smooth Tests</a>. Full details on the above procedures can be found in the related papers.</p>
 </div>
 </div>
 <div id="installation" class="section level2">

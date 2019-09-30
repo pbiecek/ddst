@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Two-Sample Test — ddst.twosample.test • ddst</title>
+<title>Data Driven Two-Sample Test Against Stochastic Dominance — ddst.againststochdom.test • ddst</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -35,10 +35,13 @@
 
 
 
-<meta property="og:title" content="Data Driven Two-Sample Test — ddst.twosample.test" />
-<meta property="og:description" content="Performs data driven smooth test for the classical two-sample problem.
-It is  aspecial case of data driven test for k-samples.
-Detailed description of the test statistic is provided in Wylupek (2010)." />
+<meta property="og:title" content="Data Driven Two-Sample Test Against Stochastic Dominance — ddst.againststochdom.test" />
+<meta property="og:description" content="Performs data driven smooth non-parametric two-sample test against one-sided alternatives
+(stochastic dominance).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) &amp;lt; G(x) for some x while the alternative is that at
+F(x) &amp;gt;= G(x) for all x with strict inequality for at least one x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,67 +129,76 @@ Detailed description of the test statistic is provided in Wylupek (2010)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Two-Sample Test</h1>
+    <h1>Data Driven Two-Sample Test Against Stochastic Dominance</h1>
     
-    <div class="hidden name"><code>ddst.twosample.test.Rd</code></div>
+    <div class="hidden name"><code>ddst.againststochdom.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Performs data driven smooth test for the classical two-sample problem.
-It is  aspecial case of data driven test for k-samples.
-Detailed description of the test statistic is provided in Wylupek (2010).</p>
+    <p>Performs data driven smooth non-parametric two-sample test against one-sided alternatives
+(stochastic dominance).
+Suppose that we have random samples from two distributions F and G.
+The null hypothesis is that F(x) &lt; G(x) for some x while the alternative is that at
+F(x) &gt;= G(x) for all x with strict inequality for at least one x.
+Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.twosample.test</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>d_N</span> <span class='kw'>=</span> <span class='fl'>12</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a list with two vectors or a single vector.</p></td>
+      <td><p>a (non-empty) numeric vector of data values</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>if x is a single vector, then the second vector is provided in the ...</p></td>
+      <th>y</th>
+      <td><p>a (non-empty) numeric vector of data values</p></td>
     </tr>
     <tr>
-      <th>d_N</th>
+      <th>t</th>
+      <td><p>a positive number, penalty for model selection rule, see package description</p></td>
+    </tr>
+    <tr>
+      <th>d</th>
       <td><p>an integer, number of coordinates that measure potential deviation from null hypothesis</p></td>
     </tr>
     <tr>
-      <th>c</th>
-      <td><p>a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k &gt;= 3.</p></td>
+      <th>alpha</th>
+      <td><p>a positive number, significance level for test statistic. Note that tuning parameter t depends on alpha. See package description</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Data-driven k-sample tests. Wylupek (2010) <a href='https://www.jstor.org/stable/40586684?seq=1'>https://www.jstor.org/stable/40586684?seq=1</a></p>
+    <p>Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012). <a href='https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x'>https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.twosample.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.twosample.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>))
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Two-Sample Test
+#&gt; 	Data Driven Stochastic Dominance Test
 #&gt; 
 #&gt; data:  
-#&gt; W.T = 1.7011, l = NA
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.twosample.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># H0 is false</span>
+#&gt; V.T = 3.6, T = 1
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># known fixed alternative</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>, <span class='fl'>1</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.twosample.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Two-Sample Test
+#&gt; 	Data Driven Stochastic Dominance Test
 #&gt; 
 #&gt; data:  
-#&gt; W.T = 32.305, l = NA
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.twosample.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+#&gt; V.T = -44.8, T = 5
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
