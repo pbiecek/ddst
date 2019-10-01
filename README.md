@@ -33,7 +33,7 @@ A starting point of the constructions were the papers: [*Data driven rank test f
 * DDSTest for Upward Trend - `ddst.upwardtrend.test()`; see [*Data-driven tests for trend* by Wylupek (2013)](https://www.tandfonline.com/doi/abs/10.1080/03610926.2012.697967).
 * DDSTest for Umbrella Alternatives - `ddst.umbrella.test()`; see [*An automatic test for the umbrella alternatives* by Wylupek (2016)](https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231).
 
-A more detailed overview is contained in [Overview of Data Driven Smooth Tests](http://www.biecek.pl/R/ddst/description.pdf). Full details on the above procedures can be found in the related papers.
+A more detailed overview is contained in [Data Driven Smooth Test - Introductory Material](http://www.biecek.pl/R/ddst/description.pdf). Full details on the above procedures can be found in the related papers.
 
 ## Installation
 
