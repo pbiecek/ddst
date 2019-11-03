@@ -43,17 +43,19 @@
 #' # for given vector of 19 numbers
 #' z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
 #'     4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-#' ddst.normbounded.test(z, compute.p=TRUE)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
+#' t
+#' plot(t)
 #'
 #' # H0 is true
 #' z <- rnorm(80)
-#' t <- ddst.normbounded.test(z, compute.p=TRUE)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' z <- rexp(80,4)
-#' t <- ddst.normbounded.test(z, B=5000, compute.p=TRUE)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 #'
@@ -68,16 +70,16 @@
 #'       -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
 #'       -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
 #'       -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
-#' t <- ddst.normbounded.test(z, compute.p=TRUE)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 `ddst.normbounded.test` <-
   function(x,
            base = ddst.base.legendre,
            c = 100,
-           B = 100,
+           B = 1000,
            compute.p = FALSE,
-           Dmax = 5,
+           Dmax = 10,
            ...) {
     # method.name = as.character(substitute(base))
     # only Legendre is implemented yet
@@ -106,7 +108,7 @@
     }
 
     l = ddst.IIC(coord, n, c)
-    attr(l, "names") = "n. coord"
+    attr(l, "names") = "T*"
     t = coord[l]
     attr(t, "names") = "WT*"
     result = list(statistic = t,
@@ -114,10 +116,12 @@
                   coordinates = coord - c(0, coord[-Dmax]),
                   method = "Data Driven Smooth Test for Normality")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
-                             ",   base: ",
+                             ", base: ",
                              method.name,
-                             ",   c: ",
+                             ", c: ",
                              c,
+                             ", Dmax: ",
+                             Dmax,
                              sep = "")
     class(result) = c("htest", "ddst.test")
     if (compute.p) {
@@ -153,8 +157,6 @@
 #
 # data
 #
-
-
 `MMnorm` <-
   list(
     structure(22.1875398382093, .Dim = c(1L, 1L)),

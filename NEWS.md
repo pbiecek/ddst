@@ -1,3 +1,13 @@
+ddst 1.6.6
+----------------
+
+* introduced comments from the letter 3 Nov 2019
+
+ddst 1.6.5
+----------------
+
+* added `ddst.normubounded.test` function for Data Driven Smooth Test for Normality - Unbounded Basis Functions
+
 ddst 1.6.4
 ----------------
 

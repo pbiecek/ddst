@@ -30,13 +30,13 @@
 #' @examples
 #' # H0 is true
 #' z <- rexp(80,4)
-#' t <- ddst.exp.test (z, compute.p = TRUE)
+#' t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' z = rchisq(80,4)
-#' (t = ddst.exp.test (z, compute.p = TRUE))
+#' (t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10))
 #' t$p.value
 #' plot(t)
 #'
@@ -71,18 +71,20 @@
     }
 
     l = ddst.IIC(coord, n, c)
-    attr(l, "names") = "n. coord"
+    attr(l, "names") = "T*"
     t = coord[l]
-    attr(t, "names") = "WT*"
+    attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
                   coordinates = coord - c(0, coord[-Dmax]),
                   method = "Data Driven Smooth Test for Expotentiality")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
-                             ",   base: ",
+                             ", base: ",
                              method.name,
-                             ",   c: ",
+                             ", c: ",
                              c,
+                             ", Dmax: ",
+                             Dmax,
                              sep = "")
     class(result) = c("htest", "ddst.test")
     if (compute.p) {

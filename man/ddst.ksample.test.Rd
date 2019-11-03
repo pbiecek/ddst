@@ -23,20 +23,20 @@ least two distributions are different.
 Detailed description of the test statistic is provided in Wylupek (2010).
 }
 \examples{
+# H0 is false
+x <- runif(80)
+y <- rexp(80, 1)
+z <- runif(80)
+t <- ddst.ksample.test(x, y, z)
+t
+plot(t)
+
 # H0 is true
 x <- runif(80)
 y <- runif(80)
 z <- runif(80)
 t <- ddst.ksample.test(x, y, z)
 t <- ddst.ksample.test(list(x, y, z))
-t
-plot(t)
-
-# H0 is false
-x <- runif(80)
-y <- rexp(80, 1)
-z <- runif(80)
-t <- ddst.ksample.test(x, y, z)
 t
 plot(t)
 

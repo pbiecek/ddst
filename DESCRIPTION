@@ -1,6 +1,6 @@
 Package: ddst
 Title: Data Driven Smooth Tests
-Version: 1.6.3
+Version: 1.6.6
 Authors@R: c(person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "cre")),
              person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")),
              person("Grzegorz", "Wylupek", role = c("aut"))

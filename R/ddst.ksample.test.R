@@ -14,20 +14,20 @@
 #' @references Data-driven k-sample tests. Wylupek (2010) \url{https://www.jstor.org/stable/40586684?seq=1}
 #' @export
 #' @examples
+#' # H0 is false
+#' x <- runif(80)
+#' y <- rexp(80, 1)
+#' z <- runif(80)
+#' t <- ddst.ksample.test(x, y, z)
+#' t
+#' plot(t)
+#'
 #' # H0 is true
 #' x <- runif(80)
 #' y <- runif(80)
 #' z <- runif(80)
 #' t <- ddst.ksample.test(x, y, z)
 #' t <- ddst.ksample.test(list(x, y, z))
-#' t
-#' plot(t)
-#'
-#' # H0 is false
-#' x <- runif(80)
-#' y <- rexp(80, 1)
-#' z <- runif(80)
-#' t <- ddst.ksample.test(x, y, z)
 #' t
 #' plot(t)
 #'
@@ -49,9 +49,9 @@
     coord = ddst.ksample.Nk(x.vector, n, d_N = d_N, c = c)
 
     l = coord$score
-    attr(l, "names") = "W.T"
-    t = NA
-    attr(t, "names") = "l"
+    attr(l, "names") = "WT"
+    t = paste0("(", paste0(coord$L_T, collapse = ", "), ")")
+    attr(t, "names") = "T"
     result = list(statistic = l,
                   parameter = t,
                   W.T.l = coord$W_T,

@@ -72,7 +72,7 @@ Null density is given by
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ddst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.6</span>
       </span>
     </div>
 
@@ -193,30 +193,30 @@ Null density is given by
 <span class='co'># for given vector of 19 numbers</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.41</span>, <span class='fl'>6.04</span>, <span class='fl'>1.26</span>, <span class='fl'>3.67</span>, -<span class='fl'>4.54</span>, <span class='fl'>2.92</span>, <span class='fl'>0.44</span>, <span class='fl'>12.93</span>, <span class='fl'>6.77</span>, <span class='fl'>10.09</span>,
       <span class='fl'>4.10</span>, <span class='fl'>4.04</span>, -<span class='fl'>1.97</span>, <span class='fl'>2.17</span>, -<span class='fl'>5.38</span>, -<span class='fl'>7.30</span>, <span class='fl'>4.75</span>, <span class='fl'>5.63</span>, <span class='fl'>8.84</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Extreme Values
 #&gt; 
-#&gt; data:  z,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 1.9073, n. coord = 1, p-value = 0.595
+#&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
+#&gt; WT* = 1.9073, n. coord = 1, p-value = 0.596
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.extr.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> -<span class='fu'><a href='https://rdrr.io/pkg/evd/man/gumbel.html'>qgumbel</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>100</span>),-<span class='fl'>1</span>,<span class='fl'>1</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span> (<span class='no'>x</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span> (<span class='no'>x</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Extreme Values
 #&gt; 
-#&gt; data:  x,   base: ddst.base.legendre,   c: 100
+#&gt; data:  x, base: ddst.base.legendre, c: 100, Dmax: 10
 #&gt; WT* = 0.35658, n. coord = 1, p-value = 0.998
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.extr.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span> (<span class='no'>x</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.extr.test</span> (<span class='no'>x</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Extreme Values
 #&gt; 
-#&gt; data:  x,   base: ddst.base.legendre,   c: 100
-#&gt; WT* = 181830, n. coord = 5, p-value &lt; 2.2e-16
+#&gt; data:  x, base: ddst.base.legendre, c: 100, Dmax: 10
+#&gt; WT* = 608589, n. coord = 10, p-value &lt; 2.2e-16
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.extr.test-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

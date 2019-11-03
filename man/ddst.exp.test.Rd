@@ -40,13 +40,13 @@ For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 \examples{
 # H0 is true
 z <- rexp(80,4)
-t <- ddst.exp.test (z, compute.p = TRUE)
+t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
 t
 plot(t)
 
 # H0 is false
 z = rchisq(80,4)
-(t = ddst.exp.test (z, compute.p = TRUE))
+(t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10))
 t$p.value
 plot(t)
 

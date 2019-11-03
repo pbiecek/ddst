@@ -34,19 +34,19 @@
 #' @examples
 #' # H0 is true
 #' z <- runif(80)
-#' t <- ddst.uniform.test(z, compute.p=TRUE)
+#' t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 #'
 #' # known fixed alternative
 #' z <- rnorm(80,10,16)
-#' t <- ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
+#' t <- ddst.uniform.test(pnorm(z, 10, 16), compute.p = TRUE, Dmax = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' z <- rbeta(80,4,2)
-#' (t <- ddst.uniform.test(z, compute.p=TRUE))
+#' (t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10))
 #' t$p.value
 #' plot(t)
 #' @keywords htest
@@ -68,7 +68,7 @@
       stop("length(x) should be at least 5")
     coord = ddst.uniform.Nk(x, base, Dmax = Dmax)    # coord square times n
     l = ddst.IIC(coord, n, c)
-    attr(l, "names") = "n. coord"
+    attr(l, "names") = "T"
     t = coord[l]
     attr(t, "names") = "WT"
     result = list(statistic = t,
@@ -77,10 +77,12 @@
                   method = "Data Driven Smooth Test for Uniformity")
     result$data.name = paste(paste(as.character(substitute(x)), collapse =
                                      ""),
-                             ",   base: ",
+                             ", base: ",
                              method.name,
-                             "   c: ",
+                             "  c: ",
                              c,
+                             "  Dmax: ",
+                             Dmax,
                              sep = "")
     class(result) = c("htest", "ddst.test")
     if (compute.p) {

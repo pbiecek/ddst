@@ -39,19 +39,19 @@ For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 \examples{
 # H0 is true
 z <- runif(80)
-t <- ddst.uniform.test(z, compute.p=TRUE)
+t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
 t
 plot(t)
 
 # known fixed alternative
 z <- rnorm(80,10,16)
-t <- ddst.uniform.test(pnorm(z, 10, 16), compute.p=TRUE)
+t <- ddst.uniform.test(pnorm(z, 10, 16), compute.p = TRUE, Dmax = 10)
 t
 plot(t)
 
 # H0 is false
 z <- rbeta(80,4,2)
-(t <- ddst.uniform.test(z, compute.p=TRUE))
+(t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10))
 t$p.value
 plot(t)
 }

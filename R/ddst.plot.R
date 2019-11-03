@@ -32,7 +32,7 @@
       df <- data.frame(val, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() +
-        xlab("components") + ylab("")
+        xlab("j") + ylab("")
     } else {
       # coordinates is a matrix
       val <- c(coordinates)
@@ -45,11 +45,11 @@
       df <- data.frame(val, vec, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() + facet_grid(vec~.) +
-        xlab("components") + ylab("")
+        xlab("j") + ylab("")
     }
     pl +
       theme_bw() +
       ggtitle(paste0("Method: ", x$method),
-              paste0( "Test statistics ", attr(x$statistic, "names"), ": ",
+              paste0( "Test statistic ", attr(x$statistic, "names"), ": ",
                       signif(x$statistic, 3)))
   }

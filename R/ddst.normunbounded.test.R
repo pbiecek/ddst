@@ -122,6 +122,10 @@ function(x,
                 parameter = l,
                 coordinates = result$C.unbounded.vec,
                 method = "Data Driven Smooth Test for Normality - Unbounded Basis Functions")
+  result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                           ", d.n: ",
+                           d.n,
+                           sep = "")
   class(result) = c("htest", "ddst.test", "ddst.unbounded.test")
   return(result)
 }

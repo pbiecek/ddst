@@ -32,6 +32,7 @@
       S = NULL
       A = NULL
       W_T = NULL
+      L_T = NULL
       for (l in 1:k) {
         nl = n[l]
         nlc = N - n[l]
@@ -42,12 +43,14 @@
         A[l] = which.max(cumsum(B[l, ] ^ 2) - 1:d_N * 2)
         if (max(abs(B[l, ])) <= sqrt(c * log(N))) {
           W_T[l] = sum(B[l, 1:S[l]] ^ 2)
+          L_T[l] = S[l]
         } else{
           W_T[l] = sum(B[l, 1:A[l]] ^ 2)
+          L_T[l] = A[l]
         }
       }
       score = sum((1 - p) * W_T)
-      return(list(score = score, W_T = W_T, B = B))
+      return(list(score = score, W_T = W_T, B = B, L_T = L_T))
     }
 
     test_W_T(x = x,

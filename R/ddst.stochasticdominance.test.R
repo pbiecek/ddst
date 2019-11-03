@@ -43,11 +43,11 @@
     l = coord[[3]]
     attr(l, "names") = "T"
     t = coord[[1]]
-    attr(t, "names") = "V.T"
+    attr(t, "names") = "VT"
     result = list(statistic = t,
                   parameter = l,
                   coordinates = coord$L,
-                  method = "Data Driven Stochastic Dominance Test")
+                  method = "Data Driven Test Against Stochastic Dominance")
     class(result) = c("htest", "ddst.test", "ddst.stochasticdominance.test")
 
     result
