@@ -38,7 +38,6 @@ Null density is given by
 \eqn{
   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
 We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
-For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 }
 \examples{
 # for given vector of 19 numbers

@@ -2,7 +2,6 @@
 #'
 #' Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 #' Embeding null model into the original exponential family introduced by Neyman (1937).
-#' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @aliases ddst.uniform.Nk
 #' @param x a (non-empty) numeric vector of data values

@@ -136,13 +136,19 @@
     # coords <- test.M.d(x,y,m,n,k.N)
 
     l = statistics$stat.T
-    attr(l, "names") = "Q.T"
-    t = statistics$ncoord.T
+    attr(l, "names") = "QT"
+    qt = statistics$ncoord.T
     attr(t, "names") = "T"
     result = list(statistic = l,
-                  parameter = t,
+                  parameter = qt,
                   coordinates = statistics$L,
                   method = "Data Driven Stochastic Ordering Test")
+    result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                             ", t: ",
+                             t,
+                             ", Dmax: ",
+                             d,
+                             sep = "")
     class(result) = c("htest", "ddst.test", "ddst.stochasticorder.test")
 
     result

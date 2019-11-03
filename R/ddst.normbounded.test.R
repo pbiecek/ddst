@@ -5,7 +5,6 @@
 #' \eqn{
 #'   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
 #' We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
-#' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @param x a (non-empty) numeric vector of data values
 #' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials
@@ -110,11 +109,11 @@
     l = ddst.IIC(coord, n, c)
     attr(l, "names") = "T*"
     t = coord[l]
-    attr(t, "names") = "WT*"
+    attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
                   coordinates = coord - c(0, coord[-Dmax]),
-                  method = "Data Driven Smooth Test for Normality")
+                  method = "Data Driven Smooth Test for Normality - Bounded Basis Functions")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ", base: ",
                              method.name,

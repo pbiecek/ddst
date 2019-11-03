@@ -40,14 +40,22 @@
            ...) {
     coord = ddst.stochasticdominance.Nk(x, y, t = t, k.N = d, alpha = alpha)    # coord square times n
 
-    l = coord[[3]]
+    l = coord$T
     attr(l, "names") = "T"
-    t = coord[[1]]
-    attr(t, "names") = "VT"
-    result = list(statistic = t,
+    vt = coord$V.T
+    attr(vt, "names") = "VT"
+    result = list(statistic = vt,
                   parameter = l,
                   coordinates = coord$L,
                   method = "Data Driven Test Against Stochastic Dominance")
+    result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                             ", alpha: ",
+                             alpha,
+                             ", t: ",
+                             t,
+                             ", Dmax: ",
+                             d,
+                             sep = "")
     class(result) = c("htest", "ddst.test", "ddst.stochasticdominance.test")
 
     result

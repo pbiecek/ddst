@@ -186,7 +186,24 @@ Null density is given by
 <span class='co'># calculate finite sample corrections</span>
 <span class='co'># see 6.2. Composite null hypothesis H in the appendix materials</span>
 <span class='no'>e.v</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normunbounded.calculate.e.v</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>z</span>))
-
+<span class='no'>e.v</span></div><div class='output co'>#&gt; $e.0
+#&gt;            [,1]       [,2]        [,3]       [,4]         [,5]      [,6]
+#&gt; [1,] 0.01108237 -0.6945725 0.001345702 -0.6296685 -0.004822233 0.2560654
+#&gt;             [,7]      [,8]        [,9]      [,10]        [,11]     [,12]
+#&gt; [1,] 0.002700843 0.1555699 0.001855673 -0.2951747 -0.006578653 0.2198452
+#&gt;           [,13]       [,14]       [,15]       [,16]      [,17]     [,18]
+#&gt; [1,] 0.01013238 -0.05675039 -0.01194439 -0.09393319 0.01198462 0.1803653
+#&gt;            [,19]      [,20]
+#&gt; [1,] -0.01055702 -0.1918708
+#&gt; 
+#&gt; $v.0
+#&gt;          [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
+#&gt; [1,] 0.953523 0.8286102 0.6520055 0.5931651 0.6262122 0.5603511 0.5217907
+#&gt;           [,8]      [,9]     [,10]     [,11]     [,12]     [,13]     [,14]
+#&gt; [1,] 0.5435908 0.4965111 0.4831502 0.5007884 0.4495289 0.4745037 0.4553265
+#&gt;          [,15]     [,16]     [,17]     [,18]     [,19]     [,20]
+#&gt; [1,] 0.4340207 0.4594518 0.4138901 0.4411872 0.4185258 0.4109256
+#&gt; </div><div class='input'>
 <span class='co'># simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)</span>
 <span class='co'># see Table 1 in the JSCS article</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>4.4</span>
@@ -198,7 +215,7 @@ Null density is given by
 #&gt; 	Data Driven Smooth Test for Normality - Unbounded Basis Functions
 #&gt; 
 #&gt; data:  z, d.n: 20
-#&gt; N.cal.A.s = 0.34255, A.s = 1
+#&gt; NAs = 0.34255, As = 1
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normubounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1.748789</span>, -<span class='fl'>1.75753</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.731467</span>, -<span class='fl'>1.765523</span>,
@@ -214,7 +231,24 @@ Null density is given by
 
 <span class='co'># calculate finite sample corrections</span>
 <span class='no'>e.v</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normunbounded.calculate.e.v</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>z</span>))
-
+<span class='no'>e.v</span></div><div class='output co'>#&gt; $e.0
+#&gt;              [,1]       [,2]         [,3]       [,4]       [,5]      [,6]
+#&gt; [1,] -0.002577501 -0.7911471 -0.007609188 -0.5228661 0.01009015 0.3642097
+#&gt;              [,7]         [,8]        [,9]      [,10]       [,11]     [,12]
+#&gt; [1,] -0.008482196 -0.004454575 0.005402724 -0.2182336 -0.00235007 0.2636773
+#&gt;              [,13]      [,14]       [,15]      [,16]        [,17]      [,18]
+#&gt; [1,] -7.937116e-06 -0.1871322 0.001520262 0.05932722 -0.002305906 0.06388627
+#&gt;            [,19]      [,20]
+#&gt; [1,] 0.002586241 -0.1494625
+#&gt; 
+#&gt; $v.0
+#&gt;           [,1]      [,2]     [,3]      [,4]      [,5]     [,6]      [,7]
+#&gt; [1,] 0.9418634 0.7649133 0.593091 0.5874744 0.5933784 0.509233 0.5180758
+#&gt;           [,8]      [,9]     [,10]     [,11]     [,12]     [,13]    [,14]
+#&gt; [1,] 0.5133062 0.4619921 0.4836733 0.4611533 0.4342821 0.4649499 0.408103
+#&gt;          [,15]     [,16]     [,17]     [,18]     [,19]     [,20]
+#&gt; [1,] 0.4444521 0.4114133 0.4096939 0.4191768 0.3837417 0.4127265
+#&gt; </div><div class='input'>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>3.3</span>
 <span class='no'>so</span> <span class='kw'>&lt;-</span> <span class='fl'>3.6</span>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fl'>2.142</span>
@@ -224,7 +258,7 @@ Null density is given by
 #&gt; 	Data Driven Smooth Test for Normality - Unbounded Basis Functions
 #&gt; 
 #&gt; data:  z, d.n: 20
-#&gt; N.cal.A.s = 9.1517, A.s = 3
+#&gt; NAs = 9.1517, As = 3
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normubounded.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

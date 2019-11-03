@@ -40,8 +40,7 @@
 Null density is given by
 \(
   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))\) for \(z \in R\).
-We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
-For more details see: http://www.biecek.pl/R/ddst/description.pdf." />
+We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,8 +129,7 @@ For more details see: http://www.biecek.pl/R/ddst/description.pdf." />
 Null density is given by
 \(
   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))\) for \(z \in R\).
-We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
-For more details see: <a href='http://www.biecek.pl/R/ddst/description.pdf'>http://www.biecek.pl/R/ddst/description.pdf</a>.</p>
+We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ddst.normbounded.test</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>,
@@ -194,28 +192,28 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
     <span class='fl'>4.10</span>, <span class='fl'>4.04</span>, -<span class='fl'>1.97</span>, <span class='fl'>2.17</span>, -<span class='fl'>5.38</span>, -<span class='fl'>7.30</span>, <span class='fl'>4.75</span>, <span class='fl'>5.63</span>, <span class='fl'>8.84</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Normality
+#&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; WT* = 0.13095, T* = 1, p-value = 0.7201
+#&gt; W*T* = 0.13095, T* = 1, p-value = 0.7201
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is true</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Normality
+#&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; WT* = 0.096405, T* = 1, p-value = 0.7664
+#&gt; W*T* = 0.096405, T* = 1, p-value = 0.7664
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Normality
+#&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; WT* = 225.66, T* = 10, p-value = 8.287e-15
+#&gt; W*T* = 225.66, T* = 10, p-value = 8.287e-15
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1.748789</span>, -<span class='fl'>1.75753</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.731467</span>, -<span class='fl'>1.765523</span>,
@@ -230,10 +228,10 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
       -<span class='fl'>1.82613</span>, -<span class='fl'>1.826967</span>, -<span class='fl'>1.780025</span>, -<span class='fl'>1.684504</span>, -<span class='fl'>1.751168</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
-#&gt; 	Data Driven Smooth Test for Normality
+#&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; WT* = 3.7615, T* = 1, p-value = 0.08891
+#&gt; W*T* = 3.7615, T* = 1, p-value = 0.08891
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

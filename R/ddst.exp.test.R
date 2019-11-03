@@ -3,7 +3,6 @@
 #' Performs data driven smooth test for composite hypothesis of exponentiality.
 #' Null density is given by \eqn{f(z;gamma) = exp(-z/gamma)}  for z >= 0 and 0 otherwise.
 #' Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
-#' For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @param x a (non-empty) numeric vector of data values
 #' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or \code{ddst.base.cos} for cosine system, see package description

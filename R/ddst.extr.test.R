@@ -95,9 +95,9 @@
     }
 
     l = ddst.IIC(coord, n, c)
-    attr(l, "names") = "n. coord"
+    attr(l, "names") = "T*"
     t = coord[l]
-    attr(t, "names") = "WT*"
+    attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
                   coordinates = coord - c(0, coord[-Dmax]),

@@ -40,6 +40,7 @@ d.n <- 20
 # calculate finite sample corrections
 # see 6.2. Composite null hypothesis H in the appendix materials
 e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v
 
 # simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
 # see Table 1 in the JSCS article
@@ -65,6 +66,7 @@ z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
 
 # calculate finite sample corrections
 e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v
 
 s <- 3.3
 so <- 3.6

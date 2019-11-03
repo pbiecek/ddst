@@ -57,6 +57,10 @@
                   W.T.l = coord$W_T,
                   coordinates = coord$B,
                   method = "Data Driven k-Sample Test")
+    result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                             ", Dmax: ",
+                             d_N,
+                             sep = "")
     class(result) = c("htest", "ddst.test", "ddst.ksample.test")
 
     result
