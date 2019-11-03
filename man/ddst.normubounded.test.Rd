@@ -32,6 +32,7 @@ Null density is given by
   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
 }
 \examples{
+set.seed(7)
 # H0 is true
 z <- rnorm(100)
 # let's look on first 20 coordinates

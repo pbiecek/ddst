@@ -17,10 +17,10 @@
 #' @references Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) \url{https://doi.org/10.1007/s11749-011-0278-7}
 #' @export
 #' @examples
-#' set.seed(13)
+#' set.seed(7)
 #' library("rmutil", warn.conflicts = FALSE)
 #' # 1. Pareto(1)/Pareto(1.5)
-#' #uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,
+#' # H0 is false
 #' x <- rpareto(50, 2, 2)
 #' y <- rpareto(50, 1.5, 1.5)
 #' t <- ddst.forstochdom.test(x, y)
@@ -28,6 +28,7 @@
 #' plot(t)
 #'
 #' # 2. Laplace(0,1)/Laplace(1,25)
+#' # H0 is false
 #' x <- rlaplace(50, 0, 1)
 #' y <- rlaplace(50, 1, 25)
 #' t <- ddst.forstochdom.test(x, y)
@@ -35,6 +36,7 @@
 #' plot(t)
 #'
 #' # 3. LN(0.85,0.6)/LN(1.2,0.2)
+#' # H0 is true
 #' x <- rlnorm(50, 0.85, 0.6)
 #' y <- rlnorm(50, 1.2, 0.2)
 #' t <- ddst.forstochdom.test(x, y)

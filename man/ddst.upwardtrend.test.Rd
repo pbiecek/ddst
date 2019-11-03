@@ -25,6 +25,7 @@ i.e. F_1 >= ... >= F_k and F_i != F_j for some i and j.
 This test is implemented as a special case of an umbrella test.
 }
 \examples{
+set.seed(7)
 # H0 is true
 x = runif(80)
 y = runif(80) + 0.2
@@ -33,6 +34,7 @@ t <- ddst.upwardtrend.test(list(x, y, z))
 t
 plot(t)
 
+# H0 is false
 # known fixed alternative
 x1 = rnorm(80)
 x2 = rnorm(80) + 2

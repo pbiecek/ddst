@@ -168,11 +168,11 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
     <p>Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) <a href='https://doi.org/10.1007/s11749-011-0278-7'>https://doi.org/10.1007/s11749-011-0278-7</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>13</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>7</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"rmutil"</span>, <span class='kw'>warn.conflicts</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'rmutil':</span>
 #&gt; <span class='message'>  method         from</span>
 #&gt; <span class='message'>  print.response httr</span></div><div class='input'><span class='co'># 1. Pareto(1)/Pareto(1.5)</span>
-<span class='co'>#uzyc parametrow z tabeli 3, p. 742, np dla m = n = 50,</span>
+<span class='co'># H0 is false</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>2</span>, <span class='fl'>2</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Pareto.html'>rpareto</a></span>(<span class='fl'>50</span>, <span class='fl'>1.5</span>, <span class='fl'>1.5</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.forstochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
@@ -180,9 +180,10 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 #&gt; 	Data Driven Stochastic Ordering Test
 #&gt; 
 #&gt; data:  x, t: 2.2, Dmax: 4
-#&gt; QT = 130.93, = 5
+#&gt; QT = 124.46, = 5
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.forstochdom.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># 2. Laplace(0,1)/Laplace(1,25)</span>
+<span class='co'># H0 is false</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/rmutil/man/Laplace.html'>rlaplace</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>25</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.forstochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
@@ -190,9 +191,10 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 #&gt; 	Data Driven Stochastic Ordering Test
 #&gt; 
 #&gt; data:  x, t: 2.2, Dmax: 4
-#&gt; QT = 111.11, = 5
+#&gt; QT = 129.93, = 5
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.forstochdom.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># 3. LN(0.85,0.6)/LN(1.2,0.2)</span>
+<span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>0.85</span>, <span class='fl'>0.6</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Lognormal.html'>rlnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>1.2</span>, <span class='fl'>0.2</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.forstochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)

@@ -27,6 +27,7 @@
 #' Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. \eqn{ J. Amer. Statist. Assoc.} \bold{ 92}, 1094--1104.
 #'
 #' @examples
+#' set.seed(7)
 #' # H0 is true
 #' z <- rexp(80,4)
 #' t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)

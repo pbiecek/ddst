@@ -17,6 +17,7 @@
 #' @references Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012). \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x}
 #' @export
 #' @examples
+#' set.seed(7)
 #' # H0 is true
 #' x <- runif(80)
 #' y <- runif(80)
@@ -24,6 +25,7 @@
 #' t
 #' plot(t)
 #'
+#' # H0 is false
 #' # known fixed alternative
 #' x <- runif(80)
 #' y <- rbeta(80,4,2)

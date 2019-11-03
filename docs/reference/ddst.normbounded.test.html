@@ -187,7 +187,8 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
 <p>Kallenberg, W.C.M.,  Ledwina, T. (1997 b). Data driven smooth tests when the hypothesis is composite. <em> J. Amer. Statist. Assoc.</em> <b> 92</b>, 1094--1104.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># for given vector of 19 numbers</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>7</span>)
+<span class='co'># for given vector of 19 numbers</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.41</span>, <span class='fl'>6.04</span>, <span class='fl'>1.26</span>, <span class='fl'>3.67</span>, -<span class='fl'>4.54</span>, <span class='fl'>2.92</span>, <span class='fl'>0.44</span>, <span class='fl'>12.93</span>, <span class='fl'>6.77</span>, <span class='fl'>10.09</span>,
     <span class='fl'>4.10</span>, <span class='fl'>4.04</span>, -<span class='fl'>1.97</span>, <span class='fl'>2.17</span>, -<span class='fl'>5.38</span>, -<span class='fl'>7.30</span>, <span class='fl'>4.75</span>, <span class='fl'>5.63</span>, <span class='fl'>8.84</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>)
@@ -204,7 +205,7 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
 #&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; W*T* = 0.096405, T* = 1, p-value = 0.7664
+#&gt; W*T* = 1.8357, T* = 1, p-value = 0.1993
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>)
@@ -213,7 +214,7 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
 #&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
 #&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
-#&gt; W*T* = 225.66, T* = 10, p-value = 8.287e-15
+#&gt; W*T* = 178.78, T* = 10, p-value = 1.16e-12
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1.748789</span>, -<span class='fl'>1.75753</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.731467</span>, -<span class='fl'>1.765523</span>,

@@ -27,6 +27,7 @@ i.e. F_1 >= ... >= F_p <= ... <= F_k and F_i != F_j for some i and j.
 Detailed description of the test statistic is provided in Wylupek (2016).
 }
 \examples{
+set.seed(7)
 # H0 is true
 x = runif(80)
 y = runif(80) + 0.2

@@ -42,6 +42,7 @@
 #'
 #' @examples
 #' library(evd)
+#' set.seed(7)
 #'
 #' # for given vector of 19 numbers
 #' z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,

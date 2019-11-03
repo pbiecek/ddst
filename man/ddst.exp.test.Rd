@@ -37,6 +37,7 @@ Null density is given by \eqn{f(z;gamma) = exp(-z/gamma)}  for z >= 0 and 0 othe
 Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
 }
 \examples{
+set.seed(7)
 # H0 is true
 z <- rexp(80,4)
 t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)

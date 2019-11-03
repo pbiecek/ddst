@@ -21,6 +21,7 @@ It is  aspecial case of data driven test for k-samples.
 Detailed description of the test statistic is provided in Wylupek (2010).
 }
 \examples{
+set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)

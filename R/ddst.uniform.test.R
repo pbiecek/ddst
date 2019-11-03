@@ -31,6 +31,7 @@
 #' @export
 #'
 #' @examples
+#' set.seed(7)
 #' # H0 is true
 #' z <- runif(80)
 #' t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)

@@ -16,6 +16,7 @@
 #' @references An automatic test for the umbrella alternatives. Wylupek (2016) \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231}
 #' @export
 #' @examples
+#' set.seed(7)
 #' # H0 is true
 #' x = runif(80)
 #' y = runif(80) + 0.2
@@ -24,6 +25,7 @@
 #' t
 #' plot(t)
 #'
+#' # H0 is false
 #' # known fixed alternative
 #' x1 = rnorm(80)
 #' x2 = rnorm(80) + 2

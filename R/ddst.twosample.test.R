@@ -12,6 +12,7 @@
 #' @references Data-driven k-sample tests. Wylupek (2010) \url{https://www.jstor.org/stable/40586684?seq=1}
 #' @export
 #' @examples
+#' set.seed(7)
 #' # H0 is true
 #' x <- runif(80)
 #' y <- runif(80)

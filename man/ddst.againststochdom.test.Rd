@@ -28,6 +28,7 @@ F(x) >= G(x) for all x with strict inequality for at least one x.
 Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).
 }
 \examples{
+set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
@@ -35,6 +36,7 @@ t <- ddst.againststochdom.test(x, y)
 t
 plot(t)
 
+# H0 is false
 # known fixed alternative
 x <- runif(80)
 y <- rbeta(80,4,2)

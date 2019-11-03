@@ -23,6 +23,7 @@ least two distributions are different.
 Detailed description of the test statistic is provided in Wylupek (2010).
 }
 \examples{
+set.seed(7)
 # H0 is false
 x <- runif(80)
 y <- rexp(80, 1)

@@ -170,7 +170,8 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
     <p>Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012). <a href='https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x'>https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># H0 is true</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>7</span>)
+<span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>)
@@ -178,8 +179,9 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 #&gt; 	Data Driven Test Against Stochastic Dominance
 #&gt; 
 #&gt; data:  x, alpha: 0.05, t: 2.2, Dmax: 4
-#&gt; VT = 3.6, T = 1
+#&gt; VT = 0.9, T = 1
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># H0 is false</span>
 <span class='co'># known fixed alternative</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
@@ -188,7 +190,7 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 #&gt; 	Data Driven Test Against Stochastic Dominance
 #&gt; 
 #&gt; data:  x, alpha: 0.05, t: 2.2, Dmax: 4
-#&gt; VT = -44.8, T = 5
+#&gt; VT = 41.6, T = 5
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

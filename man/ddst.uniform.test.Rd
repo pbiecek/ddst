@@ -36,6 +36,7 @@ Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 Embeding null model into the original exponential family introduced by Neyman (1937).
 }
 \examples{
+set.seed(7)
 # H0 is true
 z <- runif(80)
 t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
