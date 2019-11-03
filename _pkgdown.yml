@@ -1,8 +1,3 @@
-template:
-  package: DrWhyTemplate
-  default_assets: false
-
-
 reference:
   - title: Goodness-of-fit tests
     desc: Data driven smooth tests for selected goodness-of-fit problems
@@ -16,6 +11,7 @@ reference:
     desc: Nonparametric data driven smooth tests for comparing distributions
     contents:
     - ddst.ksample.test
+    - ddst.twosample.test
     - ddst.forstochdom.test
     - ddst.againststochdom.test
     - ddst.umbrella.test
