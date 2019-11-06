@@ -32,7 +32,7 @@ set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
-t <- ddst.againststochdom.test(x, y)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
 t
 plot(t)
 
@@ -40,7 +40,7 @@ plot(t)
 # known fixed alternative
 x <- runif(80)
 y <- rbeta(80,4,2)
-t <- ddst.againststochdom.test(x, y)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
 t
 plot(t)
 }

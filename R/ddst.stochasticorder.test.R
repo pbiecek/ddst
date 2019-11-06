@@ -23,7 +23,7 @@
 #' # H0 is false
 #' x <- rpareto(50, 2, 2)
 #' y <- rpareto(50, 1.5, 1.5)
-#' t <- ddst.forstochdom.test(x, y)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 #' t
 #' plot(t)
 #'
@@ -31,7 +31,7 @@
 #' # H0 is false
 #' x <- rlaplace(50, 0, 1)
 #' y <- rlaplace(50, 1, 25)
-#' t <- ddst.forstochdom.test(x, y)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 #' t
 #' plot(t)
 #'
@@ -39,7 +39,7 @@
 #' # H0 is true
 #' x <- rlnorm(50, 0.85, 0.6)
 #' y <- rlnorm(50, 1.2, 0.2)
-#' t <- ddst.forstochdom.test(x, y)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 #' t
 #' plot(t)
 #'
@@ -140,12 +140,13 @@
     l = statistics$stat.T
     attr(l, "names") = "QT"
     qt = statistics$ncoord.T
-    attr(t, "names") = "T"
+    attr(qt, "names") = "T"
     result = list(statistic = l,
                   parameter = qt,
                   coordinates = statistics$L,
                   method = "Data Driven Stochastic Ordering Test")
-    result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+    result$data.name = paste(paste(as.character(substitute(x)),
+                             as.character(substitute(y)), collapse = " "),
                              ", t: ",
                              t,
                              ", Dmax: ",

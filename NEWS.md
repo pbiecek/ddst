@@ -1,3 +1,9 @@
+ddst 1.6.7
+----------------
+
+* more verbose output in the print()/plot() function
+* more consistent examples
+
 ddst 1.6.6
 ----------------
 

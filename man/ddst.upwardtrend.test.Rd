@@ -30,7 +30,7 @@ set.seed(7)
 x = runif(80)
 y = runif(80) + 0.2
 z = runif(80) + 0.4
-t <- ddst.upwardtrend.test(list(x, y, z))
+t <- ddst.upwardtrend.test(list(x, y, z), tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 
@@ -40,7 +40,7 @@ x1 = rnorm(80)
 x2 = rnorm(80) + 2
 x3 = rnorm(80) + 4
 x4 = rnorm(80) + 3
-t <- ddst.upwardtrend.test(list(x1, x2, x3, x4))
+t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 

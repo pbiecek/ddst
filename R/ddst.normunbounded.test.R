@@ -128,6 +128,12 @@ function(x,
   result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                            ", d.n: ",
                            d.n,
+                           ", r: ",
+                           r,
+                           ", s: ",
+                           s,
+                           ", so: ",
+                           so,
                            sep = "")
   class(result) = c("htest", "ddst.test", "ddst.unbounded.test")
   return(result)

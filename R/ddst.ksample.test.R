@@ -59,6 +59,8 @@
                   coordinates = coord$B,
                   method = "Data Driven k-Sample Test")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                             ", c: ",
+                             c,
                              ", Dmax: ",
                              d_N,
                              sep = "")

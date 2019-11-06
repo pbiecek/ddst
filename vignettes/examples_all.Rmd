@@ -2,7 +2,10 @@
 title: "Examples for ddst package"
 author: "Przemyslaw Biecek"
 date: "July 26, 2019"
-output: rmarkdown::html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
 vignette: >
   %\VignetteIndexEntry{Examples for ddst package}
   %\VignetteEngine{knitr::rmarkdown}
@@ -30,41 +33,40 @@ library("polynom")
 ## 1. Data Driven Smooth Test for Uniformity
 
 ```{r}
-z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
-       4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-ddst.uniform.test(z, compute.p = TRUE)
-
-# when H0 is true
+set.seed(7)
+# H0 is true
 z <- runif(80)
-ddst.uniform.test(z, compute.p = TRUE)
+t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
+t
+plot(t)
 
-# for known fixed alternative, here N(10,16)
-z <- pnorm(z, 10, 16)
-ddst.uniform.test(z, compute.p = TRUE)
 
-# when H0 is false
+# H0 is false
 z <- rbeta(80,4,2)
-ddst.uniform.test(z, compute.p = TRUE)
-
-# just p-value
-ddst.uniform.test(z, compute.p = TRUE)$p.value
+t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
+t
+t$p.value
+plot(t)
 ```
+
 ## 2. Data Driven Smooth Test for Exponentiality
 
 ```{r}
-# for given vector of 19 numbers
-z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
-       4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-ddst.exp.test(z, compute.p = TRUE)
+set.seed(7)
+# H0 is true
+z <- rexp(80,4)
+t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+t
+plot(t)
 
-# when H0 is true
-z <- rexp(80, 4)
-ddst.exp.test(z, compute.p = TRUE)
 
-# when H0 is false
-z <- rchisq(80, 4)
-ddst.exp.test(z, compute.p = TRUE)
 
+# H0 is false
+z = rchisq(80,4)
+t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+t
+t$p.value
+plot(t)
 ```
 
 ## 3. Data Driven Smooth Tests for Normality
@@ -73,42 +75,120 @@ ddst.exp.test(z, compute.p = TRUE)
 ### 3.1. The case of bounded basis functions
 
 ```{r}
-# for given vector of 19 numbers
-z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
-      4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-ddst.normbounded.test(z, compute.p = TRUE)
+set.seed(7)
+# H0 is true
+z <- rnorm(100)
+# let's look on first 20 coordinates
+d.n <- 10
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+t
+plot(t)
 
-# when H0 is true
-z <- rnorm(80)
-ddst.normbounded.test(z, compute.p = TRUE)
+# H0 is false
+z <- rexp(100, 1)
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+t
+plot(t)
 
-# when H0 is false
-z = rexp(80, 4)
-ddst.normbounded.test(z, B = 5000, compute.p = TRUE)
-
+# for Tephra data
+z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
+     -1.761521, -1.72522, -1.80371, -1.745624, -1.872957, -1.729121,
+     -1.81529, -1.888637, -1.887761, -1.881645, -1.91518, -1.849769,
+     -1.755141, -1.665687, -1.764721, -1.736171, -1.736956, -1.737742,
+     -1.687537, -1.804534, -1.790593, -1.808661, -1.784081, -1.729903,
+     -1.711263, -1.748789, -1.772755, -1.72756, -1.71358, -1.821116,
+     -1.839588, -1.839588, -1.830321, -1.807835, -1.747206, -1.788147,
+     -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
+     -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
+     -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+t
+plot(t)
 ```
 
 ### 3.2. The case of unbounded basis functions
 
+
+```{r}
+set.seed(7)
+# H0 is true
+z <- rnorm(100)
+# let's look on first 20 coordinates
+d.n <- 20
+
+# calculate finite sample corrections
+# see 6.2. Composite null hypothesis H in the appendix materials
+e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v
+
+
+# simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
+# see Table 1 in the JSCS article
+s <- 4.4
+so <- 4.8
+r <- 2.708
+
+t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t
+plot(t)
+
+# H0 is false, same lenght n = 100
+z <- rexp(100, 1)
+
+t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t
+plot(t)
+
+
+# for Tephra data
+z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
+       -1.761521, -1.72522, -1.80371, -1.745624, -1.872957, -1.729121,
+       -1.81529, -1.888637, -1.887761, -1.881645, -1.91518, -1.849769,
+       -1.755141, -1.665687, -1.764721, -1.736171, -1.736956, -1.737742,
+       -1.687537, -1.804534, -1.790593, -1.808661, -1.784081, -1.729903,
+       -1.711263, -1.748789, -1.772755, -1.72756, -1.71358, -1.821116,
+       -1.839588, -1.839588, -1.830321, -1.807835, -1.747206, -1.788147,
+       -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
+       -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
+       -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
+
+# calculate finite sample corrections
+e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v
+
+# simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
+# see Table 1 in the JSCS article
+s <- 3.3
+so <- 3.6
+r <- 2.142
+
+t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t
+
+plot(t)
+```
 
 
 ## 4. Data Driven Smooth Test for Extreme Value Distribution
 
 
 ```{r}
-# for given vector of 19 numbers
-z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
-      4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-ddst.extr.test(z, compute.p = TRUE)
-
 library(evd)
-z <- -qgumbel(runif(100), -1, 1)
-ddst.extr.test(z, compute.p = TRUE)
+set.seed(7)
 
-# when H0 is false
-z <- rexp(80, 4)
-ddst.extr.test(z, compute.p = TRUE)
 
+# H0 is true
+x <- -qgumbel(runif(100), -1, 1)
+t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+t
+plot(t)
+
+
+# H0 is false
+x <- rexp(80,4)
+t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+t
+plot(t)
 ```
 
 # III. Nonparametric Data Driven Smooth Tests for Comparing Distributions
@@ -117,47 +197,52 @@ ddst.extr.test(z, compute.p = TRUE)
 ## 5. Data Driven Smooth Test for k-Sample Problem
 
 ```{r}
-# H0 is true
-x = runif(80)
-y = runif(80)
-z = runif(80)
+set.seed(7)
+# H0 is false
+x <- runif(80)
+y <- rexp(80, 1)
+z <- runif(80)
 t <- ddst.ksample.test(x, y, z)
 t
 plot(t)
 
-# known fixed alternative
-x = runif(80)
-y = rbeta(80,4,2)
-w = rnorm(30)
-z = rexp(10, 1)
-t <- ddst.ksample.test(x, y, w, z)
+# H0 is true
+x <- rnorm(80)
+y <- rnorm(80)
+z <- rnorm(80)
+t <- ddst.ksample.test(x, y, z)
+# equivalently
+t <- ddst.ksample.test(list(x, y, z))
 t
 plot(t)
 ```
 
-## 6. Data Driven Smooth Test for Stochastic Dominance in Two Samples
+## 6. Data Driven Test for Stochastic Ordering
 
 ```{r}
-set.seed(13)
+set.seed(7)
 library("rmutil", warn.conflicts = FALSE)
+# H0 is false
 # 1. Pareto(1)/Pareto(1.5)
 x <- rpareto(50, 2, 2)
 y <- rpareto(50, 1.5, 1.5)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 
+# H0 is false
 # 2. Laplace(0,1)/Laplace(1,25)
 x <- rlaplace(50, 0, 1)
 y <- rlaplace(50, 1, 25)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 
+# H0 is true
 # 3. LN(0.85,0.6)/LN(1.2,0.2)
 x <- rlnorm(50, 0.85, 0.6)
 y <- rlnorm(50, 1.2, 0.2)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 ```
@@ -165,17 +250,18 @@ plot(t)
 ## 7. Two-Sample Test Against Stochastic Dominance
 
 ```{r, warning=FALSE, message=FALSE}
+set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
-t <- ddst.againststochdom.test(x, y)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
 t
 plot(t)
 
-# known fixed alternative
+# H0 is false
 x <- runif(80)
-y <- rbeta(80,4,2)
-t <- ddst.againststochdom.test(x, y)
+y <- rbeta(80, 4, 2)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
 t
 plot(t)
 ```
@@ -183,20 +269,22 @@ plot(t)
 ## 8. Data Driven Smooth Test for Upward Trend Alternative in k samples
 
 ```{r}
+set.seed(7)
 # H0 is true
 x = runif(80)
 y = runif(80) + 0.2
 z = runif(80) + 0.4
-t <- ddst.upwardtrend.test(list(x, y, z))
+t <- ddst.upwardtrend.test(list(x, y, z), tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 
-# known fixed alternative
+
+# H0 is false
 x1 = rnorm(80)
 x2 = rnorm(80) + 2
 x3 = rnorm(80) + 4
 x4 = rnorm(80) + 3
-t <- ddst.upwardtrend.test(list(x1, x2, x3, x4))
+t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 ```
@@ -204,24 +292,55 @@ plot(t)
 ## 9. Data Driven Smooth Test for Umbrella Alternatives in k samples
 
 ```{r}
+set.seed(7)
 # H0 is true
 x = runif(80)
-y = runif(80)
+y = runif(80) + 0.2
 z = runif(80)
-t <- ddst.umbrella.test(x, y, z)
+t <- ddst.umbrella.test(x, y, z, p = 2, tlh.p = 2.2, tl.n = 2.2)
+# alternatively
+t <- ddst.umbrella.test(list(x, y, z), p = 2, tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 
-# known fixed alternative
-x = runif(80)
-y = rbeta(80,4,2)
-w = rnorm(30)
-z = rexp(10, 1)
-t <- ddst.umbrella.test(x, y, w, z)
+
+# H0 is true
+x1 = rnorm(80)
+x2 = rnorm(80) + 2
+x3 = rnorm(80) + 4
+x4 = rnorm(80) + 3
+x5 = rnorm(80) + 2
+x6 = rnorm(80) + 1
+x7 = rnorm(80)
+t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 3, tlh.p = 2.2, tl.n = 2.2)
+t
+plot(t)
+
+
+t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 5, tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 ```
 
-## 10. Data Driven Smooth Test for Change-Point Problem
+### Unknown peak
+
+```{r}
+# true umbrella pattern
+x1 = rnorm(80)
+x2 = rnorm(80) + 2
+x3 = rnorm(80) + 4
+x4 = rnorm(80) + 3
+x5 = rnorm(80) + 2
+x6 = rnorm(80) + 1
+x7 = rnorm(80)
+
+##  peak is unknown, so we test for each possible position
+statistics <- sapply(1:7, function(i)
+ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = i)$statistic)
+
+statistics
+max(statistics)
+```
+
 
 

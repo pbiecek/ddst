@@ -20,7 +20,7 @@ or \code{ddst.base.cos} for cosine system, see package description}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value}
 
-\item{Dmax}{an integer specifying the maximum number of coordinates, only for advanced users}
+\item{Dmax}{an integer specifying the maximum number of coordinates, only for advanced users (should be smaller than 20).}
 
 \item{...}{further arguments}
 }
@@ -41,22 +41,17 @@ We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Le
 }
 \examples{
 set.seed(7)
-# for given vector of 19 numbers
-z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
-    4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
-t
-plot(t)
-
 # H0 is true
-z <- rnorm(80)
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
+z <- rnorm(100)
+# let's look on first 10 coordinates
+d.n <- 10
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
 t
 plot(t)
 
 # H0 is false
-z <- rexp(80,4)
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
+z <- rexp(100, 1)
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
 t
 plot(t)
 
@@ -71,7 +66,7 @@ z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
       -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
       -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
       -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = 10)
+t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
 t
 plot(t)
 }

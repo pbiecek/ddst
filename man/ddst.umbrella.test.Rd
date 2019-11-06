@@ -33,7 +33,7 @@ x = runif(80)
 y = runif(80) + 0.2
 z = runif(80)
 ddst.umbrella.test(x, y, z, p = 2)
-t <- ddst.umbrella.test(list(x, y, z), p = 2)
+t <- ddst.umbrella.test(list(x, y, z), p = 2, tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 
@@ -45,11 +45,11 @@ x4 = rnorm(80) + 3
 x5 = rnorm(80) + 2
 x6 = rnorm(80) + 1
 x7 = rnorm(80)
-t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 3)
+t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 3, tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 
-t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 5)
+t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 5, tlh.p = 2.2, tl.n = 2.2)
 t
 plot(t)
 

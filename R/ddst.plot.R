@@ -32,7 +32,7 @@
       df <- data.frame(val, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() +
-        xlab("j") + ylab("")
+        xlab("j") + ylab("") + ylab("score")
     } else {
       # coordinates is a matrix
       val <- c(coordinates)
@@ -45,7 +45,7 @@
       df <- data.frame(val, vec, pos)
       pl <- ggplot(df, aes(factor(pos), val)) +
         geom_col() + facet_grid(vec~.) +
-        xlab("j") + ylab("")
+        xlab("j") + ylab("score")
     }
     pl +
       theme_bw() +

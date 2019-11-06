@@ -33,7 +33,7 @@ library("rmutil", warn.conflicts = FALSE)
 # H0 is false
 x <- rpareto(50, 2, 2)
 y <- rpareto(50, 1.5, 1.5)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 
@@ -41,7 +41,7 @@ plot(t)
 # H0 is false
 x <- rlaplace(50, 0, 1)
 y <- rlaplace(50, 1, 25)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 
@@ -49,7 +49,7 @@ plot(t)
 # H0 is true
 x <- rlnorm(50, 0.85, 0.6)
 y <- rlnorm(50, 1.2, 0.2)
-t <- ddst.forstochdom.test(x, y)
+t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
 t
 plot(t)
 

@@ -1,7 +1,7 @@
 `ddst.norm.Nk` <-
   function(x,
            base = ddst.base.legendre,
-           Dmax = 5,
+           Dmax = 10,
            n = length(x)) {
     er1 = mean(x)
     sx  = sort(x)

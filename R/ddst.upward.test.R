@@ -21,7 +21,7 @@
 #' x = runif(80)
 #' y = runif(80) + 0.2
 #' z = runif(80) + 0.4
-#' t <- ddst.upwardtrend.test(list(x, y, z))
+#' t <- ddst.upwardtrend.test(list(x, y, z), tlh.p = 2.2, tl.n = 2.2)
 #' t
 #' plot(t)
 #'
@@ -31,7 +31,7 @@
 #' x2 = rnorm(80) + 2
 #' x3 = rnorm(80) + 4
 #' x4 = rnorm(80) + 3
-#' t <- ddst.upwardtrend.test(list(x1, x2, x3, x4))
+#' t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), tlh.p = 2.2, tl.n = 2.2)
 #' t
 #' plot(t)
 #'
@@ -74,6 +74,12 @@
                   parameter = t,
                   coordinates = scoresflat,
                   method = "Data Driven k-Sample Upward Trend Test")
+    result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
+                             ", tlh.p: ",
+                             tlh.p,
+                             ", tl.n: ",
+                             tl.n,
+                             sep = "")
     class(result) = c("htest", "ddst.test", "ddst.upward.test")
 
     result
