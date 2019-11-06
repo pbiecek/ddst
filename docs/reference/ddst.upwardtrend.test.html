@@ -75,7 +75,7 @@ This test is implemented as a special case of an umbrella test." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ddst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.7</span>
       </span>
     </div>
 
@@ -169,11 +169,11 @@ This test is implemented as a special case of an umbrella test.</p>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>) + <span class='fl'>0.2</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>) + <span class='fl'>0.4</span>
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>))
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>), <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven k-Sample Upward Trend Test
 #&gt; 
-#&gt; data:  
+#&gt; data:  listxyz, tlh.p: 2.2, tl.n: 2.2
 #&gt; U.T = 1105, p = 3
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.upwardtrend.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
@@ -182,11 +182,11 @@ This test is implemented as a special case of an umbrella test.</p>
 <span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>2</span>
 <span class='no'>x3</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>4</span>
 <span class='no'>x4</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>3</span>
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>))
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.upwardtrend.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>), <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven k-Sample Upward Trend Test
 #&gt; 
-#&gt; data:  
+#&gt; data:  listx1x2x3x4, tlh.p: 2.2, tl.n: 2.2
 #&gt; U.T = -3401.6, p = 4
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.upwardtrend.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
