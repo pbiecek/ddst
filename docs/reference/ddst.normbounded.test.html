@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Smooth Test for Normality - Bounded Basis Functions — ddst.normbounded.test • ddst</title>
+<title>Data Driven Smooth Test for Normality;  Bounded Basis Functions — ddst.normbounded.test • ddst</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Data Driven Smooth Test for Normality - Bounded Basis Functions — ddst.normbounded.test" />
+<meta property="og:title" content="Data Driven Smooth Test for Normality;  Bounded Basis Functions — ddst.normbounded.test" />
 <meta property="og:description" content="Performs data driven smooth test for composite hypothesis of normality
 Null density is given by
 \(
@@ -73,7 +73,7 @@ We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Le
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ddst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.8</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@ We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Le
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Smooth Test for Normality - Bounded Basis Functions</h1>
+    <h1>Data Driven Smooth Test for Normality;  Bounded Basis Functions</h1>
     
     <div class="hidden name"><code>ddst.normbounded.test.Rd</code></div>
     </div>
@@ -132,8 +132,17 @@ Null density is given by
 We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.normbounded.test</span>(<span class='no'>x</span>, <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.normbounded.test</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>,
+  <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+  <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,24 +153,31 @@ We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Le
     </tr>
     <tr>
       <th>base</th>
-      <td><p>a function which returns orthogonal system, might be <code>ddst.base.legendre</code> for Legendre polynomials
-or <code>ddst.base.cos</code> for cosine system, see package description</p></td>
+      <td><p>a function which returns an orthonormal system, possible choice: <code>ddst.base.legendre</code> for the Legendre polynomials and <code>ddst.base.cos</code> for the cosine system</p></td>
+    </tr>
+    <tr>
+      <th>d.n</th>
+      <td><p>an integer specifying the maximum dimension considered, only for advanced users</p></td>
     </tr>
     <tr>
       <th>c</th>
-      <td><p>a parameter for model selection rule, see package description</p></td>
+      <td><p>a calibrating parameter in the penalty in the model selection rule</p></td>
     </tr>
     <tr>
       <th>B</th>
-      <td><p>an integer specifying the number of replicates used in p-value computation</p></td>
+      <td><p>an integer specifying the number of runs for a p-value and a critical value computation if any</p></td>
     </tr>
     <tr>
       <th>compute.p</th>
-      <td><p>a logical value indicating whether to compute a p-value</p></td>
+      <td><p>a logical value indicating whether to compute a p-value or not</p></td>
     </tr>
     <tr>
-      <th>Dmax</th>
-      <td><p>an integer specifying the maximum number of coordinates, only for advanced users (should be smaller than 20).</p></td>
+      <th>alpha</th>
+      <td><p>a significance level</p></td>
+    </tr>
+    <tr>
+      <th>compute.cv</th>
+      <td><p>a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -192,20 +208,20 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>100</span>)
 <span class='co'># let's look on first 10 coordinates</span>
 <span class='no'>d.n</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
-#&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
+#&gt; data:  z, base: ddst.base.legendre, c: 100, d.n: 10
 #&gt; W*T* = 2.2232, T* = 1, p-value = 0.1581
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>100</span>, <span class='fl'>1</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
-#&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
+#&gt; data:  z, base: ddst.base.legendre, c: 100, d.n: 10
 #&gt; W*T* = 299.45, T* = 10, p-value &lt; 2.2e-16
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
@@ -219,11 +235,11 @@ or <code>ddst.base.cos</code> for cosine system, see package description</p></td
       -<span class='fl'>1.759923</span>, -<span class='fl'>1.786519</span>, -<span class='fl'>1.726779</span>, -<span class='fl'>1.738528</span>, -<span class='fl'>1.754345</span>, -<span class='fl'>1.781646</span>,
       -<span class='fl'>1.641949</span>, -<span class='fl'>1.755936</span>, -<span class='fl'>1.775175</span>, -<span class='fl'>1.736956</span>, -<span class='fl'>1.705103</span>, -<span class='fl'>1.743255</span>,
       -<span class='fl'>1.82613</span>, -<span class='fl'>1.826967</span>, -<span class='fl'>1.780025</span>, -<span class='fl'>1.684504</span>, -<span class='fl'>1.751168</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Dmax</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.normbounded.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='no'>d.n</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Normality - Bounded Basis Functions
 #&gt; 
-#&gt; data:  z, base: ddst.base.legendre, c: 100, Dmax: 10
+#&gt; data:  z, base: ddst.base.legendre, c: 100, d.n: 10
 #&gt; W*T* = 3.7615, T* = 1, p-value = 0.08891
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normbounded.test-3.png' alt='' width='700' height='433' /></div></pre>
   </div>

@@ -19,6 +19,6 @@ Plots coordinates for selected test statistics
 x <- runif(80)
 y <- runif(80)
 z <- runif(80)
-t <- ddst.ksample.test(x, y, z)
+t <- ddst.ksample.test(list(x, y, z))
 plot(t)
 }

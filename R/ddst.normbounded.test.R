@@ -1,4 +1,4 @@
-#' Data Driven Smooth Test for Normality - Bounded Basis Functions
+#' Data Driven Smooth Test for Normality;  Bounded Basis Functions
 #'
 #' Performs data driven smooth test for composite hypothesis of normality
 #' Null density is given by
@@ -7,12 +7,13 @@
 #' We model alternatives similarly as in Kallenberg and Ledwina (1997 a,b) using Legendre's polynomials or cosine basis.
 #'
 #' @param x a (non-empty) numeric vector of data values
-#' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials
-#' or \code{ddst.base.cos} for cosine system, see package description
-#' @param c a parameter for model selection rule, see package description
-#' @param B an integer specifying the number of replicates used in p-value computation
-#' @param compute.p a logical value indicating whether to compute a p-value
-#' @param Dmax an integer specifying the maximum number of coordinates, only for advanced users (should be smaller than 20).
+#' @param base a function which returns an orthonormal system, possible choice: \code{ddst.base.legendre} for the Legendre polynomials and \code{ddst.base.cos} for the cosine system
+#' @param d.n an integer specifying the maximum dimension considered, only for advanced users
+#' @param c a calibrating parameter in the penalty in the model selection rule
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param compute.p a logical value indicating whether to compute a p-value or not
+#' @param alpha a significance level
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #' @param ... further arguments
 #'
 #' @aliases ddst.norm.Nk
@@ -44,13 +45,13 @@
 #' z <- rnorm(100)
 #' # let's look on first 10 coordinates
 #' d.n <- 10
-#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, d.n = d.n)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' z <- rexp(100, 1)
-#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, d.n = d.n)
 #' t
 #' plot(t)
 #'
@@ -65,19 +66,20 @@
 #'       -1.759923, -1.786519, -1.726779, -1.738528, -1.754345, -1.781646,
 #'       -1.641949, -1.755936, -1.775175, -1.736956, -1.705103, -1.743255,
 #'       -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
-#' t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+#' t <- ddst.normbounded.test(z, compute.p = TRUE, d.n = d.n)
 #' t
 #' plot(t)
 `ddst.normbounded.test` <-
   function(x,
            base = ddst.base.legendre,
+           d.n = 10,
            c = 100,
-           B = 1000,
+           B = 10000,
            compute.p = FALSE,
-           Dmax = 10,
+           alpha = 0.05,
+           compute.cv = FALSE,
            ...) {
     # method.name = as.character(substitute(base))
-    # only Legendre is implemented yet
     base = ddst.base.legendre
     method.name = "ddst.base.legendre"
 
@@ -91,13 +93,13 @@
     pp   = (x - er1) / er2
     tmpp = c(mean(pp), (mean(pp ^ 2) - 1) / 2)
 
-    maxN = max(min(Dmax, length(x) - 2, 20), 1)
+    maxN = max(min(d.n, length(x) - 2, 20), 1)
     u = numeric(maxN)
     for (j in 1:maxN)
       u[j] = ddst.phi(pnorm(x, er1, er2), j, base)
 
-    coord = numeric(Dmax)
-    for (k in 1:Dmax) {
+    coord = numeric(d.n)
+    for (k in 1:d.n) {
       corrected_u = u[1:k] - t(MMnorm12[[k]]) %*% tmpp
       coord[k] = t(corrected_u) %*% MMnorm[[k]] %*% corrected_u * n
     }
@@ -108,15 +110,15 @@
     attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
-                  coordinates = coord - c(0, coord[-Dmax]),
+                  coordinates = coord - c(0, coord[-d.n]),
                   method = "Data Driven Smooth Test for Normality - Bounded Basis Functions")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ", base: ",
                              method.name,
                              ", c: ",
                              c,
-                             ", Dmax: ",
-                             Dmax,
+                             ", d.n: ",
+                             d.n,
                              sep = "")
     class(result) = c("htest", "ddst.test")
     if (compute.p) {
@@ -135,14 +137,7 @@
         tabNorm[n1, t1] + del2 * diff(tabNorm[c(n1, n2), t1]) + del1 * diff(tabNorm[n1, c(t1, t2)])
 
       p.val = 10 ^ (-tmpwt * (t ^ 0.71 * log(n)))
-      # tmp = numeric(B)
-      # for (i in 1:B) {
-      # y = rnorm(n)
-      # tmpC = ddst.norm.Nk(y, base, Dmax = Dmax, n=length(y))
-      # l = ddst.IIC(tmpC, n, c)
-      # tmp[i] = tmpC[l]
-      # }
-      # p.val = mean(tmp > t)
+
       result$p.value = p.val
     }
     result
@@ -3630,3 +3625,30 @@
     w <- 6.40312423743286 + x * w
     w
   })
+
+
+
+
+
+`ddst.norm.Nk` <-
+  function(x,
+           base = ddst.base.legendre,
+           Dmax = 10,
+           n = length(x)) {
+    er1 = mean(x)
+    sx  = sort(x)
+    H   = qnorm((1:n - 3 / 8) / (n + 1 / 4))
+    er2 = mean((sx[-1] - sx[-n]) / (H[-1] - H[-n]))
+    pp   = (x - er1) / er2
+    tmpp = c(mean(pp), (mean(pp ^ 2) - 1) / 2)
+    maxN = max(min(Dmax, length(x) - 2, 20), 1)
+    u = numeric(maxN)
+    for (j in 1:maxN)
+      u[j] = ddst.phi(pnorm(x, er1, er2), j, base)
+    coord = numeric(Dmax)
+    for (k in 1:Dmax) {
+      korekta = u[1:k] - t(MMnorm12[[k]]) %*% tmpp
+      coord[k] = t(korekta) %*% MMnorm[[k]] %*% korekta * n
+    }
+    coord
+  }

@@ -2,28 +2,45 @@
 % Please edit documentation in R/ddst.normunbounded.test.R
 \name{ddst.normubounded.test}
 \alias{ddst.normubounded.test}
-\title{Data Driven Smooth Test for Normality - Unbounded Basis Functions}
+\alias{ddst.normunbounded.bias}
+\title{Data Driven Smooth Test for Normality; Unbounded Basis Functions}
 \usage{
-ddst.normubounded.test(x, d.n = 20, r, e.0, v.0, s, so)
+ddst.normubounded.test(
+  x,
+  d.n = 20,
+  e.0,
+  v.0,
+  r.alpha,
+  s.n.alpha,
+  alpha = 0.05,
+  B = 10000,
+  compute.cv = FALSE
+)
+
+ddst.normunbounded.bias(n = 100, d.n = 20, B = 10000)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
 
 \item{d.n}{an integer, number of coordinates that measure potential deviation from null hypothesis}
 
-\item{r}{critical value for selection rule (test on the significance level alpha). See equation 8 and Table 1 in the JSCS article.}
+\item{e.0}{a (non-empty) numeric vector being the Monte Carlo estimate of the mean of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}}
 
-\item{e.0}{bias for finite sample size, calculated with \code{ddst.normunbounded.calculate.e.v}}
+\item{v.0}{a (non-empty) numeric vector being the Monte Carlo estimate of the variance of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}}
 
-\item{v.0}{variance for finite sample size, calculated with \code{ddst.normunbounded.calculate.e.v}}
+\item{r.alpha}{a critical value of the alpha level R.n test}
 
-\item{s}{see section 4. Finite sample corrections, test statistics and simulation results in the JSCS paper}
+\item{s.n.alpha}{a penalty in the auxiliary model selection rule}
 
-\item{so}{see section 4. Finite sample corrections, test statistics and simulation results in the JSCS paper}
+\item{alpha}{a significance level}
 
-\item{n}{length of \code{x}, sample size}
+\item{B}{an integer specifying the number of runs for a critical value computation}
 
-\item{nr}{number of MCMC replications for finite sample size corrections}
+\item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
+
+\item{n}{number of observations}
+
+\item{...}{further arguments}
 }
 \description{
 Performs data driven smooth test for composite hypothesis of normality.
@@ -40,16 +57,15 @@ d.n <- 20
 
 # calculate finite sample corrections
 # see 6.2. Composite null hypothesis H in the appendix materials
-e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v <- ddst.normunbounded.bias(n = length(z))
 e.v
 
 # simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
 # see Table 1 in the JSCS article
 s <- 4.4
-so <- 4.8
-r <- 2.708
+r.alpha <- 2.708
 
-t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 t
 plot(t)
 
@@ -66,17 +82,16 @@ z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
        -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
 
 # calculate finite sample corrections
-e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v <- ddst.normunbounded.bias(n = length(z))
 e.v
 
 s <- 3.3
 so <- 3.6
-r <- 2.142
+r.alpha <- 2.142
 
-t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 t
 plot(t)
-
 }
 \references{
 Ledwina, T., Wyłupek, G. (2015) Detection of non-Gaussianity by Ledwina and Wyłupek \emph{Journal of Statistical Computation and Simulation} 17, 3480-3497.

@@ -5,11 +5,13 @@
 #' Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
 #'
 #' @param x a (non-empty) numeric vector of data values
-#' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or \code{ddst.base.cos} for cosine system, see package description
-#' @param c a parameter for model selection rule, see package description
-#' @param B an integer specifying the number of replicates used in p-value computation
-#' @param compute.p a logical value indicating whether to compute a p-value
-#' @param Dmax an integer specifying the maximum number of coordinates, only for advanced users
+#' @param base a function which returns an orthonormal system, possible choice: \code{ddst.base.legendre} for the Legendre polynomials and \code{ddst.base.cos} for the cosine system
+#' @param d.n an integer specifying the maximum dimension considered, only for advanced users
+#' @param c a calibrating parameter in the penalty in the model selection rule
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param compute.p a logical value indicating whether to compute a p-value or not
+#' @param alpha a significance level
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #' @param ... further arguments
 #'
 #' @return   An object of class \code{htest}
@@ -30,13 +32,13 @@
 #' set.seed(7)
 #' # H0 is true
 #' z <- rexp(80,4)
-#' t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+#' t <- ddst.exp.test (z, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' z = rchisq(80,4)
-#' (t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10))
+#' (t = ddst.exp.test (z, compute.p = TRUE, d.n = 10))
 #' t$p.value
 #' plot(t)
 #'
@@ -46,13 +48,14 @@
 `ddst.exp.test` <-
   function(x,
            base = ddst.base.legendre,
+           d.n = 10,
            c = 100,
-           B = 1000,
+           B = 10000,
            compute.p = FALSE,
-           Dmax = 5,
+           alpha = 0.05,
+           compute.cv = FALSE,
            ...) {
     # method.name = as.character(substitute(base))
-    # only Legendre is implemented yet
     base = ddst.base.legendre
     method.name = "ddst.base.legendre"
 
@@ -62,7 +65,7 @@
       stop("length(x) should be at least 5")
 
     er = mean(x)
-    maxN = max(min(Dmax, n - 2, 20), 1)
+    maxN = max(min(d.n, n - 2, 20), 1)
     coord = numeric(maxN)
     u = numeric(maxN)
     for (j in 1:maxN) {
@@ -76,27 +79,32 @@
     attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
-                  coordinates = coord - c(0, coord[-Dmax]),
+                  coordinates = coord - c(0, coord[-d.n]),
                   method = "Data Driven Smooth Test for Expotentiality")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ", base: ",
                              method.name,
                              ", c: ",
                              c,
-                             ", Dmax: ",
-                             Dmax,
+                             ", d.n: ",
+                             d.n,
                              sep = "")
     class(result) = c("htest", "ddst.test")
-    if (compute.p) {
+    if (compute.p | compute.cv) {
       tmp = numeric(B)
       for (i in 1:B) {
         y = rexp(length(x))
-        tmpC = ddst.exp.Nk(y, base, Dmax = Dmax, n = length(y))
+        tmpC = ddst.exp.Nk(y, base, Dmax = d.n, n = length(y))
         l = ddst.IIC(tmpC, n, c)
         tmp[i] = tmpC[l]
       }
       p.val = mean(tmp > t)
-      result$p.value = p.val
+      if (compute.p) {
+        result$p.value = mean(tmp > t)
+      }
+      if (compute.cv) {
+        result$cv = quantile(tmp, alpha)
+      }
     }
     result
   }
@@ -2706,3 +2714,24 @@
       .Dim = c(20L, 20L)
     )
   )
+
+
+
+
+`ddst.exp.Nk` <-
+  function(x,
+           base = ddst.base.legendre,
+           Dmax = 5,
+           n = length(x)) {
+    er = mean(x)
+    maxN = max(min(Dmax, n - 2, 20), 1)
+    coord = numeric(maxN)
+    u = numeric(maxN)
+    for (j in 1:maxN) {
+      u[j] = ddst.phi(pexp(x, 1 / er), j, base)
+      coord[j] = t(u[1:j]) %*% MMexp[[j]] %*% u[1:j] * n
+    }
+    coord
+  }
+
+

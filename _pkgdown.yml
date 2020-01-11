@@ -1,20 +1,20 @@
 reference:
-  - title: Goodness-of-fit tests
-    desc: Data driven smooth tests for selected goodness-of-fit problems
+  - title: Goodness-of-Fit Tests
+    desc: Data Driven Smooth Tests for Selected Goodness-of-Fit Problems
     contents:
     - ddst.uniform.test
     - ddst.exp.test
     - ddst.normbounded.test
     - ddst.normubounded.test
-    - ddst.extr.test
-  - title: Nonparametric tests
-    desc: Nonparametric data driven smooth tests for comparing distributions
+    - ddst.evd.test
+  - title: Nonparametric Tests
+    desc: Nonparametric Data Driven Smooth Tests for Comparing Distributions
     contents:
     - ddst.ksample.test
     - ddst.twosample.test
     - ddst.forstochdom.test
     - ddst.againststochdom.test
-    - ddst.umbrella.test
+    - ddst.umbrellaknownp.test
     - ddst.upwardtrend.test
   - title: Other
     contents:

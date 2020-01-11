@@ -25,7 +25,7 @@ library("ddst")
 library("polynom")
 ```
 
-# II. Data driven smooth tests for selected goodness-of-fit problems
+# II. Data Driven Smooth Tests for Selected Goodness-of-Fit Problems
 
 ```{r}
 ```
@@ -36,14 +36,16 @@ library("polynom")
 set.seed(7)
 # H0 is true
 z <- runif(80)
-t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
+t <- ddst.uniform.test(z, compute.p = TRUE, 
+                       compute.cv = TRUE, 
+                       d.n = 10)
 t
 plot(t)
 
 
 # H0 is false
 z <- rbeta(80,4,2)
-t <- ddst.uniform.test(z, compute.p = TRUE, Dmax = 10)
+t <- ddst.uniform.test(z, compute.p = TRUE,compute.cv = TRUE,  d.n = 10)
 t
 t$p.value
 plot(t)
@@ -55,15 +57,14 @@ plot(t)
 set.seed(7)
 # H0 is true
 z <- rexp(80,4)
-t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+t <- ddst.exp.test(z, compute.p = TRUE, d.n = 10)
 t
 plot(t)
 
 
-
 # H0 is false
 z = rchisq(80,4)
-t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+t = ddst.exp.test (z, compute.p = TRUE, d.n = 10)
 t
 t$p.value
 plot(t)
@@ -72,21 +73,21 @@ plot(t)
 ## 3. Data Driven Smooth Tests for Normality
 
 
-### 3.1. The case of bounded basis functions
+### 3.1. Bounded Basis Functions
 
 ```{r}
 set.seed(7)
 # H0 is true
 z <- rnorm(100)
-# let's look on first 20 coordinates
+# let's look on first 10 coordinates
 d.n <- 10
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+t <- ddst.normbounded.test(z, compute.p = TRUE, d.n = d.n)
 t
 plot(t)
 
 # H0 is false
 z <- rexp(100, 1)
-t <- ddst.normbounded.test(z, compute.p = TRUE, Dmax = d.n)
+t <- ddst.normbounded.test(z, compute.p = TRUE, d.n = d.n)
 t
 plot(t)
 
@@ -106,36 +107,35 @@ t
 plot(t)
 ```
 
-### 3.2. The case of unbounded basis functions
+### 3.2. Unbounded Basis Functions
 
 
 ```{r}
 set.seed(7)
 # H0 is true
 z <- rnorm(100)
-# let's look on first 20 coordinates
-d.n <- 20
+# let's look on first 10 coordinates
+d.n <- 10
 
 # calculate finite sample corrections
 # see 6.2. Composite null hypothesis H in the appendix materials
-e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v <- ddst.normunbounded.bias(n = length(z), d.n = d.n)
 e.v
 
 
-# simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
+# simulated 1-alpha qunatiles, s(n, alpha) 
 # see Table 1 in the JSCS article
-s <- 4.4
-so <- 4.8
-r <- 2.708
+s.n.alpha <- 4.4
+r.alpha <- 2.708
 
-t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s.n.alpha)
 t
 plot(t)
 
 # H0 is false, same lenght n = 100
 z <- rexp(100, 1)
 
-t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s.n.alpha)
 t
 plot(t)
 
@@ -153,16 +153,15 @@ z <- c(-1.748789, -1.75753, -1.740102, -1.740102, -1.731467, -1.765523,
        -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
 
 # calculate finite sample corrections
-e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+e.v <- ddst.normunbounded.bias(n = length(z))
 e.v
 
 # simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
 # see Table 1 in the JSCS article
-s <- 3.3
-so <- 3.6
-r <- 2.142
+s.n.alpha <- 3.3
+r.alpha <- 2.142
 
-t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s.n.alpha)
 t
 
 plot(t)
@@ -179,14 +178,14 @@ set.seed(7)
 
 # H0 is true
 x <- -qgumbel(runif(100), -1, 1)
-t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+t <- ddst.evd.test (x, compute.p = TRUE, d.n = 10)
 t
 plot(t)
 
 
 # H0 is false
 x <- rexp(80,4)
-t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+t <- ddst.evd.test (x, compute.p = TRUE, d.n = 10)
 t
 plot(t)
 ```
@@ -201,8 +200,15 @@ set.seed(7)
 # H0 is false
 x <- runif(80)
 y <- rexp(80, 1)
+t <- ddst.twosample.test(x, y, compute.p = TRUE)
+t
+plot(t)
+
+# H0 is false
+x <- runif(80)
+y <- rexp(80, 1)
 z <- runif(80)
-t <- ddst.ksample.test(x, y, z)
+t <- ddst.ksample.test(list(x, y, z))
 t
 plot(t)
 
@@ -210,8 +216,6 @@ plot(t)
 x <- rnorm(80)
 y <- rnorm(80)
 z <- rnorm(80)
-t <- ddst.ksample.test(x, y, z)
-# equivalently
 t <- ddst.ksample.test(list(x, y, z))
 t
 plot(t)
@@ -226,7 +230,7 @@ library("rmutil", warn.conflicts = FALSE)
 # 1. Pareto(1)/Pareto(1.5)
 x <- rpareto(50, 2, 2)
 y <- rpareto(50, 1.5, 1.5)
-t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 t
 plot(t)
 
@@ -234,7 +238,7 @@ plot(t)
 # 2. Laplace(0,1)/Laplace(1,25)
 x <- rlaplace(50, 0, 1)
 y <- rlaplace(50, 1, 25)
-t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 t
 plot(t)
 
@@ -242,7 +246,7 @@ plot(t)
 # 3. LN(0.85,0.6)/LN(1.2,0.2)
 x <- rlnorm(50, 0.85, 0.6)
 y <- rlnorm(50, 1.2, 0.2)
-t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 t
 plot(t)
 ```
@@ -254,14 +258,14 @@ set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
 t
 plot(t)
 
 # H0 is false
 x <- runif(80)
 y <- rbeta(80, 4, 2)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, d = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
 t
 plot(t)
 ```
@@ -274,7 +278,7 @@ set.seed(7)
 x = runif(80)
 y = runif(80) + 0.2
 z = runif(80) + 0.4
-t <- ddst.upwardtrend.test(list(x, y, z), tlh.p = 2.2, tl.n = 2.2)
+t <- ddst.upwardtrend.test(list(x, y, z), t.p = 2.2, t.n = 2.2)
 t
 plot(t)
 
@@ -284,7 +288,7 @@ x1 = rnorm(80)
 x2 = rnorm(80) + 2
 x3 = rnorm(80) + 4
 x4 = rnorm(80) + 3
-t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), tlh.p = 2.2, tl.n = 2.2)
+t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), t.p = 2.2, t.n = 2.2)
 t
 plot(t)
 ```
@@ -297,9 +301,7 @@ set.seed(7)
 x = runif(80)
 y = runif(80) + 0.2
 z = runif(80)
-t <- ddst.umbrella.test(x, y, z, p = 2, tlh.p = 2.2, tl.n = 2.2)
-# alternatively
-t <- ddst.umbrella.test(list(x, y, z), p = 2, tlh.p = 2.2, tl.n = 2.2)
+t <- ddst.umbrellaknownp.test(list(x, y, z), p = 2, t.p = 2.2, t.n = 2.2)
 t
 plot(t)
 
@@ -312,12 +314,12 @@ x4 = rnorm(80) + 3
 x5 = rnorm(80) + 2
 x6 = rnorm(80) + 1
 x7 = rnorm(80)
-t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 3, tlh.p = 2.2, tl.n = 2.2)
+t <- ddst.umbrellaknownp.test(list(x1, x2, x3, x4, x5, x6, x7), p = 3, t.p = 2.2, t.n = 2.2)
 t
 plot(t)
 
 
-t <- ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = 5, tlh.p = 2.2, tl.n = 2.2)
+t <- ddst.umbrellaknownp.test(list(x1, x2, x3, x4, x5, x6, x7), p = 5, t.p = 2.2, t.n = 2.2)
 t
 plot(t)
 ```
@@ -336,7 +338,7 @@ x7 = rnorm(80)
 
 ##  peak is unknown, so we test for each possible position
 statistics <- sapply(1:7, function(i)
-ddst.umbrella.test(list(x1, x2, x3, x4, x5, x6, x7), p = i)$statistic)
+ddst.umbrellaknownp.test(list(x1, x2, x3, x4, x5, x6, x7), p = i, t.p = 2.2, t.n = 2.2)$statistic)
 
 statistics
 max(statistics)

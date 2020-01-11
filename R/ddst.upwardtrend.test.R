@@ -1,4 +1,4 @@
-#' Data Driven Test for Upward Trend
+#' Data Driven Smooth Test for Upward Trend Alternatives
 #'
 #' Performs data driven smooth test for upward trend in k-sample problem.
 #' Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
@@ -8,10 +8,14 @@
 #' i.e. F_1 >= ... >= F_k and F_i != F_j for some i and j.
 #' This test is implemented as a special case of an umbrella test.
 #'
-#' @param x a list with k-vectors or a single vector.
-#' @param ... if x is a single vector, then remaing k-1 vectors are provided in the ... argument
-#' @param tlh.p a positive number, penalty for model selection rule
-#' @param tl.n a positive number, penalty for model selection rule
+#' @param x a list of k (non-empty) numeric vectors of data
+#' @param r.N a (k-1)-dimensional vector specifying the levels of complexity of the grids considered, only for advanced users
+#' @param alpha a significance level
+#' @param t.p an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.o
+#' @param t.n an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.tilde
+#' @param t an alpha-dependent tunning parameter in the penalty in the model selection rule
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
 #' @references An automatic test for the umbrella alternatives. Wylupek (2016) \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231}
 #' @export
@@ -21,7 +25,7 @@
 #' x = runif(80)
 #' y = runif(80) + 0.2
 #' z = runif(80) + 0.4
-#' t <- ddst.upwardtrend.test(list(x, y, z), tlh.p = 2.2, tl.n = 2.2)
+#' t <- ddst.upwardtrend.test(list(x, y, z), t.p = 2.2, t.n = 2.2)
 #' t
 #' plot(t)
 #'
@@ -31,30 +35,32 @@
 #' x2 = rnorm(80) + 2
 #' x3 = rnorm(80) + 4
 #' x4 = rnorm(80) + 3
-#' t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), tlh.p = 2.2, tl.n = 2.2)
+#' t <- ddst.upwardtrend.test(list(x1, x2, x3, x4), t.p = 2.2, t.n = 2.2)
 #' t
 #' plot(t)
 #'
 #' @keywords htest
 `ddst.upwardtrend.test` <-
   function(x,
-           ...,
-           tlh.p = 2.2, tl.n = 2.2) {
-    if (is.list(x)) {
+           r.N  = rep(4, length(x)-1),
+           alpha = 0.05,
+           t.p, t.n,
+           B = 10000, compute.cv = FALSE) {   # tlh.p = 2.2, tl.n = 2.2
+##    if (is.list(x)) {
       # x is list with coordinates
       x.vector <- unlist(x)
       n <- sapply(x, length)
-    } else {
-      # x is a vector, other vectors are in ...
-      x.vector <- unlist(c(x, list(...)))
-      n <- c(length(x),
-             sapply(list(...), length))
-    }
+##    } else {
+##      # x is a vector, other vectors are in ...
+##      x.vector <- unlist(c(x, list(...)))
+##      n <- c(length(x),
+##             sapply(list(...), length))
+##    }
     p = length(n)
 
     # test for trend is implemented as a special case of the umbrella test
     coord = ddst.umbrella.Nk(x.vector, n,
-                             tlh.p = tlh.p, tl.n = tl.n,
+                             tlh.p = t.p, tl.n = t.n,
                              p = p)
 
     scoresflat <- c(coord$score.mat)
@@ -75,10 +81,10 @@
                   coordinates = scoresflat,
                   method = "Data Driven k-Sample Upward Trend Test")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
-                             ", tlh.p: ",
-                             tlh.p,
-                             ", tl.n: ",
-                             tl.n,
+                             ", t.p: ",
+                             t.p,
+                             ", t.n: ",
+                             t.n,
                              sep = "")
     class(result) = c("htest", "ddst.test", "ddst.upward.test")
 

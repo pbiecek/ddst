@@ -1,4 +1,4 @@
-#' Data Driven Smooth Test for Normality - Unbounded Basis Functions
+#' Data Driven Smooth Test for Normality; Unbounded Basis Functions
 #'
 #' Performs data driven smooth test for composite hypothesis of normality.
 #' Null density is given by
@@ -7,13 +7,16 @@
 #'
 #' @param x a (non-empty) numeric vector of data values
 #' @param d.n an integer, number of coordinates that measure potential deviation from null hypothesis
-#' @param n length of \code{x}, sample size
-#' @param nr number of MCMC replications for finite sample size corrections
-#' @param r critical value for selection rule (test on the significance level alpha). See equation 8 and Table 1 in the JSCS article.
-#' @param e.0 bias for finite sample size, calculated with \code{ddst.normunbounded.calculate.e.v}
-#' @param v.0 variance for finite sample size, calculated with \code{ddst.normunbounded.calculate.e.v}
-#' @param s see section 4. Finite sample corrections, test statistics and simulation results in the JSCS paper
-#' @param so see section 4. Finite sample corrections, test statistics and simulation results in the JSCS paper
+#' @param e.0 a (non-empty) numeric vector being the Monte Carlo estimate of the mean of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}
+#' @param v.0 a (non-empty) numeric vector being the Monte Carlo estimate of the variance of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}
+#' @param alpha a significance level
+#' @param r.alpha a critical value of the alpha level R.n test
+#' @param s.n.alpha a penalty in the auxiliary model selection rule
+#' @param B an integer specifying the number of runs for a critical value computation
+#' @param alpha a significance level
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
+#' @param ... further arguments
+#' @param n number of observations
 #'
 #' @export
 #'
@@ -31,16 +34,15 @@
 #'
 #' # calculate finite sample corrections
 #' # see 6.2. Composite null hypothesis H in the appendix materials
-#' e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+#' e.v <- ddst.normunbounded.bias(n = length(z))
 #' e.v
 #'
 #' # simulated 1-alpha qunatiles, s(n, alpha) and  s.o(n, alpha)
 #' # see Table 1 in the JSCS article
 #' s <- 4.4
-#' so <- 4.8
-#' r <- 2.708
+#' r.alpha <- 2.708
 #'
-#' t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+#' t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 #' t
 #' plot(t)
 #'
@@ -57,21 +59,24 @@
 #'        -1.82613, -1.826967, -1.780025, -1.684504, -1.751168)
 #'
 #' # calculate finite sample corrections
-#' e.v <- ddst.normunbounded.calculate.e.v(n = length(z))
+#' e.v <- ddst.normunbounded.bias(n = length(z))
 #' e.v
 #'
 #' s <- 3.3
 #' so <- 3.6
-#' r <- 2.142
+#' r.alpha <- 2.142
 #'
-#' t <- ddst.normubounded.test(z, d.n, r, e.v$e.0, e.v$v.0, s, so)
+#' t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 #' t
 #' plot(t)
+#' @rdname ddst.normunbounded.test
 #'
 `ddst.normubounded.test` <-
 function(x,
          d.n = 20,
-         r, e.0, v.0, s, so) {
+         e.0, v.0,
+         r.alpha, s.n.alpha, alpha = 0.05,
+         B = 10000, compute.cv = FALSE) {
   n <- length(x)
 
   cal.C.unbounded.vec = (C.unbounded.vec(x, n, d.n) - e.0) / v.0
@@ -82,12 +87,12 @@ function(x,
   cal.No.d.n = cumsum(cal.Co.vec.sq)
   dim = 1:d.n
   dim.o = 1:d.n.o
-  cal.A.s = which.max(cal.N.d.n - dim * s)
-  cal.Ao.so = which.max(cal.No.d.n - dim.o * so)
+  cal.A.s = which.max(cal.N.d.n - dim * s.n.alpha)
+  cal.Ao.so = which.max(cal.No.d.n - dim.o * s.n.alpha)
   cal.A.2 = which.max(cal.N.d.n - dim * 2)
   cal.Ao.2 = which.max(cal.No.d.n - dim.o * 2)
   r.n = cal.unbounded.R(x, n)
-  if (r.n <= r) {
+  if (r.n <= r.alpha) {
     cal.A = cal.A.s
     cal.Ao = cal.Ao.so
   } else {
@@ -128,27 +133,26 @@ function(x,
   result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                            ", d.n: ",
                            d.n,
-                           ", r: ",
-                           r,
-                           ", s: ",
-                           s,
-                           ", so: ",
-                           so,
+                           ", r.alpha: ",
+                           r.alpha,
+                           ", s.n.alpha: ",
+                           s.n.alpha,
                            sep = "")
   class(result) = c("htest", "ddst.test", "ddst.unbounded.test")
   return(result)
 }
 
 #' @export
-`ddst.normunbounded.calculate.e.v` <-
+#' @rdname ddst.normunbounded.test
+`ddst.normunbounded.bias` <-
 function(n = 100,
          d.n = 20,
-         nr = 10000) {
-  C.0 = matrix(0, d.n, nr)
+         B = 10000) {
+  C.0 = matrix(0, d.n, B)
   e.0 = matrix(0, 1, d.n)
   v.0 = matrix(0, 1, d.n)
 
-  for (i in 1:nr) {
+  for (i in 1:B) {
     x = rnorm(n)
     C.0[, i] = C.unbounded.vec(x, n, d.n)
   }

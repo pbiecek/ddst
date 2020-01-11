@@ -2,18 +2,35 @@
 % Please edit documentation in R/ddst.twosample.test.R
 \name{ddst.twosample.test}
 \alias{ddst.twosample.test}
-\title{Data Driven Two-Sample Test}
+\title{Data Driven Smooth Test for Two-Sample Problem}
 \usage{
-ddst.twosample.test(x, ..., d_N = 12, c = 2)
+ddst.twosample.test(
+  x,
+  y,
+  d.n = 12,
+  c = 2,
+  B = 10000,
+  compute.p = FALSE,
+  alpha = 0.05,
+  compute.cv = FALSE
+)
 }
 \arguments{
-\item{x}{a list with two vectors or a single vector.}
+\item{x}{a (non-empty) numeric vector of data}
 
-\item{...}{if x is a single vector, then the second vector is provided in the ...}
+\item{y}{a (non-empty) numeric vector of data}
 
-\item{d_N}{an integer, number of coordinates that measure potential deviation from null hypothesis}
+\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
 
-\item{c}{a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.}
+\item{c}{a calibrating parameter in the penalty in the model selection rule}
+
+\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+
+\item{compute.p}{a logical value indicating whether to compute a p-value or not}
+
+\item{alpha}{a significance level}
+
+\item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 }
 \description{
 Performs data driven smooth test for the classical two-sample problem.
@@ -26,7 +43,6 @@ set.seed(7)
 x <- runif(80)
 y <- runif(80)
 t <- ddst.twosample.test(x, y)
-t <- ddst.twosample.test(list(x, y))
 t
 plot(t)
 

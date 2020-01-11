@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Two-Sample Test Against Stochastic Dominance — ddst.againststochdom.test • ddst</title>
+<title>Data Driven Smooth Test Against Stochastic Dominance — ddst.againststochdom.test • ddst</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Data Driven Two-Sample Test Against Stochastic Dominance — ddst.againststochdom.test" />
+<meta property="og:title" content="Data Driven Smooth Test Against Stochastic Dominance — ddst.againststochdom.test" />
 <meta property="og:description" content="Performs data driven smooth non-parametric two-sample test against one-sided alternatives
 (stochastic dominance).
 Suppose that we have random samples from two distributions F and G.
@@ -74,7 +74,7 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ddst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.8</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Two-Sample Test Against Stochastic Dominance</h1>
+    <h1>Data Driven Smooth Test Against Stochastic Dominance</h1>
     
     <div class="hidden name"><code>ddst.againststochdom.test.Rd</code></div>
     </div>
@@ -134,34 +134,46 @@ F(x) &gt;= G(x) for all x with strict inequality for at least one x.
 Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.againststochdom.test</span>(
+  <span class='no'>x</span>,
+  <span class='no'>y</span>,
+  <span class='kw'>k.n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='no'>t</span>,
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+  <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a (non-empty) numeric vector of data values</p></td>
+      <td><p>a (non-empty) numeric vector of data</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>a (non-empty) numeric vector of data values</p></td>
+      <td><p>a (non-empty) numeric vector of data</p></td>
     </tr>
     <tr>
-      <th>t</th>
-      <td><p>a positive number, penalty for model selection rule, see package description</p></td>
-    </tr>
-    <tr>
-      <th>d</th>
-      <td><p>an integer, number of coordinates that measure potential deviation from null hypothesis</p></td>
+      <th>k.n</th>
+      <td><p>an integer specifying a level of complexity of the grid considered, only for advanced users</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>a positive number, significance level for test statistic. Note that tuning parameter t depends on alpha. See package description</p></td>
+      <td><p>a significance level</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>further arguments</p></td>
+      <th>t</th>
+      <td><p>an alpha-dependent tunning parameter in the penalty in the model selection rule</p></td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td><p>an integer specifying the number of runs for a p-value and a critical value computation if any</p></td>
+    </tr>
+    <tr>
+      <th>compute.cv</th>
+      <td><p>a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not</p></td>
     </tr>
     </table>
 
@@ -174,22 +186,22 @@ Detailed description of the test statistic is provided in Ledwina and Wylupek (2
 <span class='co'># H0 is true</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>k.n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Test Against Stochastic Dominance
 #&gt; 
-#&gt; data:  x, alpha: 0.05, t: 2.2, Dmax: 4
+#&gt; data:  x, alpha: 0.05, t: 2.2, k.n: 4
 #&gt; VT = 0.9, T = 1
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='co'># known fixed alternative</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>d</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.againststochdom.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>k.n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Test Against Stochastic Dominance
 #&gt; 
-#&gt; data:  x, alpha: 0.05, t: 2.2, Dmax: 4
+#&gt; data:  x, alpha: 0.05, t: 2.2, k.n: 4
 #&gt; VT = 41.6, T = 5
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.againststochdom.test-2.png' alt='' width='700' height='433' /></div></pre>
   </div>

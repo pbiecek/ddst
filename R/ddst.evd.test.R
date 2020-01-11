@@ -9,13 +9,15 @@
 #'   For more details see: \url{http://www.biecek.pl/R/ddst/description.pdf}.
 #'
 #' @aliases ddst.extr.Nk
+#'
 #' @param x a (non-empty) numeric vector of data values
-#' @param base a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or
-#' \code{ddst.base.cos} for cosine system, see package description
-#' @param c a parameter for model selection rule, see package description
-#' @param B an integer specifying the number of replicates used in p-value computation
-#' @param compute.p a logical value indicating whether to compute a p-value
-#' @param Dmax an integer specifying the maximum number of coordinates, only for advanced users
+#' @param base a function which returns an orthonormal system, possible choice: \code{ddst.base.legendre} for the Legendre polynomials and \code{ddst.base.cos} for the cosine system
+#' @param d.n an integer specifying the maximum dimension considered, only for advanced users
+#' @param c a calibrating parameter in the penalty in the model selection rule
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param compute.p a logical value indicating whether to compute a p-value or not
+#' @param alpha a significance level
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #' @param ... further arguments
 #'
 #' @return
@@ -47,32 +49,33 @@
 #' # for given vector of 19 numbers
 #' z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
 #'       4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
-#' t <- ddst.extr.test(z, compute.p = TRUE, Dmax = 10)
+#' t <- ddst.evd.test(z, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is true
 #' x <- -qgumbel(runif(100),-1,1)
-#' t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+#' t <- ddst.evd.test (x, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
 #'
 #' # H0 is false
 #' x <- rexp(80,4)
-#' t <- ddst.extr.test (x, compute.p = TRUE, Dmax = 10)
+#' t <- ddst.evd.test (x, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
 #' @keywords htest
-`ddst.extr.test` <-
+`ddst.evd.test` <-
   function(x,
            base = ddst.base.legendre,
+           d.n = 10,
            c = 100,
-           B = 1000,
+           B = 10000,
            compute.p = FALSE,
-           Dmax = 5,
+           alpha = 0.05,
+           compute.cv = FALSE,
            ...) {
     # method.name = as.character(substitute(base))
-    # only Legendre is implemented yet
     base = ddst.base.legendre
     method.name = "ddst.base.legendre"
 
@@ -82,7 +85,7 @@
     sx  = sort(x)
     er2 = sum(sx * (1:n - n:1)) / (n * (n - 1) * log(2))
     er1 = mean(x) + 0.5772156649 * er2
-    maxN = max(min(Dmax, length(x) - 2, 20), 1)
+    maxN = max(min(d.n, length(x) - 2, 20), 1)
 
     u = NULL
     for (j in 1:maxN)
@@ -90,7 +93,7 @@
     coord = NULL
     gg1 = mean(1 - exp((x - er1) / er2))
     gg2 = mean((1 - exp((x - er1) / er2)) * (x - er1) / er2 + 1)
-    for (k in 1:Dmax) {
+    for (k in 1:d.n) {
       korekta = u[1:k] + t(MMextr12[[k]]) %*% sM22 %*% c(gg1, gg2)
       coord[k] = t(korekta) %*% MMextr[[k]] %*% korekta * n
     }
@@ -101,27 +104,32 @@
     attr(t, "names") = "W*T*"
     result = list(statistic = t,
                   parameter = l,
-                  coordinates = coord - c(0, coord[-Dmax]),
+                  coordinates = coord - c(0, coord[-d.n]),
                   method = "Data Driven Smooth Test for Extreme Values")
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ", base: ",
                              method.name,
                              ", c: ",
                              c,
-                             ", Dmax: ",
-                             Dmax,
+                             ", d.n: ",
+                             d.n,
                              sep = "")
     class(result) = c("htest", "ddst.test")
-    if (compute.p) {
+    if (compute.p | compute.cv) {
       tmp = numeric(B)
       for (i in 1:B) {
         y = rnorm(n)
-        tmpC = ddst.extr.Nk(y, base, Dmax = Dmax, n = length(y))
+        tmpC = ddst.extr.Nk(y, base, Dmax = d.n, n = length(y))
         l = ddst.IIC(tmpC, n, c)
         tmp[i] = tmpC[l]
       }
       p.val = mean(tmp > t)
-      result$p.value = p.val
+      if (compute.p) {
+        result$p.value = mean(tmp > t)
+      }
+      if (compute.cv) {
+        result$cv = quantile(tmp, alpha)
+      }
     }
     result
   }
@@ -3446,3 +3454,32 @@
     ),
     .Dim = c(2L, 2L)
   )
+
+
+
+
+
+
+`ddst.extr.Nk` <-
+  function(x,
+           base = ddst.base.legendre,
+           Dmax = 5,
+           n = length(x)) {
+    sx  = sort(x)
+    er2 = sum(sx * (1:n - n:1)) / (n * (n - 1) * log(2))
+    er1 = mean(x) + 0.5772156649 * er2
+    maxN = max(min(Dmax, length(x) - 2, 20), 1)
+
+    u = NULL
+    for (j in 1:maxN)
+      u[j] = ddst.phi(1 - pgumbel(-x, -er1, er2), j, base)
+    coord = NULL
+    gg1 = mean(1 - exp((x - er1) / er2))
+    gg2 = mean((1 - exp((x - er1) / er2)) * (x - er1) / er2 + 1)
+    for (k in 1:Dmax) {
+      korekta = u[1:k] + t(MMextr12[[k]]) %*% sM22 %*% c(gg1, gg2)
+      coord[k] = t(korekta) %*% MMextr[[k]] %*% korekta * n
+    }
+    coord
+  }
+

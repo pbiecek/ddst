@@ -2,18 +2,32 @@
 % Please edit documentation in R/ddst.ksample.test.R
 \name{ddst.ksample.test}
 \alias{ddst.ksample.test}
-\title{Data Driven k-Sample Test}
+\title{Data Driven Smooth Test for k-Sample Problem}
 \usage{
-ddst.ksample.test(x, ..., d_N = 12, c = 2.3)
+ddst.ksample.test(
+  x,
+  d.n = 12,
+  c = 2.3,
+  B = 10000,
+  compute.p = FALSE,
+  alpha = 0.05,
+  compute.cv = FALSE
+)
 }
 \arguments{
-\item{x}{a list with k-vectors or a single vector.}
+\item{x}{a list of k (non-empty) numeric vectors of data}
 
-\item{...}{if x is a single vector, then remaing k-1 vectors are provided in the ... argument}
+\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
 
-\item{d_N}{an integer, number of coordinates that measure potential deviation from null hypothesis}
+\item{c}{a calibrating parameter in the penalty in the model selection rule}
 
-\item{c}{a positive number, penalty for model selection rule. Section 5.1 in Wylupek (2010), suggest that a good choice is c = 2, when k = 2, and  c = 2.3, when k >= 3.}
+\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+
+\item{compute.p}{a logical value indicating whether to compute a p-value or not}
+
+\item{alpha}{a significance level}
+
+\item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 }
 \description{
 Performs data driven smooth test for the classical k-sample problem.
@@ -28,7 +42,7 @@ set.seed(7)
 x <- runif(80)
 y <- rexp(80, 1)
 z <- runif(80)
-t <- ddst.ksample.test(x, y, z)
+t <- ddst.ksample.test(list(x, y, z))
 t
 plot(t)
 
@@ -36,7 +50,6 @@ plot(t)
 x <- runif(80)
 y <- runif(80)
 z <- runif(80)
-t <- ddst.ksample.test(x, y, z)
 t <- ddst.ksample.test(list(x, y, z))
 t
 plot(t)

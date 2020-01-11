@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data Driven Test for k-Sample Umbrella Alternatives — ddst.umbrella.test • ddst</title>
+<title>Data Driven Smooth Test for Umbrella Alternatives; Known Peak — ddst.umbrellaknownp.test • ddst</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,7 @@
 
 
 
-<meta property="og:title" content="Data Driven Test for k-Sample Umbrella Alternatives — ddst.umbrella.test" />
+<meta property="og:title" content="Data Driven Smooth Test for Umbrella Alternatives; Known Peak — ddst.umbrellaknownp.test" />
 <meta property="og:description" content="Performs data driven smooth test for so-called umbrella alternatives in k-sample problem.
 Suppose that we have random samples from k distributions F_i where i = 1, ..., k.
 The null hypothesis is that there is no umbrella pattern,
@@ -121,9 +121,9 @@ Detailed description of the test statistic is provided in Wylupek (2016)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data Driven Test for k-Sample Umbrella Alternatives</h1>
+    <h1>Data Driven Smooth Test for Umbrella Alternatives; Known Peak</h1>
     
-    <div class="hidden name"><code>ddst.umbrella.test.Rd</code></div>
+    <div class="hidden name"><code>ddst.umbrellaknownp.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -136,30 +136,51 @@ i.e. F_1 &gt;= ... &gt;= F_p &lt;= ... &lt;= F_k and F_i != F_j for some i and j
 Detailed description of the test statistic is provided in Wylupek (2016).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ddst.umbrella.test</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    <pre class="usage"><span class='fu'>ddst.umbrellaknownp.test</span>(
+  <span class='no'>x</span>,
+  <span class='no'>p</span>,
+  <span class='kw'>r.N</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>4</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>x</span>) - <span class='fl'>1</span>),
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='no'>t.p</span>,
+  <span class='no'>t.n</span>,
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+  <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a list with k-vectors or a single vector.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>if x is a single vector, then remaing k-1 vectors are provided in the ... argument</p></td>
-    </tr>
-    <tr>
-      <th>tlh.p</th>
-      <td><p>a positive number, penalty for model selection rule</p></td>
-    </tr>
-    <tr>
-      <th>tl.n</th>
-      <td><p>a positive number, penalty for model selection rule</p></td>
+      <td><p>a list of k (non-empty) numeric vectors of data</p></td>
     </tr>
     <tr>
       <th>p</th>
-      <td><p>peak of the umbrella</p></td>
+      <td><p>a peak of the umbrella pattern</p></td>
+    </tr>
+    <tr>
+      <th>r.N</th>
+      <td><p>a (p(p-1)=2+(k-p)(k-p+1)/2)-dimensional vector specifying the levels of complexity of the grids considered, only for advanced users</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>a significance level</p></td>
+    </tr>
+    <tr>
+      <th>t.p</th>
+      <td><p>an alpha-dependent (p(p-1)=2+(k-p)(k-p+1)/2)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.o</p></td>
+    </tr>
+    <tr>
+      <th>t.n</th>
+      <td><p>an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.tilde</p></td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td><p>an integer specifying the number of runs for a p-value and a critical value computation if any</p></td>
+    </tr>
+    <tr>
+      <th>compute.cv</th>
+      <td><p>a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not</p></td>
     </tr>
     </table>
 
@@ -173,18 +194,13 @@ Detailed description of the test statistic is provided in Wylupek (2016).</p>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
 <span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>) + <span class='fl'>0.2</span>
 <span class='no'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>80</span>)
-<span class='fu'>ddst.umbrella.test</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Data Driven k-Sample Umbrella Test
-#&gt; 
-#&gt; data:  x, tlh.p: 2.2, tl.n: 2.2, p: 2
-#&gt; U.T = 412.82, p = 2
-#&gt; </div><div class='input'><span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrellaknownp.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>z</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>t.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>t.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven k-Sample Umbrella Test
 #&gt; 
-#&gt; data:  listxyz, tlh.p: 2.2, tl.n: 2.2, p: 2
+#&gt; data:  listxyz, t.p: 2.2, t.n: 2.2, p: 2
 #&gt; U.T = 412.82, p = 2
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrellaknownp.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># known fixed alternative</span>
 <span class='no'>x1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
 <span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>2</span>
@@ -193,20 +209,20 @@ Detailed description of the test statistic is provided in Wylupek (2016).</p>
 <span class='no'>x5</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>2</span>
 <span class='no'>x6</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>) + <span class='fl'>1</span>
 <span class='no'>x7</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>)
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrellaknownp.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>t.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>t.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven k-Sample Umbrella Test
 #&gt; 
-#&gt; data:  listx1x2x3x4x5x6x7, tlh.p: 2.2, tl.n: 2.2, p: 3
+#&gt; data:  listx1x2x3x4x5x6x7, t.p: 2.2, t.n: 2.2, p: 3
 #&gt; U.T = 4662.7, p = 3
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrella.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>tlh.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>tl.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrellaknownp.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.umbrellaknownp.test</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x4</span>, <span class='no'>x5</span>, <span class='no'>x6</span>, <span class='no'>x7</span>), <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>t.p</span> <span class='kw'>=</span> <span class='fl'>2.2</span>, <span class='kw'>t.n</span> <span class='kw'>=</span> <span class='fl'>2.2</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven k-Sample Umbrella Test
 #&gt; 
-#&gt; data:  listx1x2x3x4x5x6x7, tlh.p: 2.2, tl.n: 2.2, p: 5
+#&gt; data:  listx1x2x3x4x5x6x7, t.p: 2.2, t.n: 2.2, p: 5
 #&gt; U.T = -3101, p = 5
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrella.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.umbrellaknownp.test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

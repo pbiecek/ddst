@@ -120,7 +120,7 @@ Null density is given by
     <div class="page-header">
     <h1>Data Driven Smooth Test for Normality; Unbounded Basis Functions</h1>
     
-    <div class="hidden name"><code>ddst.normubounded.test.Rd</code></div>
+    <div class="hidden name"><code>ddst.normunbounded.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -140,7 +140,9 @@ Null density is given by
   <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
   <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+)
+
+<span class='fu'>ddst.normunbounded.bias</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,6 +182,10 @@ Null density is given by
     <tr>
       <th>compute.cv</th>
       <td><p>a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>number of observations</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -230,7 +236,7 @@ Null density is given by
 #&gt; 
 #&gt; data:  z, d.n: 20, r.alpha: 2.708, s.n.alpha: 4.4
 #&gt; NAs = 2.7435, As = 1
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normubounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normunbounded.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># for Tephra data</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>1.748789</span>, -<span class='fl'>1.75753</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.740102</span>, -<span class='fl'>1.731467</span>, -<span class='fl'>1.765523</span>,
        -<span class='fl'>1.761521</span>, -<span class='fl'>1.72522</span>, -<span class='fl'>1.80371</span>, -<span class='fl'>1.745624</span>, -<span class='fl'>1.872957</span>, -<span class='fl'>1.729121</span>,
@@ -273,8 +279,7 @@ Null density is given by
 #&gt; 
 #&gt; data:  z, d.n: 20, r.alpha: 2.142, s.n.alpha: 3.3
 #&gt; NAs = 9.0037, As = 3
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normubounded.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.normunbounded.test-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

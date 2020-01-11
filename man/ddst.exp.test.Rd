@@ -5,21 +5,34 @@
 \alias{ddst.exp.Nk}
 \title{Data Driven Smooth Test for Exponentiality}
 \usage{
-ddst.exp.test(x, base = ddst.base.legendre, c = 100, B = 1000,
-  compute.p = FALSE, Dmax = 5, ...)
+ddst.exp.test(
+  x,
+  base = ddst.base.legendre,
+  d.n = 10,
+  c = 100,
+  B = 10000,
+  compute.p = FALSE,
+  alpha = 0.05,
+  compute.cv = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
 
-\item{base}{a function which returns orthogonal system, might be \code{ddst.base.legendre} for Legendre polynomials or \code{ddst.base.cos} for cosine system, see package description}
+\item{base}{a function which returns an orthonormal system, possible choice: \code{ddst.base.legendre} for the Legendre polynomials and \code{ddst.base.cos} for the cosine system}
 
-\item{c}{a parameter for model selection rule, see package description}
+\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
 
-\item{B}{an integer specifying the number of replicates used in p-value computation}
+\item{c}{a calibrating parameter in the penalty in the model selection rule}
 
-\item{compute.p}{a logical value indicating whether to compute a p-value}
+\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
-\item{Dmax}{an integer specifying the maximum number of coordinates, only for advanced users}
+\item{compute.p}{a logical value indicating whether to compute a p-value or not}
+
+\item{alpha}{a significance level}
+
+\item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 
 \item{...}{further arguments}
 }
@@ -40,13 +53,13 @@ Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
 set.seed(7)
 # H0 is true
 z <- rexp(80,4)
-t <- ddst.exp.test (z, compute.p = TRUE, Dmax = 10)
+t <- ddst.exp.test (z, compute.p = TRUE, d.n = 10)
 t
 plot(t)
 
 # H0 is false
 z = rchisq(80,4)
-(t = ddst.exp.test (z, compute.p = TRUE, Dmax = 10))
+(t = ddst.exp.test (z, compute.p = TRUE, d.n = 10))
 t$p.value
 plot(t)
 

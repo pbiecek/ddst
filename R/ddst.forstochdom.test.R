@@ -1,4 +1,4 @@
-#' Data Driven Nonparametric Test for Stochastic Ordering
+#' Data Driven Smooth Test for Stochastic Dominance in Two Samples
 #'
 #' Performs the data driven smooth test for detection of
 #' the stochastic ordering, as described
@@ -8,11 +8,14 @@
 #' F(x) < G(x) for some x.
 #' Detailed description of the test statistic is provided in Ledwina and Wylupek (2012).
 #'
-#' @param x a (non-empty) numeric vector of data values
-#' @param y a (non-empty) numeric vector of data values
-#' @param t a positive number, penalty for model selection rule, see package description
-#' @param d an integer, number of coordinates that measure potential deviation from null hypothesis
-#' @param ... further arguments
+#' @param x a (non-empty) numeric vector of data
+#' @param y a (non-empty) numeric vector of data
+#' @param k.n an integer specifying a level of complexity of the grid considered, only for advanced users
+#' @param alpha a significance level
+#' @param t an alpha-dependent tunning parameter in the penalty in the model selection rule
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param compute.p a logical value indicating whether to compute a p-value or not
+#' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
 #' @references Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) \url{https://doi.org/10.1007/s11749-011-0278-7}
 #' @export
@@ -23,7 +26,7 @@
 #' # H0 is false
 #' x <- rpareto(50, 2, 2)
 #' y <- rpareto(50, 1.5, 1.5)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 #' t
 #' plot(t)
 #'
@@ -31,7 +34,7 @@
 #' # H0 is false
 #' x <- rlaplace(50, 0, 1)
 #' y <- rlaplace(50, 1, 25)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 #' t
 #' plot(t)
 #'
@@ -39,7 +42,7 @@
 #' # H0 is true
 #' x <- rlnorm(50, 0.85, 0.6)
 #' y <- rlnorm(50, 1.2, 0.2)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, d = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
 #' t
 #' plot(t)
 #'
@@ -60,8 +63,12 @@
 `ddst.forstochdom.test` <-
   function(x,
            y,
-           t = 2.2,
-           d = 4) {
+           k.n = floor(log(length(x)+length(y),2))-1, # d
+           alpha = 0.05,
+           t, #  = 2.2
+           B = 10000,
+           compute.p = FALSE,
+           compute.cv = FALSE) {
     m = length(x)
     n = length(y)
 
@@ -133,7 +140,7 @@
 ## END OF INTERNAL FUNCTIONS
 
     # T, S
-    statistics <- test.Q(x, y, m, n, d, t)
+    statistics <- test.Q(x, y, m, n, k.n, t)
     names(statistics) <- c("stat.T","stat.S","ncoord.T","ncoord.S", "L")
     # coords <- test.M.d(x,y,m,n,k.N)
 
@@ -149,8 +156,8 @@
                              as.character(substitute(y)), collapse = " "),
                              ", t: ",
                              t,
-                             ", Dmax: ",
-                             d,
+                             ", k.n: ",
+                             k.n,
                              sep = "")
     class(result) = c("htest", "ddst.test", "ddst.stochasticorder.test")
 
