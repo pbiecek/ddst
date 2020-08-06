@@ -9,10 +9,10 @@
 #'
 #' @param x a (non-empty) numeric vector of data
 #' @param y a (non-empty) numeric vector of data
-#' @param k.n an integer specifying a level of complexity of the grid considered, only for advanced users
+#' @param k.N an integer specifying a level of complexity of the grid considered, only for advanced users
 #' @param alpha a significance level
 #' @param t an alpha-dependent tunning parameter in the penalty in the model selection rule
-#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
 #' @references Two-sample test against one-sided alternatives. Ledwina and Wylupek (2012). \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x}
@@ -22,7 +22,7 @@
 #' # H0 is true
 #' x <- runif(80)
 #' y <- runif(80)
-#' t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+#' t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 #' t
 #' plot(t)
 #'
@@ -30,19 +30,19 @@
 #' # known fixed alternative
 #' x <- runif(80)
 #' y <- rbeta(80,4,2)
-#' t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+#' t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 #' t
 #' plot(t)
 #' @keywords htest
 `ddst.againststochdom.test` <-
   function(x,
            y,
-           k.n = 4,
+           k.N = 4,
            alpha = 0.05,
            t,# = 2.2,
-           B = 10000,
+           nr = 100000,
            compute.cv = FALSE) {
-    coord = ddst.stochasticdominance.Nk(x, y, t = t, k.N = k.n, alpha = alpha)    # coord square times n
+    coord = ddst.stochasticdominance.Nk(x, y, t = t, k.N = k.N, alpha = alpha)    # coord square times n
 
     l = coord$T
     attr(l, "names") = "T"
@@ -57,8 +57,8 @@
                              alpha,
                              ", t: ",
                              t,
-                             ", k.n: ",
-                             k.n,
+                             ", k.N: ",
+                             k.N,
                              sep = "")
     class(result) = c("htest", "ddst.test", "ddst.stochasticdominance.test")
 

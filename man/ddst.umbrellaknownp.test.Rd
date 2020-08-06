@@ -11,8 +11,8 @@ ddst.umbrellaknownp.test(
   alpha = 0.05,
   t.p,
   t.n,
-  B = 10000,
-  compute.cv = FALSE
+  nr = 1e+05,
+  compute.cv = TRUE
 )
 }
 \arguments{
@@ -28,7 +28,7 @@ ddst.umbrellaknownp.test(
 
 \item{t.n}{an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.tilde}
 
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 }

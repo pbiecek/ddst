@@ -19,7 +19,7 @@ These tests were inspired by the results from: [*Data driven smooth tests for co
 * DDST for Exponentiality - `ddst.exp.test()`; see [*Data driven smooth tests for composite hypotheses: Comparison of powers* by Kallenberg and Ledwina (1997)](https://www.tandfonline.com/doi/abs/10.1080/00949659708811850).
 * DDST for Normality; Bounded Basis Functions - `ddst.normbounded.test()`; see [*Data-driven tests for a location-scale family revisited* by Janic and Ledwina (2009)](https://link.springer.com/article/10.1080/15598608.2009.10411952).
 * DDST for Normality; Unbounded Basis Functions - `ddst.normunbounded.test()`; see [*Detection of non-Gaussianity* by Ledwina and Wyłupek (2015)](https://www.tandfonline.com/doi/abs/10.1080/00949655.2014.983110?journalCode=gscs20).
-* DDST for Extreme Value Distribution - `ddst.extr.test()`; see [*Data-driven tests for a location-scale family revisited* by Janic and Ledwina (2009)](https://link.springer.com/article/10.1080/15598608.2009.10411952).
+* DDST for Extreme Value Distribution - `ddst.evd.test()`; see [*Data-driven tests for a location-scale family revisited* by Janic and Ledwina (2009)](https://link.springer.com/article/10.1080/15598608.2009.10411952).
 
 
 ### Nonparametric Data Driven Smooth Tests for Comparing Distributions
@@ -32,7 +32,8 @@ A starting point of the constructions were the papers: [*Data driven rank test f
 * DDST for Stochastic Dominance in Two Samples - `ddst.forstochdom.test()`; see [*Nonparametric tests for stochastic ordering* by Ledwina and Wyłupek (2012) ](https://link.springer.com/article/10.1007/s11749-011-0278-7).
 * DDST Against Stochastic Dominance - `ddst.againststochdom.test()`; see [*Two-sample test against one-sided alternatives* by Ledwina and Wyłupek (2012)](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9469.2011.00787.x).
 * DDST for Upward Trend Alternatives - `ddst.upwardtrend.test()`; see [*Data-driven tests for trend* by Wyłupek (2013)](https://www.tandfonline.com/doi/abs/10.1080/03610926.2012.697967).
-* DDST for Umbrella Alternatives; Known Peak - `ddst.umbrella.test()`; see [*An automatic test for the umbrella alternatives* by Wyłupek (2016)](https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231).
+* DDST for Umbrella Alternatives; Known Peak - `ddst.umbrellaknownp.test()`; see [*An automatic test for the umbrella alternatives* by Wyłupek (2016)](https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231).
+* DDST for Umbrella Alternatives; Unknown Peak - `ddst.umbrellaunknownp.test()`; see [*An automatic test for the umbrella alternatives* by Wyłupek (2016)](https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231).
 
 A more detailed overview is contained in [Data Driven Smooth Tests - Introductory Material](http://www.biecek.pl/R/ddst/description.pdf). Full details on the above procedures can be found in the related papers.
 

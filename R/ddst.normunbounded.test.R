@@ -6,17 +6,16 @@
 #'   f(z;\gamma)=1/(\sqrt{2 \pi}\gamma_2) \exp(-(z-\gamma_1)^2/(2 \gamma_2^2))} for \eqn{z \in R}.
 #'
 #' @param x a (non-empty) numeric vector of data values
-#' @param d.n an integer, number of coordinates that measure potential deviation from null hypothesis
+#' @param d.n an integer specifying the maximum dimension considered, only for advanced users
 #' @param e.0 a (non-empty) numeric vector being the Monte Carlo estimate of the mean of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}
 #' @param v.0 a (non-empty) numeric vector being the Monte Carlo estimate of the variance of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}
 #' @param alpha a significance level
 #' @param r.alpha a critical value of the alpha level R.n test
 #' @param s.n.alpha a penalty in the auxiliary model selection rule
-#' @param B an integer specifying the number of runs for a critical value computation
-#' @param alpha a significance level
+#' @param nr an integer specifying the number of runs for a critical value computation
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
+#' @param n sample size
 #' @param ... further arguments
-#' @param n number of observations
 #'
 #' @export
 #'
@@ -76,7 +75,7 @@ function(x,
          d.n = 20,
          e.0, v.0,
          r.alpha, s.n.alpha, alpha = 0.05,
-         B = 10000, compute.cv = FALSE) {
+         nr = 10000, compute.cv = TRUE) {
   n <- length(x)
 
   cal.C.unbounded.vec = (C.unbounded.vec(x, n, d.n) - e.0) / v.0
@@ -147,12 +146,12 @@ function(x,
 `ddst.normunbounded.bias` <-
 function(n = 100,
          d.n = 20,
-         B = 10000) {
-  C.0 = matrix(0, d.n, B)
+         nr = 10000) {
+  C.0 = matrix(0, d.n, nr)
   e.0 = matrix(0, 1, d.n)
   v.0 = matrix(0, 1, d.n)
 
-  for (i in 1:B) {
+  for (i in 1:nr) {
     x = rnorm(n)
     C.0[, i] = C.unbounded.vec(x, n, d.n)
   }

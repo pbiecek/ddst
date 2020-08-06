@@ -6,22 +6,22 @@
 \usage{
 ddst.ksample.test(
   x,
-  d.n = 12,
+  d.N = 12,
   c = 2.3,
-  B = 10000,
-  compute.p = FALSE,
+  nr = 1e+05,
+  compute.p = TRUE,
   alpha = 0.05,
-  compute.cv = FALSE
+  compute.cv = TRUE
 )
 }
 \arguments{
 \item{x}{a list of k (non-empty) numeric vectors of data}
 
-\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
+\item{d.N}{an integer specifying the maximum dimension considered, only for advanced users}
 
 \item{c}{a calibrating parameter in the penalty in the model selection rule}
 
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 

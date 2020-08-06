@@ -7,9 +7,9 @@
 #' Detailed description of the test statistic is provided in Wylupek (2010).
 #'
 #' @param x a list of k (non-empty) numeric vectors of data
-#' @param d.n an integer specifying the maximum dimension considered, only for advanced users
+#' @param d.N an integer specifying the maximum dimension considered, only for advanced users
 #' @param c a calibrating parameter in the penalty in the model selection rule
-#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.p a logical value indicating whether to compute a p-value or not
 #' @param alpha a significance level
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
@@ -37,12 +37,12 @@
 #' @keywords htest
 `ddst.ksample.test` <-
   function(x,
-           d.n = 12,
+           d.N = 12,
            c = 2.3,
-           B = 10000,
-           compute.p = FALSE,
+           nr = 100000,
+           compute.p = TRUE,
            alpha = 0.05,
-           compute.cv = FALSE) {
+           compute.cv = TRUE) {
 ##    if (is.list(x)) {
       # x is list with coordinates
       x.vector <- unlist(x)

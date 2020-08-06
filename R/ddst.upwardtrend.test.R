@@ -14,7 +14,7 @@
 #' @param t.p an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.o
 #' @param t.n an alpha-dependent (k-1)-dimensional vector of the tunning parameters in the penalties in the model selection rules T.tilde
 #' @param t an alpha-dependent tunning parameter in the penalty in the model selection rule
-#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
 #' @references An automatic test for the umbrella alternatives. Wylupek (2016) \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/sjos.12231}
@@ -45,7 +45,7 @@
            r.N  = rep(4, length(x)-1),
            alpha = 0.05,
            t.p, t.n,
-           B = 10000, compute.cv = FALSE) {   # tlh.p = 2.2, tl.n = 2.2
+           nr = 100000, compute.cv = TRUE) {   # tlh.p = 2.2, tl.n = 2.2
 ##    if (is.list(x)) {
       # x is list with coordinates
       x.vector <- unlist(x)

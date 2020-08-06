@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Data Driven Smooth Test for Uniformity — ddst.uniform.test" />
 <meta property="og:description" content="Performs data driven smooth tests for simple hypothesis of uniformity on [0,1].
 Embeding null model into the original exponential family introduced by Neyman (1937)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +73,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ddst</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.6.9</span>
       </span>
     </div>
 
@@ -102,7 +105,12 @@ Embeding null model into the original exponential family introduced by Neyman (1
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/pbiecek/ddst/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -117,7 +125,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Data Driven Smooth Test for Uniformity</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/pbiecek/ddst/blob/master/R/ddst.uniform.test.R'><code>R/ddst.uniform.test.R</code></a></small>
     <div class="hidden name"><code>ddst.uniform.test.Rd</code></div>
     </div>
 
@@ -131,10 +139,10 @@ Embeding null model into the original exponential family introduced by Neyman (1
   <span class='kw'>base</span> <span class='kw'>=</span> <span class='no'>ddst.base.legendre</span>,
   <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>c</span> <span class='kw'>=</span> <span class='fl'>2.4</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>nr</span> <span class='kw'>=</span> <span class='fl'>1e+05</span>,
+  <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>compute.cv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -158,7 +166,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
       <td><p>a calibrating parameter in the penalty in the model selection rule</p></td>
     </tr>
     <tr>
-      <th>B</th>
+      <th>nr</th>
       <td><p>an integer specifying the number of runs for a p-value and a critical value computation if any</p></td>
     </tr>
     <tr>
@@ -202,36 +210,31 @@ Embeding null model into the original exponential family introduced by Neyman (1
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
-#&gt; data:  z, base: ddst.base.legendre  c: 2.4  d.n: 10
-#&gt; WT = 0.31054, T = 1, p-value = 0.6046
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; data:  z, base: ddst.base.legendre  c: 2.4  d.n: 10  cv(0.05) : 0.0045668)
+#&gt; WT = 0.31054, T = 1, p-value = 0.5989
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># known fixed alternative</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>80</span>,<span class='fl'>10</span>,<span class='fl'>16</span>)
 <span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.uniform.test</span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span>(<span class='no'>z</span>, <span class='fl'>10</span>, <span class='fl'>16</span>), <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 <span class='no'>t</span></div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
-#&gt; data:  pnormz1016, base: ddst.base.legendre  c: 2.4  d.n: 10
-#&gt; WT = 0.69192, T = 1, p-value = 0.4274
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; data:  pnormz1016, base: ddst.base.legendre  c: 2.4  d.n: 10  cv(0.05) : 0.0041374)
+#&gt; WT = 1.8002, T = 1, p-value = 0.2205
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># H0 is false</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>80</span>,<span class='fl'>4</span>,<span class='fl'>2</span>)
 (<span class='no'>t</span> <span class='kw'>&lt;-</span> <span class='fu'>ddst.uniform.test</span>(<span class='no'>z</span>, <span class='kw'>compute.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>d.n</span> <span class='kw'>=</span> <span class='fl'>10</span>))</div><div class='output co'>#&gt; 
 #&gt; 	Data Driven Smooth Test for Uniformity
 #&gt; 
-#&gt; data:  z, base: ddst.base.legendre  c: 2.4  d.n: 10
-#&gt; WT = 44.813, T = 5, p-value &lt; 2.2e-16
-#&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt; data:  z, base: ddst.base.legendre  c: 2.4  d.n: 10  cv(0.05) : 0.0043749)
+#&gt; WT = 57.602, T = 4, p-value &lt; 2.2e-16
+#&gt; </div><div class='input'><span class='no'>t</span>$<span class='no'>p.value</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>t</span>)</div><div class='img'><img src='ddst.uniform.test-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -242,7 +245,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

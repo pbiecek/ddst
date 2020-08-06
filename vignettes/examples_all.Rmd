@@ -230,7 +230,7 @@ library("rmutil", warn.conflicts = FALSE)
 # 1. Pareto(1)/Pareto(1.5)
 x <- rpareto(50, 2, 2)
 y <- rpareto(50, 1.5, 1.5)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 
@@ -238,7 +238,7 @@ plot(t)
 # 2. Laplace(0,1)/Laplace(1,25)
 x <- rlaplace(50, 0, 1)
 y <- rlaplace(50, 1, 25)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 
@@ -246,7 +246,7 @@ plot(t)
 # 3. LN(0.85,0.6)/LN(1.2,0.2)
 x <- rlnorm(50, 0.85, 0.6)
 y <- rlnorm(50, 1.2, 0.2)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 ```
@@ -258,14 +258,14 @@ set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 t
 plot(t)
 
 # H0 is false
 x <- runif(80)
 y <- rbeta(80, 4, 2)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 t
 plot(t)
 ```

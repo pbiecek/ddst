@@ -13,16 +13,16 @@ ddst.normubounded.test(
   r.alpha,
   s.n.alpha,
   alpha = 0.05,
-  B = 10000,
-  compute.cv = FALSE
+  nr = 10000,
+  compute.cv = TRUE
 )
 
-ddst.normunbounded.bias(n = 100, d.n = 20, B = 10000)
+ddst.normunbounded.bias(n = 100, d.n = 20, nr = 10000)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values}
 
-\item{d.n}{an integer, number of coordinates that measure potential deviation from null hypothesis}
+\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
 
 \item{e.0}{a (non-empty) numeric vector being the Monte Carlo estimate of the mean of the vector (C2; ... ;Cd.n) calculated using the function \code{ddst.normunbounded.bias()$e.0}}
 
@@ -34,11 +34,11 @@ ddst.normunbounded.bias(n = 100, d.n = 20, B = 10000)
 
 \item{alpha}{a significance level}
 
-\item{B}{an integer specifying the number of runs for a critical value computation}
+\item{nr}{an integer specifying the number of runs for a critical value computation}
 
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 
-\item{n}{number of observations}
+\item{n}{sample size}
 
 \item{...}{further arguments}
 }

@@ -10,10 +10,10 @@
 #'
 #' @param x a (non-empty) numeric vector of data
 #' @param y a (non-empty) numeric vector of data
-#' @param k.n an integer specifying a level of complexity of the grid considered, only for advanced users
+#' @param K.N an integer specifying a level of complexity of the grid considered, only for advanced users
 #' @param alpha a significance level
 #' @param t an alpha-dependent tunning parameter in the penalty in the model selection rule
-#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.p a logical value indicating whether to compute a p-value or not
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
@@ -26,7 +26,7 @@
 #' # H0 is false
 #' x <- rpareto(50, 2, 2)
 #' y <- rpareto(50, 1.5, 1.5)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 #' t
 #' plot(t)
 #'
@@ -34,7 +34,7 @@
 #' # H0 is false
 #' x <- rlaplace(50, 0, 1)
 #' y <- rlaplace(50, 1, 25)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 #' t
 #' plot(t)
 #'
@@ -42,7 +42,7 @@
 #' # H0 is true
 #' x <- rlnorm(50, 0.85, 0.6)
 #' y <- rlnorm(50, 1.2, 0.2)
-#' t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+#' t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 #' t
 #' plot(t)
 #'
@@ -63,12 +63,12 @@
 `ddst.forstochdom.test` <-
   function(x,
            y,
-           k.n = floor(log(length(x)+length(y),2))-1, # d
+           K.N = floor(log(length(x)+length(y),2))-1, # d
            alpha = 0.05,
            t, #  = 2.2
-           B = 10000,
-           compute.p = FALSE,
-           compute.cv = FALSE) {
+           nr = 100000,
+           compute.p = TRUE,
+           compute.cv = TRUE) {
     m = length(x)
     n = length(y)
 
@@ -140,7 +140,7 @@
 ## END OF INTERNAL FUNCTIONS
 
     # T, S
-    statistics <- test.Q(x, y, m, n, k.n, t)
+    statistics <- test.Q(x, y, m, n, K.N, t)
     names(statistics) <- c("stat.T","stat.S","ncoord.T","ncoord.S", "L")
     # coords <- test.M.d(x,y,m,n,k.N)
 
@@ -156,8 +156,8 @@
                              as.character(substitute(y)), collapse = " "),
                              ", t: ",
                              t,
-                             ", k.n: ",
-                             k.n,
+                             ", K.N: ",
+                             K.N,
                              sep = "")
     class(result) = c("htest", "ddst.test", "ddst.stochasticorder.test")
 

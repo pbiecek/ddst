@@ -7,10 +7,10 @@
 ddst.againststochdom.test(
   x,
   y,
-  k.n = 4,
+  k.N = 4,
   alpha = 0.05,
   t,
-  B = 10000,
+  nr = 1e+05,
   compute.cv = FALSE
 )
 }
@@ -19,13 +19,13 @@ ddst.againststochdom.test(
 
 \item{y}{a (non-empty) numeric vector of data}
 
-\item{k.n}{an integer specifying a level of complexity of the grid considered, only for advanced users}
+\item{k.N}{an integer specifying a level of complexity of the grid considered, only for advanced users}
 
 \item{alpha}{a significance level}
 
 \item{t}{an alpha-dependent tunning parameter in the penalty in the model selection rule}
 
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 }
@@ -42,7 +42,7 @@ set.seed(7)
 # H0 is true
 x <- runif(80)
 y <- runif(80)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 t
 plot(t)
 
@@ -50,7 +50,7 @@ plot(t)
 # known fixed alternative
 x <- runif(80)
 y <- rbeta(80,4,2)
-t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.n = 4)
+t <- ddst.againststochdom.test(x, y, alpha = 0.05, t = 2.2, k.N = 4)
 t
 plot(t)
 }

@@ -7,12 +7,12 @@
 ddst.forstochdom.test(
   x,
   y,
-  k.n = floor(log(length(x) + length(y), 2)) - 1,
+  K.N = floor(log(length(x) + length(y), 2)) - 1,
   alpha = 0.05,
   t,
-  B = 10000,
-  compute.p = FALSE,
-  compute.cv = FALSE
+  nr = 1e+05,
+  compute.p = TRUE,
+  compute.cv = TRUE
 )
 }
 \arguments{
@@ -20,13 +20,13 @@ ddst.forstochdom.test(
 
 \item{y}{a (non-empty) numeric vector of data}
 
-\item{k.n}{an integer specifying a level of complexity of the grid considered, only for advanced users}
+\item{K.N}{an integer specifying a level of complexity of the grid considered, only for advanced users}
 
 \item{alpha}{a significance level}
 
 \item{t}{an alpha-dependent tunning parameter in the penalty in the model selection rule}
 
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 
@@ -48,7 +48,7 @@ library("rmutil", warn.conflicts = FALSE)
 # H0 is false
 x <- rpareto(50, 2, 2)
 y <- rpareto(50, 1.5, 1.5)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 
@@ -56,7 +56,7 @@ plot(t)
 # H0 is false
 x <- rlaplace(50, 0, 1)
 y <- rlaplace(50, 1, 25)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 
@@ -64,7 +64,7 @@ plot(t)
 # H0 is true
 x <- rlnorm(50, 0.85, 0.6)
 y <- rlnorm(50, 1.2, 0.2)
-t <- ddst.forstochdom.test(x, y, t = 2.2, k.n = 4)
+t <- ddst.forstochdom.test(x, y, t = 2.2, K.N = 4)
 t
 plot(t)
 

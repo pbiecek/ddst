@@ -10,10 +10,10 @@ ddst.exp.test(
   base = ddst.base.legendre,
   d.n = 10,
   c = 100,
-  B = 10000,
-  compute.p = FALSE,
+  nr = 1e+05,
+  compute.p = TRUE,
   alpha = 0.05,
-  compute.cv = FALSE,
+  compute.cv = TRUE,
   ...
 )
 }
@@ -26,7 +26,7 @@ ddst.exp.test(
 
 \item{c}{a calibrating parameter in the penalty in the model selection rule}
 
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 

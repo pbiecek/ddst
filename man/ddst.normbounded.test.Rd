@@ -10,10 +10,9 @@ ddst.normbounded.test(
   base = ddst.base.legendre,
   d.n = 10,
   c = 100,
-  B = 10000,
-  compute.p = FALSE,
+  compute.p = TRUE,
   alpha = 0.05,
-  compute.cv = FALSE,
+  compute.cv = TRUE,
   ...
 )
 }
@@ -25,8 +24,6 @@ ddst.normbounded.test(
 \item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
 
 \item{c}{a calibrating parameter in the penalty in the model selection rule}
-
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 

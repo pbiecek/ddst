@@ -7,12 +7,12 @@
 ddst.twosample.test(
   x,
   y,
-  d.n = 12,
+  d.N = 12,
   c = 2,
-  B = 10000,
-  compute.p = FALSE,
+  B = 1e+05,
+  compute.p = TRUE,
   alpha = 0.05,
-  compute.cv = FALSE
+  compute.cv = TRUE
 )
 }
 \arguments{
@@ -20,21 +20,21 @@ ddst.twosample.test(
 
 \item{y}{a (non-empty) numeric vector of data}
 
-\item{d.n}{an integer specifying the maximum dimension considered, only for advanced users}
+\item{d.N}{an integer specifying the maximum dimension considered, only for advanced users}
 
 \item{c}{a calibrating parameter in the penalty in the model selection rule}
-
-\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 
 \item{alpha}{a significance level}
 
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
+
+\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 }
 \description{
 Performs data driven smooth test for the classical two-sample problem.
-It is  aspecial case of data driven test for k-samples.
+It is a special case of data driven test for k-samples.
 Detailed description of the test statistic is provided in Wylupek (2010).
 }
 \examples{

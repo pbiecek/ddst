@@ -8,7 +8,7 @@
 #' @param base a function which returns an orthonormal system, possible choice: \code{ddst.base.legendre} for the Legendre polynomials and \code{ddst.base.cos} for the cosine system
 #' @param d.n an integer specifying the maximum dimension considered, only for advanced users
 #' @param c a calibrating parameter in the penalty in the model selection rule
-#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.p a logical value indicating whether to compute a p-value or not
 #' @param alpha a significance level
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
@@ -50,10 +50,10 @@
            base = ddst.base.legendre,
            d.n = 10,
            c = 100,
-           B = 10000,
-           compute.p = FALSE,
+           nr = 100000,
+           compute.p = TRUE,
            alpha = 0.05,
-           compute.cv = FALSE,
+           compute.cv = TRUE,
            ...) {
     # method.name = as.character(substitute(base))
     base = ddst.base.legendre
@@ -91,8 +91,8 @@
                              sep = "")
     class(result) = c("htest", "ddst.test")
     if (compute.p | compute.cv) {
-      tmp = numeric(B)
-      for (i in 1:B) {
+      tmp = numeric(nr)
+      for (i in 1:nr) {
         y = rexp(length(x))
         tmpC = ddst.exp.Nk(y, base, Dmax = d.n, n = length(y))
         l = ddst.IIC(tmpC, n, c)
