@@ -32,6 +32,7 @@
 #' set.seed(7)
 #' # H0 is true
 #' z <- rexp(80,4)
+#' \dontrun{
 #' t <- ddst.exp.test (z, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
@@ -41,7 +42,7 @@
 #' (t = ddst.exp.test (z, compute.p = TRUE, d.n = 10))
 #' t$p.value
 #' plot(t)
-#'
+#' }
 #' @keywords htest
 #' @aliases ddst.exp.Nk
 #'

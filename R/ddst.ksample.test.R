@@ -53,7 +53,7 @@
 ##      n <- c(length(x),
 ##             sapply(list(...), length))
 ##    }
-    coord = ddst.ksample.Nk(x.vector, n, d_N = d.n, c = c)
+    coord = ddst.ksample.Nk(x.vector, n, d_N = d.N, c = c)
 
     l = coord$score
     attr(l, "names") = "WT"
@@ -67,8 +67,8 @@
     result$data.name = paste(paste(as.character(substitute(x)), collapse = ""),
                              ", c: ",
                              c,
-                             ", d.n: ",
-                             d.n,
+                             ", d.N: ",
+                             d.N,
                              sep = "")
     class(result) = c("htest", "ddst.test", "ddst.ksample.test")
 

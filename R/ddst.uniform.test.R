@@ -36,6 +36,7 @@
 #' set.seed(7)
 #' # H0 is true
 #' z <- runif(80)
+#' \dontrun{
 #' t <- ddst.uniform.test(z, compute.p = TRUE, d.n = 10)
 #' t
 #' plot(t)
@@ -51,6 +52,7 @@
 #' (t <- ddst.uniform.test(z, compute.p = TRUE, d.n = 10))
 #' t$p.value
 #' plot(t)
+#' }
 #' @keywords htest
 `ddst.uniform.test` <-
   function(x,

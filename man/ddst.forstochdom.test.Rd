@@ -83,6 +83,6 @@ plot(ecdf(samp))
 
 }
 \references{
-Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) \url{https://doi.org/10.1007/s11749-011-0278-7}
+Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) <doi:10.1007/s11749-011-0278-7>
 }
 \keyword{htest}

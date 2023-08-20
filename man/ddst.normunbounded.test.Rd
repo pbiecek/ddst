@@ -39,8 +39,6 @@ ddst.normunbounded.bias(n = 100, d.n = 20, nr = 10000)
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
 
 \item{n}{sample size}
-
-\item{...}{further arguments}
 }
 \description{
 Performs data driven smooth test for composite hypothesis of normality.
@@ -55,6 +53,7 @@ z <- rnorm(100)
 # let's look on first 20 coordinates
 d.n <- 20
 
+\dontrun{
 # calculate finite sample corrections
 # see 6.2. Composite null hypothesis H in the appendix materials
 e.v <- ddst.normunbounded.bias(n = length(z))
@@ -92,6 +91,7 @@ r.alpha <- 2.142
 t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 t
 plot(t)
+}
 }
 \references{
 Ledwina, T., Wyłupek, G. (2015) Detection of non-Gaussianity by Ledwina and Wyłupek \emph{Journal of Statistical Computation and Simulation} 17, 3480-3497.

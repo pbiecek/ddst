@@ -1,8 +1,7 @@
-ddst.normbounded.test - już nie ma argumentu B/nr ponieważ p-wartość liczona jest analitycznie
-argument B zamieniony na nr
-domyślna wartość B zamieniona z 10000 na 100000
-compute.p zamienione z FALSE na TRUE
+ddst 1.6.10
+----------------
 
+* changes requested by CRAN
 
 ddst 1.6.7
 ----------------

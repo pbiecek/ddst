@@ -1,6 +1,6 @@
 Package: ddst
 Title: Data Driven Smooth Tests
-Version: 1.6.9
+Version: 1.6.10
 Authors@R: c(person("Przemyslaw", "Biecek", email = "przemyslaw.biecek@gmail.com", role = c("aut", "cre")),
              person("Teresa", "Ledwina", email = "ledwina@impan.pl", role = c("aut")),
              person("Grzegorz", "Wylupek", role = c("aut"))
@@ -12,7 +12,6 @@ Description: Smooth tests are data driven (alternative hypothesis is dynamically
     and uniform distribution.
     Among nonparametric tests there are tests for stochastic dominance,
     k-sample test, test with umbrella alternatives and test for change-point problems.
-    Find a detailed description for these tests at TODO.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -26,7 +25,7 @@ Imports:
 Suggests:
     rmutil,
     knitr
-RoxygenNote: 7.1.1
 URL: https://pbiecek.github.io/ddst/
 BugReports: https://github.com/pbiecek/ddst/issues
 VignetteBuilder: knitr
+RoxygenNote: 7.2.3

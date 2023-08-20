@@ -61,6 +61,7 @@ set.seed(7)
 # for given vector of 19 numbers
 z <- c(13.41, 6.04, 1.26, 3.67, -4.54, 2.92, 0.44, 12.93, 6.77, 10.09,
       4.10, 4.04, -1.97, 2.17, -5.38, -7.30, 4.75, 5.63, 8.84)
+\dontrun{
 t <- ddst.evd.test(z, compute.p = TRUE, d.n = 10)
 t
 plot(t)
@@ -76,6 +77,7 @@ x <- rexp(80,4)
 t <- ddst.evd.test (x, compute.p = TRUE, d.n = 10)
 t
 plot(t)
+}
 }
 \references{
 Hosking, J.R.M., Wallis, J.R., Wood, E.F. (1985). Estimation of the generalized extreme-value distribution by the method of probability-weighted moments. \eqn{ Technometrics} 27, 251--261.

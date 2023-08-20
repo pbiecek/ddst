@@ -52,6 +52,7 @@ Embeding null model into the original exponential family introduced by Neyman (1
 set.seed(7)
 # H0 is true
 z <- runif(80)
+\dontrun{
 t <- ddst.uniform.test(z, compute.p = TRUE, d.n = 10)
 t
 plot(t)
@@ -67,6 +68,7 @@ z <- rbeta(80,4,2)
 (t <- ddst.uniform.test(z, compute.p = TRUE, d.n = 10))
 t$p.value
 plot(t)
+}
 }
 \references{
 Inglot, T., Ledwina, T. (2006). Towards data driven selection of a penalty function for data driven Neyman tests. \emph{ Linear Algebra and its Appl.} \bold{ 417}, 579--590.

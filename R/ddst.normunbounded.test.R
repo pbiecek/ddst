@@ -15,7 +15,6 @@
 #' @param nr an integer specifying the number of runs for a critical value computation
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #' @param n sample size
-#' @param ... further arguments
 #'
 #' @export
 #'
@@ -31,6 +30,7 @@
 #' # let's look on first 20 coordinates
 #' d.n <- 20
 #'
+#' \dontrun{
 #' # calculate finite sample corrections
 #' # see 6.2. Composite null hypothesis H in the appendix materials
 #' e.v <- ddst.normunbounded.bias(n = length(z))
@@ -68,6 +68,7 @@
 #' t <- ddst.normubounded.test(z, d.n, e.v$e.0, e.v$v.0, r.alpha, s)
 #' t
 #' plot(t)
+#' }
 #' @rdname ddst.normunbounded.test
 #'
 `ddst.normubounded.test` <-

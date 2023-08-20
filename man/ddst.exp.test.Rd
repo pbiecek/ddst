@@ -53,6 +53,7 @@ Modelling alternatives similarly as in Kallenberg and Ledwina (1997 a,b).
 set.seed(7)
 # H0 is true
 z <- rexp(80,4)
+\dontrun{
 t <- ddst.exp.test (z, compute.p = TRUE, d.n = 10)
 t
 plot(t)
@@ -62,7 +63,7 @@ z = rchisq(80,4)
 (t = ddst.exp.test (z, compute.p = TRUE, d.n = 10))
 t$p.value
 plot(t)
-
+}
 }
 \references{
 Kallenberg, W.C.M., Ledwina, T. (1997 a). Data driven smooth tests for composite hypotheses: Comparison of powers. \eqn{ J. Statist. Comput. Simul.} \bold{ 59}, 101--121.

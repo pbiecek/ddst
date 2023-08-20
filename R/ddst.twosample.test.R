@@ -8,7 +8,7 @@
 #' @param y a (non-empty) numeric vector of data
 #' @param d.N an integer specifying the maximum dimension considered, only for advanced users
 #' @param c a calibrating parameter in the penalty in the model selection rule
-#' @param nr an integer specifying the number of runs for a p-value and a critical value computation if any
+#' @param B an integer specifying the number of runs for a p-value and a critical value computation if any
 #' @param compute.p a logical value indicating whether to compute a p-value or not
 #' @param alpha a significance level
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
@@ -41,7 +41,7 @@
            compute.p = TRUE,
            alpha = 0.05,
            compute.cv = TRUE) {
-    res <- ddst.ksample.test(list(x, y), d.N = d.N, c = c, nr = nr, compute.p = compute.p,
+    res <- ddst.ksample.test(list(x, y), d.N = d.N, c = c, nr = B, compute.p = compute.p,
                              alpha = alpha, compute.cv = compute.cv)
     res$coordinates <- res$coordinates[1,]
     res$method <- "Data Driven Smooth Test for Two-Sample Problem"

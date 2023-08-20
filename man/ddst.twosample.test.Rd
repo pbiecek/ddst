@@ -24,13 +24,13 @@ ddst.twosample.test(
 
 \item{c}{a calibrating parameter in the penalty in the model selection rule}
 
+\item{B}{an integer specifying the number of runs for a p-value and a critical value computation if any}
+
 \item{compute.p}{a logical value indicating whether to compute a p-value or not}
 
 \item{alpha}{a significance level}
 
 \item{compute.cv}{a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not}
-
-\item{nr}{an integer specifying the number of runs for a p-value and a critical value computation if any}
 }
 \description{
 Performs data driven smooth test for the classical two-sample problem.

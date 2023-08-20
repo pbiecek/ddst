@@ -17,7 +17,7 @@
 #' @param compute.p a logical value indicating whether to compute a p-value or not
 #' @param compute.cv a logical value indicating whether to compute a critical value corresponding to the significance level alpha or not
 #'
-#' @references Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) \url{https://doi.org/10.1007/s11749-011-0278-7}
+#' @references Nonparametric tests for stochastic ordering. Ledwina and Wyłupek (2012) <doi:10.1007/s11749-011-0278-7>
 #' @export
 #' @examples
 #' set.seed(7)
